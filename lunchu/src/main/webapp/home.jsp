@@ -1,3 +1,4 @@
+<%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -70,6 +71,9 @@
 <link rel="stylesheet" media="screen" href="css/ie.css">
 <![endif]-->
 </head>
+<%
+MemberDTO info = (MemberDTO) session.getAttribute("info");
+%>
 
 <body>
 	<div class="main">
@@ -82,8 +86,25 @@
 					<div class="menu_block">
 						<nav>
 							<ul class="sf-menu">
+								<%
+								if (info != null) {
+								%>
+								<li><a href="LogoutService">로그아웃</a></li>
+								<li class="with_ul"><a href="#">마이페이지</a>
+									<ul>
+										<li><a href="profile.jsp"> 내 정보</a></li>
+										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="reviews.jsp"> 내 리뷰 </a></li>
+										<li><a href="groups.jsp"> 내 그룹</a></li>
+									</ul></li>
+								<%
+								} else {
+								%>
 								<li><a href="login.jsp">로그인</a></li>
 								<li><a href="join.jsp">회원가입</a></li>
+								<%
+								}
+								%>
 							</ul>
 						</nav>
 						<div class="clear"></div>

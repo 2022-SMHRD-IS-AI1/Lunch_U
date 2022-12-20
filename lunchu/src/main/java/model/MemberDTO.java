@@ -107,6 +107,24 @@ public class MemberDTO {
 		public void setMemType(String memType) {
 			this.memType = memType;
 		}
+		
+		
+		
+		public MemberDTO(String memId, String memPw) {
+			super();
+			this.memId = memId;
+			this.memPw = memPw;
+		}
+
+
+
+		public MemberDTO(String memId, String memPw, String memAddr, String memPrefCategory) {
+			super();
+			this.memId = memId;
+			this.memPw = memPw;
+			this.memAddr = memAddr;
+			this.memPrefCategory = memPrefCategory;
+		}
 
 
 
@@ -122,13 +140,7 @@ public class MemberDTO {
 			this.memType = memType;
 		}
 		
-		public MemberDTO(String memId, String memPw, String memAddr, String memPrefCategory) {
-			super();
-			this.memId = memId;
-			this.memPw = memPw;
-			this.memAddr = memAddr;
-			this.memPrefCategory = memPrefCategory;
-		}
+		
 
 
 

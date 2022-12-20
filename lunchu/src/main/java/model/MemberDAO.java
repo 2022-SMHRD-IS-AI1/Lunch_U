@@ -12,20 +12,20 @@ public class MemberDAO {
 	PreparedStatement psmt = null;
 	int cnt = 0;
 	ResultSet rs = null;
+	MemberDTO result = null;
 
 	public void getconn() {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.OracleDriver");
 
 			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
-			String db_id = "cgi_4_1220_1";
+			String db_id = "cgi_4_1220_2";
 			String db_pw = "smhrd2";
 
 			conn = DriverManager.getConnection(db_url, db_id, db_pw);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			e.printStackTrace();
 		}
 
@@ -52,19 +52,18 @@ public class MemberDAO {
 		try {
 			getconn();
 
-			String sql = "insert into web_member values(?, ?, ?, ?, sysdate, ?,?)";
+			String sql = "insert into t_member values(?, ?, ?, null,?, sysdate,?)";
 			psmt = conn.prepareStatement(sql);
 
 			// 3-2 바인드 변수(?) 채우기
 			psmt.setString(1, dto.getMemId());
 			psmt.setString(2, dto.getMemPw());
 			psmt.setString(3, dto.getMemAddr());
-			psmt.setString(4, null);
-			psmt.setString(6, sql);
-			psmt.setString(7, "M");
+			psmt.setString(4, dto.getMemPrefCategory());
+			psmt.setString(5, "M");
 
 			// 4. 실행
-			cnt = psmt.executeUpdate();
+			cnt = psmt.executeUpdate(sql);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -73,5 +72,40 @@ public class MemberDAO {
 			close();
 		}
 		return cnt;
+	}
+	
+	public MemberDTO login(MemberDTO dto) {
+		
+		try {
+			getconn();
+			
+			String sql = "select * from t_member where mem_id=?and mem_pw=?";
+			
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, dto.getMemId());
+			psmt.setString(2, dto.getMemPw());
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println("성공");
+				String id = rs.getString(1);
+				String pw = rs.getString(2);
+				String addr = rs.getString(3);
+				String visit_rest = rs.getString(4);
+				String pref_cate = rs.getString(5);
+				String joindt = rs.getString(6);
+				String type = rs.getString(7);
+				
+				result = new MemberDTO(id, pw, addr, visit_rest, pref_cate, joindt, type);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
 	}
 }

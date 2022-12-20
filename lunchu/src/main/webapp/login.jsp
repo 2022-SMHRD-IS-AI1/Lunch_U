@@ -195,7 +195,7 @@ hr {
 		<div id="login">
 			<div id="login_form">
 				<!--로그인 폼-->
-				<form action="loginService" method="post">
+				<form action="LoginService" method="post">
 					<h3 class="login" style="letter-spacing: -1px;">로그인</h3>
 					<hr>
 					<label>

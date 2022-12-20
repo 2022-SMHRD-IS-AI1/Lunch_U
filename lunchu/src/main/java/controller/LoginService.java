@@ -2,22 +2,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jakarta.servlet.http.HttpSession;
 import model.MemberDAO;
 import model.MemberDTO;
 
 /**
- * Servlet implementation class JoinService
+ * Servlet implementation class LoginService
  */
-@WebServlet("/JoinService")
-public class JoinService extends HttpServlet {
+public class LoginService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,29 +23,27 @@ public class JoinService extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		request.setCharacterEncoding("utf-8");
-		
-		MemberDAO dao = new MemberDAO();
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String address = request.getParameter("address");
-		String[] pref_cate = request.getParameterValues("category");
 		
-		MemberDTO dto = new MemberDTO(id, pw, address, Arrays.toString(pref_cate));
-		int cnt = dao.join(dto);
+		MemberDTO dto = new MemberDTO(id, pw);
 		
-		if (cnt == 1) {
-			response.sendRedirect("home.jsp");
+		MemberDAO dao = new MemberDAO();
+		
+		MemberDTO result = dao.login(dto);
+		
+		if (result != null) {
+			javax.servlet.http.HttpSession session = request.getSession();
+			session.setAttribute("info", result);
+			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+			rd.forward(request, response);
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			writer.println("<script>alert('이미 있는 아이디입니다. 다른 아이디를 입력해주세요.'); location.href='join.jsp';</script>"); 
+			writer.println("<script>alert('아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.'); location.href='login.jsp';</script>"); 
 			writer.close();
 		}
-		
-		
 	}
 
 }
