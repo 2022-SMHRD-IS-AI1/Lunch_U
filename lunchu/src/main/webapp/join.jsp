@@ -195,7 +195,7 @@ hr {
 		<div id="login">
 			<div id="login_form">
 				<!--로그인 폼-->
-				<form action="Join">
+				<form action="JoinService">
 					<h3 class="login" style="letter-spacing: -1px;">회원가입</h3>
 					<hr>
 					<label>
@@ -206,41 +206,39 @@ hr {
 						</p> <input type="text" placeholder="비밀번호를 입력" class="size" name="pw">
 					</label> <label>
 						<p style="text-align: left; font-size: 15px; color: #666">주소</p> <input
-						type="text" placeholder="주소를 입력" class="size" name="addr">
+						type="text" placeholder="주소를 입력" class="size" name="address">
 					</label> <label>
 						<p style="text-align: left; font-size: 15px; color: #666">좋아하는
 							음식</p>
 					</label>
 					<p></p>
 
-					<input type="checkbox" id="snackbar" name="category"> <label
-						for="snackbar"
-						style="text-align: left; font-size: 15px; color: #666">분식</label>
-					<input type="checkbox" id="hanjeongsik" name="category"> <label
-						for="hanjeongsik"
-						style="text-align: left; font-size: 15px; color: #666">한식</label>
-					<input type="checkbox" id="fusionfood" name="category"> <label
-						for="fusionfood"
-						style="text-align: left; font-size: 15px; color: #666">퓨전</label>
-					<input type="checkbox" id="fastfood" name="category"> <label
-						for="fastfood"
-						style="text-align: left; font-size: 15px; color: #666">패스트푸드</label>
-					<input type="checkbox" id="chineserestaurant" name="category">
-					<label for="chineserestaurant"
-						style="text-align: left; font-size: 15px; color: #666">중식</label>
-					<br> <input type="checkbox" id="chickendish" name="category">
-					<label for="chickendish"
-						style="text-align: left; font-size: 15px; color: #666">닭요리</label>
-					<input type="checkbox" id="japanesestyle" name="category">
+					<input type="checkbox" id="snackbar" name="category" value="분식">
+					<label for="snackbar" style="text-align: left; font-size: 15px; color: #666">분식</label>
+					
+					<input type="checkbox" id="hanjeongsik" name="category" value="한식">
+					<label for="hanjeongsik" style="text-align: left; font-size: 15px; color: #666">한식</label>
+					
+					<input type="checkbox" id="fusionfood" name="category" value="퓨전">
+					<label for="fusionfood" style="text-align: left; font-size: 15px; color: #666">퓨전</label>
+					
+					<input type="checkbox" id="fastfood" name="category" value="패스트푸드">
+					<label for="fastfood" style="text-align: left; font-size: 15px; color: #666">패스트푸드</label>
+					
+					<input type="checkbox" id="chineserestaurant" name="category" value="중식">
+					<label for="chineserestaurant" style="text-align: left; font-size: 15px; color: #666">중식</label>
+					<br>
+					<input type="checkbox" id="chickendish" name="category" value="닭요리">
+					<label for="chickendish" style="text-align: left; font-size: 15px; color: #666">닭요리</label>
+					
+					<input type="checkbox" id="japanesestyle" name="category" value="일식">
 					<label for="japanesestyle"
 						style="text-align: left; font-size: 15px; color: #666">일식</label>
-					<input type="checkbox" id="westernfood" name="category"> <label
-						for="westernfood"
-						style="text-align: left; font-size: 15px; color: #666">양식</label>
-					<input type="checkbox" id="buffet" name="category"> <label
-						for="buffet"
-						style="text-align: left; font-size: 15px; color: #666">부페</label>
-
+					<input type="checkbox" id="westernfood" name="category" value="양식">
+					<label for="westernfood" style="text-align: left; font-size: 15px; color: #666">양식</label>
+					
+					<input type="checkbox" id="buffet" name="category" value="부페">
+					<label for="buffet" style="text-align: left; font-size: 15px; color: #666">부페</label>
 					<p>
 						<input type="submit" value="가입" class="btn">
 					</p>
