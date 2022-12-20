@@ -76,29 +76,7 @@ $(document).ready(function () {
         <script src="./js/jquery-3.6.1.min.js"></script>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
-        <script>
 
-        $(function(){
-
-            var restaurantList = new Object();
-
-            restaurantList = [
-                {restNm: "달빙고",
-                restCate: "라면김밥분식",
-                restAdd: "광주광역시 광산구 선운로20번길 38"}
-                ,{restNm: "우리사이",
-                restCate: "한식/백반/한정식",
-                restAdd: "광주광역시 광산구 월곡로 24-1"
-                }
-            ]
-            var jsonData = JSON.stringify(restaurantList);
-
-        });
-
-
-            console.log(typeof(jsonData));
-            
-        </script>
         <script>
 
             
@@ -107,7 +85,7 @@ $(document).ready(function () {
 
                 function getMap() {
                     $.ajax({
-                        url: restaurantList,
+                    	url: "광주광산구음식점.jon",
                         success: function (jsonData) {
                             console.log(typeof(jsonData));
                             console.log(jsonData);
