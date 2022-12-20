@@ -195,16 +195,16 @@ hr {
 		<div id="login">
 			<div id="login_form">
 				<!--로그인 폼-->
-				<form>
+				<form action="loginService" method="post">
 					<h3 class="login" style="letter-spacing: -1px;">로그인</h3>
 					<hr>
 					<label>
 						<p style="text-align: left; font-size: 15px; color: #666">아이디</p>
-						<input type="text" placeholder="아이디를 입력" class="size">
+						<input type="text" placeholder="아이디를 입력" class="size" name = "id">
 					</label> 
 					<label>
 						<p style="text-align: left; font-size: 15px; color: #666">비밀번호
-						</p> <input type="text" placeholder="비밀번호를 입력" class="size">
+						</p> <input type="text" placeholder="비밀번호를 입력" class="size" name="pw">
 					</label>
 
 					<p></p>
@@ -214,7 +214,7 @@ hr {
 
 					<hr>
 					<p class="find">
-						<span><a href="#">메인 페이지로 이동</a></span>
+						<span><a href="home.jsp">메인 페이지로 이동</a></span>
 					</p>
 				</form>
 			</div>

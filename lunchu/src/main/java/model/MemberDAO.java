@@ -5,24 +5,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
-import org.apache.catalina.connector.Response;
-
 public class MemberDAO {
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	int cnt = 0;
 	ResultSet rs = null;
+	MemberDTO result = null;
 
-	public void getconn() {
+	public void getConn() {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.OracleDriver");
 
 			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
-			String db_id = "cgi_4_1220_1";
+			String db_id = "cgi_4_1220_2";
 			String db_pw = "smhrd2";
 
 			conn = DriverManager.getConnection(db_url, db_id, db_pw);
@@ -30,16 +25,11 @@ public class MemberDAO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			e.printStackTrace();
 		}
-
 	}
 
 	public void close() {
-		// 1. try catch
-		String nextPage = "";
 		try {
-			// 2.
 			if (rs != null)
 				rs.close();
 			if (psmt != null)
@@ -54,9 +44,9 @@ public class MemberDAO {
 	public int join(MemberDTO dto) {
 
 		try {
-			getconn();
+			getConn();
 
-			String sql = "insert into web_member values(?, ?, ?, ?, sysdate, ?,?)";
+			String sql = "insert into t_member values(?, ?, ?, ?, sysdate, ?,?)";
 			psmt = conn.prepareStatement(sql);
 
 			// 3-2 바인드 변수(?) 채우기
@@ -69,7 +59,7 @@ public class MemberDAO {
 
 			// 4. 실행
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -77,5 +67,41 @@ public class MemberDAO {
 			close();
 		}
 		return cnt;
+	}
+
+	public MemberDTO login(MemberDTO dto) {
+
+		try {
+			getConn();
+
+			String sql = "select * from t_member where mem_id=? and mem_pw=?";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, dto.getMemId());
+			psmt.setString(2, dto.getMemPw());
+
+			rs = psmt.executeQuery();
+
+			// ResultSet로 부터 원하는 데이터값 가져오기
+			if (rs.next()) {
+				String mem_id = rs.getString(1);
+				String mem_pw = rs.getString(2);
+				String mem_address = rs.getString(3);
+				String mem_visit_rest = rs.getString(4);
+				String mem_pref_cate = rs.getString(5);
+				String mem_joindt = rs.getString(6);
+				String mem_type = rs.getString(7);
+
+				result = new MemberDTO(mem_id, mem_pw, mem_address, mem_visit_rest, mem_pref_cate, mem_joindt,
+						mem_type);
+			} 
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
 	}
 }

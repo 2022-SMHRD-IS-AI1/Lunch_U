@@ -36,7 +36,7 @@ public class JoinService extends HttpServlet {
 		MemberDTO dto = new MemberDTO(id, pw, address, pref_cate);
 		int cnt = dao.join(dto);
 		
-		if (cnt == 1) {
+		if (cnt > 0) {
 			response.sendRedirect("home.jsp");
 		} else {
 			response.sendRedirect("join.jsp");

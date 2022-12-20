@@ -132,5 +132,14 @@ public class MemberDTO {
 
 
 
+		public MemberDTO(String memId, String memPw) {
+			super();
+			this.memId = memId;
+			this.memPw = memPw;
+		}
+
+		
+
+
 
 }

@@ -195,7 +195,7 @@ hr {
 		<div id="login">
 			<div id="login_form">
 				<!--로그인 폼-->
-				<form action="JoinService">
+				<form action="JoinService" method="post">
 					<h3 class="login" style="letter-spacing: -1px;">회원가입</h3>
 					<hr>
 					<label>
@@ -246,7 +246,7 @@ hr {
 					<hr>
 
 					<p class="find">
-						<span><a href="#">로그인 페이지로 이동</a></span>
+						<span><a href="login.jsp">로그인 페이지로 이동</a></span>
 					</p>
 				</form>
 			</div>
