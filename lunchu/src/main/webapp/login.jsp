@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,27 +194,27 @@ hr {
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
-				<!--�α��� ��-->
+				<!--로그인 폼-->
 				<form action="LoginService" method="post">
-					<h3 class="login" style="letter-spacing: -1px;">�α���</h3>
+					<h3 class="login" style="letter-spacing: -1px;">로그인</h3>
 					<hr>
 					<label>
-						<p style="text-align: left; font-size: 15px; color: #666">���̵�</p>
-						<input type="text" placeholder="���̵� �Է�" class="size" name = "id">
+						<p style="text-align: left; font-size: 15px; color: #666">아이디</p>
+						<input type="text" placeholder="아이디를 입력" class="size" name = "id">
 					</label> 
 					<label>
-						<p style="text-align: left; font-size: 15px; color: #666">��й�ȣ
-						</p> <input type="text" placeholder="��й�ȣ�� �Է�" class="size" name="pw">
+						<p style="text-align: left; font-size: 15px; color: #666">비밀번호
+						</p> <input type="text" placeholder="비밀번호를 입력" class="size" name="pw">
 					</label>
 
 					<p></p>
 					<p>
-						<input type="submit" value="�α���" class="btn">
+						<input type="submit" value="로그인" class="btn">
 					</p>
 
 					<hr>
 					<p class="find">
-						<span><a href="home.jsp">���� �������� �̵�</a></span>
+						<span><a href="home.jsp">메인 페이지로 이동</a></span>
 					</p>
 				</form>
 			</div>

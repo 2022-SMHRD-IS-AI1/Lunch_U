@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,59 +194,59 @@ hr {
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
-				<!--�α��� ��-->
+				<!--로그인 폼-->
 				<form action="JoinService" method="post">
-					<h3 class="login" style="letter-spacing: -1px;">ȸ������</h3>
+					<h3 class="login" style="letter-spacing: -1px;">회원가입</h3>
 					<hr>
 					<label>
-						<p style="text-align: left; font-size: 15px; color: #666">���̵�</p>
-						<input type="text" placeholder="���̵� �Է�" class="size" name="id">
+						<p style="text-align: left; font-size: 15px; color: #666">아이디</p>
+						<input type="text" placeholder="아이디를 입력" class="size" name="id">
 					</label> <label>
-						<p style="text-align: left; font-size: 15px; color: #666">��й�ȣ
-						</p> <input type="text" placeholder="��й�ȣ�� �Է�" class="size" name="pw">
+						<p style="text-align: left; font-size: 15px; color: #666">비밀번호
+						</p> <input type="text" placeholder="비밀번호를 입력" class="size" name="pw">
 					</label> <label>
-						<p style="text-align: left; font-size: 15px; color: #666">�ּ�</p> <input
-						type="text" placeholder="�ּҸ� �Է�" class="size" name="address">
+						<p style="text-align: left; font-size: 15px; color: #666">주소</p> <input
+						type="text" placeholder="주소를 입력" class="size" name="address">
 					</label> <label>
-						<p style="text-align: left; font-size: 15px; color: #666">�����ϴ�
-							����</p>
+						<p style="text-align: left; font-size: 15px; color: #666">좋아하는
+							음식</p>
 					</label>
 					<p></p>
 
-					<input type="checkbox" id="snackbar" name="category" value="�н�">
-					<label for="snackbar" style="text-align: left; font-size: 15px; color: #666">�н�</label>
+					<input type="checkbox" id="snackbar" name="category" value="분식">
+					<label for="snackbar" style="text-align: left; font-size: 15px; color: #666">분식</label>
 					
-					<input type="checkbox" id="hanjeongsik" name="category" value="�ѽ�">
-					<label for="hanjeongsik" style="text-align: left; font-size: 15px; color: #666">�ѽ�</label>
+					<input type="checkbox" id="hanjeongsik" name="category" value="한식">
+					<label for="hanjeongsik" style="text-align: left; font-size: 15px; color: #666">한식</label>
 					
-					<input type="checkbox" id="fusionfood" name="category" value="ǻ��">
-					<label for="fusionfood" style="text-align: left; font-size: 15px; color: #666">ǻ��</label>
+					<input type="checkbox" id="fusionfood" name="category" value="퓨전">
+					<label for="fusionfood" style="text-align: left; font-size: 15px; color: #666">퓨전</label>
 					
-					<input type="checkbox" id="fastfood" name="category" value="�н�ƮǪ��">
-					<label for="fastfood" style="text-align: left; font-size: 15px; color: #666">�н�ƮǪ��</label>
+					<input type="checkbox" id="fastfood" name="category" value="패스트푸드">
+					<label for="fastfood" style="text-align: left; font-size: 15px; color: #666">패스트푸드</label>
 					
-					<input type="checkbox" id="chineserestaurant" name="category" value="�߽�">
-					<label for="chineserestaurant" style="text-align: left; font-size: 15px; color: #666">�߽�</label>
+					<input type="checkbox" id="chineserestaurant" name="category" value="중식">
+					<label for="chineserestaurant" style="text-align: left; font-size: 15px; color: #666">중식</label>
 					<br>
-					<input type="checkbox" id="chickendish" name="category" value="�߿丮">
-					<label for="chickendish" style="text-align: left; font-size: 15px; color: #666">�߿丮</label>
+					<input type="checkbox" id="chickendish" name="category" value="닭요리">
+					<label for="chickendish" style="text-align: left; font-size: 15px; color: #666">닭요리</label>
 					
-					<input type="checkbox" id="japanesestyle" name="category" value="�Ͻ�">
+					<input type="checkbox" id="japanesestyle" name="category" value="일식">
 					<label for="japanesestyle"
-						style="text-align: left; font-size: 15px; color: #666">�Ͻ�</label>
-					<input type="checkbox" id="westernfood" name="category" value="���">
-					<label for="westernfood" style="text-align: left; font-size: 15px; color: #666">���</label>
+						style="text-align: left; font-size: 15px; color: #666">일식</label>
+					<input type="checkbox" id="westernfood" name="category" value="양식">
+					<label for="westernfood" style="text-align: left; font-size: 15px; color: #666">양식</label>
 					
-					<input type="checkbox" id="buffet" name="category" value="����">
-					<label for="buffet" style="text-align: left; font-size: 15px; color: #666">����</label>
+					<input type="checkbox" id="buffet" name="category" value="부페">
+					<label for="buffet" style="text-align: left; font-size: 15px; color: #666">부페</label>
 					<p>
-						<input type="submit" value="����" class="btn">
+						<input type="submit" value="가입" class="btn">
 					</p>
 
 					<hr>
 
 					<p class="find">
-						<span><a href="login.jsp">�α��� �������� �̵�</a></span>
+						<span><a href="login.jsp">로그인 페이지로 이동</a></span>
 					</p>
 				</form>
 			</div>

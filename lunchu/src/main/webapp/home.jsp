@@ -1,6 +1,6 @@
 <%@page import="model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,19 +89,19 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 								<%
 								if (info != null) {
 								%>
-								<li><a href="LogoutService">·Î±×¾Æ¿ô</a></li>
-								<li class="with_ul"><a href="#">¸¶ÀÌÆäÀÌÁö</a>
+								<li><a href="LogoutService">ë¡œê·¸ì•„ì›ƒ</a></li>
+								<li class="with_ul"><a href="#">ë§ˆì´í˜ì´ì§€</a>
 									<ul>
-										<li><a href="profile.jsp"> ³» Á¤º¸</a></li>
-										<li><a href="reservation.jsp"> ³» ¿¹¾à</a></li>
-										<li><a href="reviews.jsp"> ³» ¸®ºä </a></li>
-										<li><a href="groups.jsp"> ³» ±×·ì</a></li>
+										<li><a href="profile.jsp"> ë‚´ ì •ë³´</a></li>
+										<li><a href="reservation.jsp"> ë‚´ ì˜ˆì•½</a></li>
+										<li><a href="reviews.jsp"> ë‚´ ë¦¬ë·° </a></li>
+										<li><a href="groups.jsp"> ë‚´ ê·¸ë£¹</a></li>
 									</ul></li>
 								<%
 								} else {
 								%>
-								<li><a href="login.jsp">·Î±×ÀÎ</a></li>
-								<li><a href="join.jsp">È¸¿ø°¡ÀÔ</a></li>
+								<li><a href="login.jsp">ë¡œê·¸ì¸</a></li>
+								<li><a href="join.jsp">íšŒì›ê°€ì…</a></li>
 								<%
 								}
 								%>
@@ -138,9 +138,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img1.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -148,9 +148,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img2.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -158,9 +158,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img3.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -168,9 +168,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img4.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -178,9 +178,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img3.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -205,9 +205,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img1.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -215,9 +215,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img2.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -225,9 +225,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img3.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -235,9 +235,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img4.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -245,9 +245,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img3.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -272,9 +272,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img1.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -282,9 +282,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img2.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -292,9 +292,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img3.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -302,9 +302,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img4.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>
@@ -312,9 +312,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<div>
 										<img src="images/page1_img3.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>À½½ÄÁ¡ ÀÌ¸§</strong></a>
+											<a href="#"><strong>ìŒì‹ì  ì´ë¦„</strong></a>
 										</div>
-										<span> À½½ÄÁ¡ ÃßÃµ ¸Ş´º</span>
+										<span> ìŒì‹ì  ì¶”ì²œ ë©”ë‰´</span>
 
 									</div>
 								</li>

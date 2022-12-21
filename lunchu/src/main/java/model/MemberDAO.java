@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.http.HttpSession;
+
 
 
 public class MemberDAO {
@@ -63,7 +65,7 @@ public class MemberDAO {
 			psmt.setString(5, "M");
 
 			// 4. 실행
-			cnt = psmt.executeUpdate(sql);
+			cnt = psmt.executeUpdate();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -107,5 +109,28 @@ public class MemberDAO {
 			close();
 		}
 		return result;
+	}
+
+	public int update(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		try {
+			getconn();
+			
+			String sql = "update t_member set mem_pw=? , mem_addr=? , mem_pref_category=? where mem_id = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getMemPw());
+			psmt.setString(2, dto.getMemAddr());
+			psmt.setString(3, dto.getMemPrefCategory());
+			psmt.setString(4, dto.getMemId());
+			
+			cnt = psmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
 	}
 }

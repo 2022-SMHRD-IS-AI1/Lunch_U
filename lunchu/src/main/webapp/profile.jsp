@@ -1,8 +1,9 @@
+<%@page import="javax.swing.text.Document"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.MemberDTO"%>
 <%@page import="java.lang.ProcessHandle.Info"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +34,8 @@
 <body>
 	<%
 	MemberDTO info = (MemberDTO) session.getAttribute("info");
+	String[] sp = info.getMemPrefCategory().replace("[", "").replace("]", "").replace(" ", "").split(",");
+	String[] cate = { "분식", "한식", "퓨전", "패스트푸드", "중식", "닭요리", "일식", "양식", "부페" };
 	%>
 	<div class="main">
 		<header>
@@ -44,13 +47,13 @@
 					<div class="menu_block">
 						<nav>
 							<ul class="sf-menu">
-								<li><a href="LogoutService">�α׾ƿ�</a></li>
-								<li class="with_ul"><a href="#">����������</a>
+								<li><a href="LogoutService">로그아웃</a></li>
+								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
-										<li><a href="profile.jsp"> �� ����</a></li>
-										<li><a href="reservation.jsp"> �� ����</a></li>
-										<li><a href="reviews.jsp"> �� ���� </a></li>
-										<li><a href="groups.jsp"> �� �׷�</a></li>
+										<li><a href="profile.jsp"> 내 정보</a></li>
+										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="reviews.jsp"> 내 리뷰 </a></li>
+										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
 							</ul>
 						</nav>
@@ -63,66 +66,53 @@
 		<div class="content">
 			<div class="container_12">
 				<div class="grid_12">
-					<h2>�� ���� �����ϱ�</h2>
+					<h2>내 정보 수정하기</h2>
 				</div>
 				<div class="portfolio">
-					<form action="UpdateMemberService.java" method="post">
+					<form action="UpdateMember" method="post">
 						<table>
 							<tr>
-								<td>���̵�</td>
+								<td>아이디</td>
 								<td><%=info.getMemId()%></td>
 							</tr>
 							<tr>
-								<td>��й�ȣ</td>
-								<td><input type="password" name="pw" value=<%= info.getMemPw() %>></td>
+								<td>비밀번호</td>
+								<td><input type="password" name="pw"
+									value=<%=info.getMemPw()%>></td>
 							</tr>
 							<tr>
-								<td>��й�ȣ Ȯ��</td>
-								<td><input type="password" name="pwCheck" value=<%= info.getMemPw() %>></td>
+								<td>비밀번호 확인</td>
+								<td><input type="password" name="pwCheck"
+									value=<%=info.getMemPw()%>></td>
 							</tr>
 							<tr>
-								<td>�ּ�</td>
+								<td>직장 주소</td>
 								<td><input name="address" value="<%=info.getMemAddr()%>"></td>
 							</tr>
 							<tr>
-								<td>��ȣ ī�װ���</td>
-								<td><input type="checkbox" id="snackbar" name="category"
-									value="�н�"> <label for="snackbar"
-									style="text-align: left; font-size: 15px; color: #666">�н�</label>
+								<td>선호 카테고리</td>
 
-									<input type="checkbox" id="hanjeongsik" name="category"
-									value="�ѽ�"> <label for="hanjeongsik"
-									style="text-align: left; font-size: 15px; color: #666">�ѽ�</label>
 
-									<input type="checkbox" id="fusionfood" name="category"
-									value="ǻ��"> <label for="fusionfood"
-									style="text-align: left; font-size: 15px; color: #666">ǻ��</label>
+								<td>
+									<%
+									for (int j=0; j < cate.length; j++){
+									%>
+									<input type="checkbox" name="category" value="분식"
+									<%for (int i=0; i<sp.length; i++) {
+										if(sp[i].equals(cate[j])){
+										%> checked <%
+										}
+									}
+										%>
+									>
+									<label style="text-align: left; font-size: 15px; color: #666"><%=cate[j]%>
+									</label>
 
-									<input type="checkbox" id="fastfood" name="category"
-									value="�н�ƮǪ��"> <label for="fastfood"
-									style="text-align: left; font-size: 15px; color: #666">�н�ƮǪ��</label>
-
-									<input type="checkbox" id="chineserestaurant" name="category"
-									value="�߽�"> <label for="chineserestaurant"
-									style="text-align: left; font-size: 15px; color: #666">�߽�</label>
-									<br> <input type="checkbox" id="chickendish"
-									name="category" value="�߿丮"> <label for="chickendish"
-									style="text-align: left; font-size: 15px; color: #666">�߿丮</label>
-
-									<input type="checkbox" id="japanesestyle" name="category"
-									value="�Ͻ�"> <label for="japanesestyle"
-									style="text-align: left; font-size: 15px; color: #666">�Ͻ�</label>
-									<input type="checkbox" id="westernfood" name="category"
-									value="���"> <label for="westernfood"
-									style="text-align: left; font-size: 15px; color: #666">���</label>
-
-									<input type="checkbox" id="buffet" name="category" value="����">
-									<label for="buffet"
-									style="text-align: left; font-size: 15px; color: #666">����</label>
+									<%  }%>
 								</td>
 							</tr>
 							<tr>
-								<td>�ֱ� �湮 �Ĵ�</td>
+								<td>최근 방문 식당</td>
 								<td>
 									<%
 									String visitRest = "";
@@ -131,17 +121,17 @@
 									} else {
 										visitRest = "-";
 									}
-									%> <%=visitRest%>
+									%>
+									<%=visitRest%>
 								</td>
 							</tr>
 							<tr>
-								<td>���Գ�¥</td>
-								<td><%=info.getMemJoindate()%></td>
+								<td>가입날짜</td>
+								<td></td>
 							</tr>
 							<tr>
-								<td colspan="2">
-									<input type="submit" value="����" style="text-align: center">
-								</td>
+								<td colspan="2"><input type="submit" value="수정"
+									style="text-align: center"></td>
 							</tr>
 						</table>
 					</form>

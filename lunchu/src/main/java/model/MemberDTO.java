@@ -118,12 +118,12 @@ public class MemberDTO {
 
 
 
-		public MemberDTO(String memId, String memPw, String memAddr, String memPrefCategory) {
+		public MemberDTO(String memId, String memPw, String memAddr, String string) {
 			super();
 			this.memId = memId;
 			this.memPw = memPw;
 			this.memAddr = memAddr;
-			this.memPrefCategory = memPrefCategory;
+			this.memPrefCategory = string;
 		}
 
 
@@ -139,6 +139,9 @@ public class MemberDTO {
 			this.memJoindate = memJoindate;
 			this.memType = memType;
 		}
+
+
+
 		
 		
 

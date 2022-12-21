@@ -34,7 +34,7 @@ public class JoinService extends HttpServlet {
 		String pw = request.getParameter("pw");
 		String address = request.getParameter("address");
 		String[] pref_cate = request.getParameterValues("category");
-		
+		System.out.println(Arrays.toString(pref_cate));
 		MemberDTO dto = new MemberDTO(id, pw, address, Arrays.toString(pref_cate));
 		int cnt = dao.join(dto);
 		

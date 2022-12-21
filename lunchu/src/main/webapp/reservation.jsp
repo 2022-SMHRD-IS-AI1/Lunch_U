@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,13 +101,13 @@
 					<div class="menu_block">
 						<nav>
 							<ul class="sf-menu">
-								<li><a href="LogoutService">·Î±×¾Æ¿ô</a></li>
-								<li class="with_ul"><a href="#">¸¶ÀÌÆäÀÌÁö</a>
+								<li><a href="LogoutService">ë¡œê·¸ì•„ì›ƒ</a></li>
+								<li class="with_ul"><a href="#">ë§ˆì´íŽ˜ì´ì§€</a>
 									<ul>
-										<li><a href="profile.jsp"> ³» Á¤º¸</a></li>
-										<li><a href="reservation.jsp"> ³» ¿¹¾à</a></li>
-										<li><a href="reviews.jsp"> ³» ¸®ºä </a></li>
-										<li><a href="groups.jsp"> ³» ±×·ì</a></li>
+										<li><a href="profile.jsp"> ë‚´ ì •ë³´</a></li>
+										<li><a href="reservation.jsp"> ë‚´ ì˜ˆì•½</a></li>
+										<li><a href="reviews.jsp"> ë‚´ ë¦¬ë·° </a></li>
+										<li><a href="groups.jsp"> ë‚´ ê·¸ë£¹</a></li>
 									</ul></li>
 							</ul>
 						</nav>
@@ -123,15 +123,15 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="review">
-						<h2>¿¹¾à ³»¿ª</h2>
+						<h2>ì˜ˆì•½ ë‚´ì—­</h2>
 						<table class="review_list">
 							<form action="">
 								<thead>
 									<tr>
 										<td class="review_col"></td>
-										<td class="review_col">¹øÈ£</td>
-										<td class="review_col">À½½ÄÁ¡¸í</td>
-										<td class="review_col">¹æ¹®ÀÏ</td>
+										<td class="review_col">ë²ˆí˜¸</td>
+										<td class="review_col">ìŒì‹ì ëª…</td>
+										<td class="review_col">ë°©ë¬¸ì¼</td>
 									</tr>
 								</thead>
 								<div class="scroll_box">
@@ -139,35 +139,35 @@
 										<tr class="review_detail">
 											<td><input type="checkbox"></td>
 											<td class="review_detail">1</td>
-											<td><a href="#">½ÅÂÞ²Ù¹Ì</a></td>
+											<td><a href="#">ì‹ ì­ˆê¾¸ë¯¸</a></td>
 											<td>2022-12-18</td>
 										</tr>
 
 										<tr class="review_detail">
 											<td><input type="checkbox"></td>
 											<td class="review_detail">2</td>
-											<td><a href="#">ºñ¹Ù·Î¸¶</a></td>
+											<td><a href="#">ë¹„ë°”ë¡œë§ˆ</a></td>
 											<td>2022-12-18</td>
 										</tr>
 
 										<tr class="review_detail">
 											<td><input type="checkbox"></td>
 											<td class="review_detail">3</td>
-											<td><a href="#">¿ÂÃµÁý</a></td>
+											<td><a href="#">ì˜¨ì²œì§‘</a></td>
 											<td>2022-12-18</td>
 										</tr>
 
 										<tr class="review_detail">
 											<td><input type="checkbox"></td>
 											<td class="review_detail">4</td>
-											<td><a href="#">µ¿°æÈ­·Î</a></td>
+											<td><a href="#">ë™ê²½í™”ë¡œ</a></td>
 											<td>2022-12-18</td>
 										</tr>
 
 										<tr class="review_detail">
 											<td><input type="checkbox"></td>
 											<td class="review_detail">5</td>
-											<td><a href="#">»õº®´Þ</a></td>
+											<td><a href="#">ìƒˆë²½ë‹¬</a></td>
 											<td>2022-12-18</td>
 										</tr>
 
@@ -176,11 +176,11 @@
 										<tr>
 											<td colspan="4" align="center"><button
 													class="review_delete">
-													<a href="#">´õº¸±â</a></td>
+													<a href="#">ë”ë³´ê¸°</a></td>
 										</tr>
 									</tfoot>
 								</div>
-								<button class="review_delete">»èÁ¦</button>
+								<button class="review_delete">ì‚­ì œ</button>
 
 							</form>
 						</table>
@@ -198,7 +198,7 @@
 
 		<footer>
 			<div class="container_12">
-				<div class="grid_12">½º¸¶Æ®ÀÎÀç°³¹ß¿ø Team Lunch_U</div>
+				<div class="grid_12">ìŠ¤ë§ˆíŠ¸ì¸ìž¬ê°œë°œì› Team Lunch_U</div>
 				<div class="clear"></div>
 			</div>
 		</footer>
