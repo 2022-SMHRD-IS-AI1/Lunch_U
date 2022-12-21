@@ -39,10 +39,10 @@
 								<li><a href="index.html">로그아웃</a></li>
 								<li><a href="#">마이페이지</a>
 									<ul>
-										<li><a href="#">내 정보</a></li>
-										<li><a href="#">내 예약</a></li>
-										<li><a href="review_list.html">내 리뷰</a></li>
-										<li><a href="group_list.html">내 그룹</a></li>
+										<li><a href="profile.jsp">내 정보</a></li>
+										<li><a href="reservation.jsp">내 예약</a></li>
+										<li><a href="reviews.jsp">내 리뷰</a></li>
+										<li><a href="groups.jsp">내 그룹</a></li>
 									</ul></li>
 							</ul>
 
