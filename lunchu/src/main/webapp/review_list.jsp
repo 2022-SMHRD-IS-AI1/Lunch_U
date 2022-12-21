@@ -116,7 +116,7 @@
                     <div class="review">
                         <h2>Evaluation</h2>
                         <table class="review_list">
-                            <form action="Review" method = "post">
+                            <form action="" method = "post">
                                 <thead>
                                     <tr>
                                         <td class="review_col"></td>
@@ -131,8 +131,8 @@
                                     	<%for(int i =0; i < re_dto.size(); i++) { %>
                                         <tr class="review_detail">
                                             <td><input type="checkbox"></td>
-                                            <td class="review_detail"><%= re_dto.get(i+1).getRv_seq() %></td>
-                                            <td><a href="#"><%= re_dto.get(i+2).getRest_seq() %></a></td>
+                                            <td class="review_detail"><%= i+1 %></td>
+                                            <td><a href="#"><%= re_dto.get(i).getRest_seq() %></a></td>
                                             <td><%= re_dto.get(i+3).getRv_rating() %></td>
                                             <td><%= re_dto.get(i+4).getRv_content() %></td>
                                         </tr>
