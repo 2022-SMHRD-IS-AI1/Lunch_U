@@ -136,7 +136,7 @@ public class MemberDAO {
 		try {
 			getconn();
 
-			String sql = "select * from t_member where id = ?";
+			String sql = "select * from t_member where mem_id = ?";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, search_id);

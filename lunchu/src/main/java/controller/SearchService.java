@@ -22,25 +22,25 @@ public class SearchService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * @return 
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
-		HttpSession session = request.getSession();
-		
-		MemberDTO info = (MemberDTO) session.getAttribute("info");
-		
-		
+		String searchId = request.getParameter("searchId");
 		MemberDAO dao = new MemberDAO();
-		String searchId = dao.search((String)info.getMemId());
-		if(searchId!="") {
-			
-		}
+		String searched = dao.search(searchId);
 		
-
+		if(searched!="") {
+			out.print(searched);
+		} 
+//		
+//		아이디 없을 경우 alert창 띄우기 - 지은
+		
 	}
 
 }
