@@ -97,7 +97,7 @@
 									<%
 									for (int j=0; j < cate.length; j++){
 									%>
-									<input type="checkbox" name="category" value="분식"
+									<input type="checkbox" name="category" value=<%=cate[j] %>
 									<%for (int i=0; i<sp.length; i++) {
 										if(sp[i].equals(cate[j])){
 										%> checked <%
