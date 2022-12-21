@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class GroupDAO {
+public class JoinGroupDAO {
 
 	Connection conn = null;
 	PreparedStatement psmt = null;
-	ResultSet rs = null;
 	int cnt = 0;
-	
+	ResultSet rs = null;
+	MemberDTO result = null;
+
 	public void getconn() {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -45,18 +46,20 @@ public class GroupDAO {
 		}
 	}
 
-	public int create(String groupname, String id) {
+	
+	public int joingroup(String member) {
 		try {
 			getconn();
-			
-			String sql = "insert into t_group values(t_group_SEQ.nextval, ?, sysdate, ?)";
+
+			String sql = "insert into t_joingroup values(t_joingroup_seq.nextval, ?, t_group_seq.currval, sysdate)";
 			psmt = conn.prepareStatement(sql);
-			
-			psmt.setString(1, groupname);
-			psmt.setString(2, groupname);
-			
+
+			// 3-2 바인드 변수(?) 채우기
+			psmt.setString(1, member);
+
+			// 4. 실행
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -65,6 +68,4 @@ public class GroupDAO {
 		}
 		return cnt;
 	}
-	
-	
 }

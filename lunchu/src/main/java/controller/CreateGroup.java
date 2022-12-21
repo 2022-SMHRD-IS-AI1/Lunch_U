@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import jakarta.servlet.annotation.WebServlet;
 import model.GroupDAO;
-import model.GroupDTO;
+import model.JoinGroupDAO;
 import model.MemberDTO;
 
 /**
@@ -26,18 +28,37 @@ public class CreateGroup extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
+		PrintWriter writer = response.getWriter();
+		
+		String groupname = request.getParameter("groupname");
 		HttpSession session = request.getSession();
-		
-		MemberDTO info = (MemberDTO) session.getAttribute("info");
-		
+		MemberDTO info = (MemberDTO)session.getAttribute("info");
 		String id = info.getMemId();
-//		String gName = request.getAttribute("gname");
 		
-		GroupDAO dao = new GroupDAO();
-//		GroupDTO dto = new GroupDTO(gName, id);
+		GroupDAO Gdao = new GroupDAO();
+		JoinGroupDAO JGdao = new JoinGroupDAO();
 		
-//		dao.create(dto);
+		String[] members = request.getParameterValues("memberId");
+		
+		int cnt = Gdao.create(groupname, id);
+		int cnt2 = 0;
+		if(cnt > 0) {
+			for (String i:members) {
+				cnt2 = JGdao.joingroup(i);
+				if (cnt2 <= 0) {
+					writer.println("<script>alert('그룹 생성 실패'); location.href='creategroup.jsp';</script>"); 
+					writer.close();
+				} else {
+					writer.println("<script>alert('그룹이 생성되었습니다.'); location.href='groups.jsp';</script>"); 
+					writer.close();
+				}
+			}
+		} else {
+			writer.println("<script>alert('그룹 생성 실패'); location.href='creategroup.jsp';</script>"); 
+			writer.close();
+		}
 	}
 
 }
