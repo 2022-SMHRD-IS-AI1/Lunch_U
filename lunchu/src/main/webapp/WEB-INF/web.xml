@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>controller.UpdateMemberService</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreateGroup</servlet-name>
+  	<display-name>CreateGroup</display-name>
+  	<description></description>
+  	<servlet-class>controller.CreateGroup</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -43,5 +49,9 @@
   <servlet-mapping>
   	<servlet-name>UpdateMemberService</servlet-name>
   	<url-pattern>/UpdateMemberService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateGroup</servlet-name>
+  	<url-pattern>/CreateGroup</url-pattern>
   </servlet-mapping>
 </web-app>

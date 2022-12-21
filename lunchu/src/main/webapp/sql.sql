@@ -1,11 +1,36 @@
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
+-- 테이블 삭제 
+drop table t_group cascade constraints;
+drop table t_joingroup cascade constraints;
+drop table t_member cascade constraints;
+drop table t_reservation cascade constraints;
+drop table t_rest_group cascade constraints;
+drop table t_restaurant cascade constraints;
+drop table t_review cascade constraints;
+drop table t_review_deleted cascade constraints;
+
+
+
+-- 시퀀스 삭제
+drop sequence t_category_seq;
+drop sequence t_group_seq;
+drop sequence t_joingroup_seq;
+drop sequence t_reservation_seq;
+drop sequence t_rest_group_seq;
+drop sequence t_restaurant_seq;
+drop sequence t_reveiw_seq;
+drop sequence t_review_deleted_seq;
+
+
+
+
 -- t_member Table Create SQL
 -- 테이블 생성 SQL - t_member
 CREATE TABLE t_member
 (
     mem_id                  VARCHAR2(20)     NOT NULL, 
-    mem_pw                  VARCHAR2(20)     NOT NULL, 
+    mem_pw                  VARCHAR2(100)     NOT NULL, 
     mem_addr                VARCHAR2(500)    NOT NULL, 
     mem_visit_restaurant    VARCHAR2(30)     NULL, 
     mem_pref_category       VARCHAR2(20)     NOT NULL, 
@@ -54,17 +79,7 @@ CREATE SEQUENCE t_category_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_category.cate_seq
-CREATE OR REPLACE TRIGGER t_category_AI_TRG
-BEFORE INSERT ON t_category 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_category_SEQ.NEXTVAL
-    INTO :NEW.cate_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_category_AI_TRG; 
 
 -- DROP SEQUENCE t_category_SEQ; 
 
@@ -95,17 +110,7 @@ CREATE SEQUENCE t_restaurant_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_restaurant.rest_seq
-CREATE OR REPLACE TRIGGER t_restaurant_AI_TRG
-BEFORE INSERT ON t_restaurant 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_restaurant_SEQ.NEXTVAL
-    INTO :NEW.rest_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_restaurant_AI_TRG; 
 
 -- DROP SEQUENCE t_restaurant_SEQ; 
 
@@ -153,17 +158,7 @@ CREATE SEQUENCE t_group_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_group.group_seq
-CREATE OR REPLACE TRIGGER t_group_AI_TRG
-BEFORE INSERT ON t_group 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_group_SEQ.NEXTVAL
-    INTO :NEW.group_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_group_AI_TRG; 
 
 -- DROP SEQUENCE t_group_SEQ; 
 
@@ -185,7 +180,7 @@ COMMENT ON COLUMN t_group.admin_id IS '그룹 관리자';
 -- Foreign Key 설정 SQL - t_group(admin_id) -> t_member(mem_id)
 ALTER TABLE t_group
     ADD CONSTRAINT FK_t_group_admin_id_t_member_m FOREIGN KEY (admin_id)
-        REFERENCES t_member (mem_id) ON DELETE RESTRICT ;
+        REFERENCES t_member (mem_id) ON DELETE RESTRICT;
 
 -- Foreign Key 삭제 SQL - t_group(admin_id)
 -- ALTER TABLE t_group
@@ -212,17 +207,7 @@ CREATE SEQUENCE t_review_deleted_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_review_deleted.rv_delete_seq
-CREATE OR REPLACE TRIGGER t_review_deleted_AI_TRG
-BEFORE INSERT ON t_review_deleted 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_review_deleted_SEQ.NEXTVAL
-    INTO :NEW.rv_delete_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_review_deleted_AI_TRG; 
 
 -- DROP SEQUENCE t_review_deleted_SEQ; 
 
@@ -271,19 +256,7 @@ CREATE SEQUENCE t_reservation_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_reservation.reserv_seq
-CREATE OR REPLACE TRIGGER t_reservation_AI_TRG
-BEFORE INSERT ON t_reservation 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_reservation_SEQ.NEXTVAL
-    INTO :NEW.reserv_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_reservation_AI_TRG; 
-
--- DROP SEQUENCE t_reservation_SEQ; 
 
 -- 테이블 Comment 설정 SQL - t_reservation
 COMMENT ON TABLE t_reservation IS '예약';
@@ -340,19 +313,8 @@ CREATE SEQUENCE t_review_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_review.rv_seq
-CREATE OR REPLACE TRIGGER t_review_AI_TRG
-BEFORE INSERT ON t_review 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_review_SEQ.NEXTVAL
-    INTO :NEW.rv_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_review_AI_TRG; 
 
--- DROP SEQUENCE t_review_SEQ; 
 
 -- 테이블 Comment 설정 SQL - t_review
 COMMENT ON TABLE t_review IS '리뷰';
@@ -410,17 +372,6 @@ CREATE SEQUENCE t_rest_group_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_rest_group.rg_seq
-CREATE OR REPLACE TRIGGER t_rest_group_AI_TRG
-BEFORE INSERT ON t_rest_group 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_rest_group_SEQ.NEXTVAL
-    INTO :NEW.rg_seq
-    FROM DUAL;
-END;
-
--- DROP TRIGGER t_rest_group_AI_TRG; 
 
 -- DROP SEQUENCE t_rest_group_SEQ; 
 
@@ -474,17 +425,7 @@ CREATE SEQUENCE t_joingroup_SEQ
 START WITH 1
 INCREMENT BY 1;
 
--- Auto Increment를 위한 Trigger 추가 SQL - t_joingroup.join_seq
-CREATE OR REPLACE TRIGGER t_joingroup_AI_TRG
-BEFORE INSERT ON t_joingroup 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_joingroup_SEQ.NEXTVAL
-    INTO :NEW.join_seq
-    FROM DUAL;
-END;
 
--- DROP TRIGGER t_joingroup_AI_TRG; 
 
 -- DROP SEQUENCE t_joingroup_SEQ; 
 

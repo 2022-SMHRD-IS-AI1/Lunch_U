@@ -108,7 +108,7 @@
 									<label style="text-align: left; font-size: 15px; color: #666"><%=cate[j]%>
 									</label>
 
-									<%  }%>
+									<%}%>
 								</td>
 							</tr>
 							<tr>
@@ -127,7 +127,7 @@
 							</tr>
 							<tr>
 								<td>가입날짜</td>
-								<td></td>
+								<td><%=info.getMemJoindate()%></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" value="수정"
