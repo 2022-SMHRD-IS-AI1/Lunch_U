@@ -190,6 +190,29 @@ hr {
 	color: #707070;
 }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+	function search() {
+		console.log("ajax")
+	}
+
+	$.ajax({
+		url : 'SearchService', //어디로 요청할 것인가?
+		type : 'Post', //요청방식(Get or Post)
+		data : {search_id}, //보내는 데이터
+		success : function(res) {
+			return search_id
+			// 요청이 성공했고, 응답이 정상적으로 돌아오면 실행되는 콜백 함수
+			//서버로부터 받은 응답이 매개변수 res에 자동으로 담긴다.
+		},
+		error : function(e) {
+			alert("존재하지 않는 아이디입니다.");
+			// 요청이 실패했을 때, 실행되는 콜백함수
+		}
+
+	})
+</script>
 <body>
 	<div id="con">
 		<div id="login">
@@ -200,21 +223,34 @@ hr {
 					<hr>
 					<label>
 						<p style="text-align: left; font-size: 15px; color: #666">그룹명</p>
-						<input type="text" placeholder="아이디를 입력" class="size" name="id">
-					</label> 
-					<label>
+						<input type="text" placeholder="그룹명을 입력" class="size"
+						name="groupname">
+					</label> <label>
 						<p style="text-align: left; font-size: 15px; color: #666">그룹멤버</p>
-						<input type="text" placeholder="아이디를 입력" class="size" name="id">
-					</label> 
+						<input type="text" placeholder="멤버 아이디 검색" class="size"
+						name="searchid" style="width: 248px;">
+						<button style="width: 50px; height: 30px; vertical-align: center"
+							onclick="search()">추가</button>
+					</label>
+
+
+					<div
+						style="width: 300px; background-color: #f2f0f0; height: 200px; margin-top: 30px; border-radius: 5px;">
+
+						<ul>
+							<li style="list-style: none;">b</li>
+
+						</ul>
+					</div>
 
 					<p></p>
 					<p>
-						<input type="submit" value="로그인" class="btn">
+						<input type="submit" value="그룹생성" class="btn">
 					</p>
 
 					<hr>
 					<p class="find">
-						<span><a href="home.jsp">메인 페이지로 이동</a></span>
+						<span><a href="groups.jsp">그룹 페이지로 이동</a></span>
 					</p>
 				</form>
 			</div>

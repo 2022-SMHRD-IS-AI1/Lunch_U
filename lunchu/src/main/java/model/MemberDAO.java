@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 
 import javax.servlet.http.HttpSession;
 
-
-
 public class MemberDAO {
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -66,7 +64,7 @@ public class MemberDAO {
 
 			// 4. 실행
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -75,23 +73,22 @@ public class MemberDAO {
 		}
 		return cnt;
 	}
-	
+
 	public MemberDTO login(MemberDTO dto) {
-		
+
 		try {
 			getconn();
-			
+
 			String sql = "select * from t_member where mem_id=?and mem_pw=?";
-			
+
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, dto.getMemId());
 			psmt.setString(2, dto.getMemPw());
-			
+
 			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
-				System.out.println("성공");
+
+			if (rs.next()) {
 				String id = rs.getString(1);
 				String pw = rs.getString(2);
 				String addr = rs.getString(3);
@@ -99,7 +96,7 @@ public class MemberDAO {
 				String pref_cate = rs.getString(5);
 				String joindt = rs.getString(6);
 				String type = rs.getString(7);
-				
+
 				result = new MemberDTO(id, pw, addr, visit_rest, pref_cate, joindt, type);
 			}
 		} catch (Exception e) {
@@ -115,15 +112,15 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		try {
 			getconn();
-			
+
 			String sql = "update t_member set mem_pw=? , mem_addr=? , mem_pref_category=? where mem_id = ?";
-			
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getMemPw());
 			psmt.setString(2, dto.getMemAddr());
 			psmt.setString(3, dto.getMemPrefCategory());
 			psmt.setString(4, dto.getMemId());
-			
+
 			cnt = psmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -132,5 +129,31 @@ public class MemberDAO {
 			close();
 		}
 		return cnt;
+	}
+
+	public String search(String search_id) {
+		String id = "";
+		try {
+			getconn();
+
+			String sql = "select * from t_member where id = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, search_id);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				id = rs.getString(1);
+			} else {
+				id = "";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return id;
 	}
 }

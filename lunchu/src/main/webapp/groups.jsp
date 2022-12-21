@@ -65,14 +65,15 @@
 					<div class="scroll_box">
 						<table>
 							<tbody>
+							<%-- 
 							<% 
 							MemberDTO info = (MemberDTO)session.getAttribute("info");
 							String id = info.getMemId();
 							
 							GroupDAO dao = new GroupDAO();
 							dao.create();
-							
 							%>
+							--%>
 								<tr>
 									<td class="group_sequence">1</td>
 									<td class="group_detail"><a href="#">UI설계팀</a><br> <span>김재민,
@@ -126,7 +127,7 @@
 					</div>
 					<table>
 						<tr>
-							<td colspan="3" onclick="CreateGroup" class="add_new_group" align="center">
+							<td colspan="3" onclick ="location.href='creategroup.jsp'" class="add_new_group" align="center">
 								<br> ➕새 그룹
 							</td>
 						</tr>
