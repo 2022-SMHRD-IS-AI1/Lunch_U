@@ -94,7 +94,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
 										<li><a href="reservation.jsp"> 내 예약</a></li>
-										<li><a href="reviews.jsp"> 내 리뷰 </a></li>
+										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
 										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
 								<%
