@@ -99,15 +99,34 @@
                 }
 
                 function createMap(addressList) {
+                    
+
                     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                         mapOption = {
                             center: new kakao.maps.LatLng(35.1904480847838, 126.812984611101), // 지도의 중심좌표
                             level: 5 // 지도의 확대 레벨
                         };
-
                     let map = new kakao.maps.Map(mapContainer, mapOption);
                     let geocoder = new kakao.maps.services.Geocoder();
                     let overlayList = [];
+                    
+                    var imageSrc = "images/company.jpg"; 
+                    var imageSize = new kakao.maps.Size(24, 35); 
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+                    
+                    geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
+                        // 정상적으로 검색이 완료됐으면 
+                        if (status === kakao.maps.services.Status.OK) {
+
+                            coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                            map.setCenter(coords);
+                            var marker = new kakao.maps.Marker({
+                                map: map,
+                                position: coords,
+                                image : markerImage
+                            });
+                        }
+                    });
 
                     function info(result, status, restNm, restCate, restAdd) {
                         return function (result, status) {
