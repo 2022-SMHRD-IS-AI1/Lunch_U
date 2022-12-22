@@ -49,11 +49,11 @@ public class GroupDAO {
 		try {
 			getconn();
 			
-			String sql = "insert into t_group values(t_group_SEQ.nextval, ?, sysdate, ?)";
+			String sql = "insert into t_group values(t_group_SEQ.nextval, ?, current_date, ?)";
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setString(1, groupname);
-			psmt.setString(2, groupname);
+			psmt.setString(2, id);
 			
 			cnt = psmt.executeUpdate();
 			
@@ -64,6 +64,30 @@ public class GroupDAO {
 			close();
 		}
 		return cnt;
+	}
+
+	public int groupseq() {
+		// TODO Auto-generated method stub
+		int groupseq = 0;
+		try {
+			getconn();
+			
+			String sql = "select group_seq from (select * from t_group order by rownum desc) where rownum = 1";
+			psmt = conn.prepareStatement(sql);
+			
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				groupseq = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return groupseq;
+		
 	}
 	
 	

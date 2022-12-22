@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,43 +23,48 @@ public class CreateGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter writer = response.getWriter();
-		
-		String groupname = request.getParameter("groupname");
+
 		HttpSession session = request.getSession();
-		MemberDTO info = (MemberDTO)session.getAttribute("info");
-		String id = info.getMemId();
 		
+
+		String groupname = request.getParameter("groupname");
+		String[] memberIds = request.getParameterValues("memberIds[]");
+		
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+		String id = info.getMemId();
+
 		GroupDAO Gdao = new GroupDAO();
 		JoinGroupDAO JGdao = new JoinGroupDAO();
 		
-		String[] members = request.getParameterValues("memberId");
-		
 		int cnt = Gdao.create(groupname, id);
-		int cnt2 = 0;
+//		 여기까지 잘 작동, 그룹 테이블 생성됨.
+		PrintWriter out = response.getWriter();
 		if(cnt > 0) {
-			for (String i:members) {
-				cnt2 = JGdao.joingroup(i);
-				if (cnt2 <= 0) {
-					writer.println("<script>alert('그룹 생성 실패'); location.href='creategroup.jsp';</script>"); 
-					writer.close();
+			int groupseq = Gdao.groupseq();
+			for(String i:memberIds) {
+				int cnt2 = JGdao.joingroup(i, groupseq);
+				if (cnt2 > 0) {
+					out.println("그룹이 생성되었습니다.");
+					out.close();
 				} else {
-					writer.println("<script>alert('그룹이 생성되었습니다.'); location.href='groups.jsp';</script>"); 
-					writer.close();
+					out.println("그룹 생성 실패");
+					out.close();
+					break;
 				}
 			}
 		} else {
-			writer.println("<script>alert('그룹 생성 실패'); location.href='creategroup.jsp';</script>"); 
-			writer.close();
+			out.println("그룹 생성 실패");
+			out.close();
 		}
+		
 	}
-
 }

@@ -146,7 +146,7 @@
 				            console.log(err);
 				        },
 				        success: function(data){
-				            var checkWord = $("").val();
+				            var checkWord = $("#schoolInput").val();
 				            var schoolList = $("#schoolList");
 				            console.log(checkWord);
 
@@ -205,8 +205,8 @@
 										<td class="review_detail">2</td>
 										<td><a href="#">상무초밥</a></td>
 									</tr>
-
-								</tbody>
+							</div>
+							</tbody>
 						</table>
 						<button class="exit">나가기</button>
 					</div>

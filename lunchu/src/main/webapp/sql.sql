@@ -70,7 +70,7 @@ COMMENT ON COLUMN t_member.mem_type IS '회원 유형. 회원:''M'', 관리자:'
 CREATE TABLE t_restaurant
 (
     rest_seq     NUMBER(18, 0)    NOT NULL, 
-    rest_name    VARCHAR2(30)     NOT NULL, 
+    rest_name    VARCHAR2(50)     NOT NULL, 
     rest_addr    VARCHAR2(500)    NOT NULL, 
     cate_seq     NUMBER(18, 0)    NOT NULL, 
     rest_tel     VARCHAR2(20)     NOT NULL, 

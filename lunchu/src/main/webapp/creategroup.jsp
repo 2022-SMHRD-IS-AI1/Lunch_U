@@ -102,7 +102,6 @@ a {
 	width: 100%;
 	height: 100vh;
 	background-color: #f5f1ee;
-	background-image: url("img/bg.jpg");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -191,34 +190,112 @@ hr {
 .find a:hover {
 	color: #707070;
 }
+
+.delete_btn {
+	background-color: #df3278;
+	border: none;
+	color: #fff;
+	border-radius: 5px;
+	margin-right: 10px
+}
+
+#box {
+	padding-left: 10px;
+	width: 300px;
+	background-color: #f2f0f0;
+	height: 200px;
+	margin-top: 30px;
+	border-radius: 5px;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
 	function search() {
+		var arr = $(".memberId").get()
+		var memberIds = [];
+
+		for (var i = 0; i < arr.length; i++) {
+			memberIds.push(arr[i].innerText);
+		}
+		
+		
+		
+		console.log(memberIds.length);
+		$
+				.ajax({
+					url : "SearchService", //어디로 요청할 것인가?
+					type : "post", //요청방식(Get or Post)
+					async : false,
+					data : {
+						"searchId" : $("#searchid").val(),
+						"memberIds" : memberIds
+					}, //보내는 데이터
+					success : function(res) {
+						if (res != "") {
+							for (var i = 0; i < memberIds.length; i++) {
+								console.log(memberIds[i], res, typeof(memberIds[i]), typeof(res));
+								
+								if (memberIds[i] !== res) {
+									console.log("다름");
+									$("#members")
+											.append(
+													'<tr><td class = "memberId" style="padding-left: 10px; width: 140px; text-align: left">'
+															+ res
+															+ '</td><td class = "delete" style="width: 50%; text-align: right;"><button class = "delete_btn" type="button" style="background-color: #df3278; border: none; color: #fff; border-radius: 5px;">삭제</button></td></tr>');
+								} else {
+									alert("이미 추가된 아이디입니다.");
+									break;
+								}
+							}
+						} else {
+							alert("존재하지 않는 아이디입니다. 검색한 아이디를 확인해주세요.")
+						}
+
+					},
+					error : function(e) {
+						alert("존재하지 않는 아이디입니다.");
+						// 요청이 실패했을 때, 실행되는 콜백함수
+					}
+
+				})
+	}
+
+	function create() {
+
+		var arr = $(".memberId").get()
+		var memberIds = new Array();
+
+		for (var i = 0; i < arr.length; i++) {
+			memberIds.push(arr[i].innerText);
+		}
+
+		console.log(memberIds.toString());
 
 		$.ajax({
-			url : "SearchService", //어디로 요청할 것인가?
+			url : "CreateGroup", //어디로 요청할 것인가?
 			type : "post", //요청방식(Get or Post)
+			async : false,
 			data : {
-				"searchId" : $("#searchid").val()
+				"groupname" : $("#groupname").val(),
+				"memberIds" : memberIds
 			}, //보내는 데이터
 			success : function(res) {
-				// 요청이 성공했고, 응답이 정상적으로 돌아오면 실행되는 콜백 함수
-				//서버로부터 받은 응답이 매개변수 res에 자동으로 담긴다.
-				console.log("요청성공");
-				console.log(res)
+				alert(res);
+				location.replace("groups.jsp");
 			},
 			error : function(e) {
-				alert("존재하지 않는 아이디입니다.");
+				alert("요청이 실패하였습니다. 관리자에게 문의하세요.");
 				// 요청이 실패했을 때, 실행되는 콜백함수
 			}
 
 		})
-
 	}
-</script>
 
+	$(document).on("click", ".delete_btn", function() {
+		$(this).parent().parent().detach();
+	})
+</script>
 <%
 MemberDTO info = (MemberDTO) session.getAttribute("info");
 String id = info.getMemId();
@@ -227,50 +304,41 @@ String id = info.getMemId();
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
+
 				<h3 class="login" style="letter-spacing: -1px;">그룹 생성</h3>
 				<hr>
-					<form action="CreateGroup" method="post">
-						<p style="text-align: left; font-size: 15px; color: #666">그룹명</p>
-						<input type="text" placeholder="그룹명 입력" class="size"
-							required="required" name="groupname">
+				<p style="text-align: left; font-size: 15px; color: #666">그룹명</p>
+				<input type="text" placeholder="그룹명 입력" class="size"
+					required="required" id="groupname">
+				<form action="">
 					<p style="text-align: left; font-size: 15px; color: #666">그룹멤버</p>
 					<input type="text" placeholder="멤버 아이디 검색" class="size"
-					id="searchid" style="width: 248px;">
-					<button type="button"
+						id="searchid" style="width: 248px;">
+					<button type="reset"
 						style="border: none; width: 48px; height: 30px; vertical-align: center"
 						onclick="search()">추가</button>
-
-				<div
-					style="width: 300px; background-color: #f2f0f0; height: 200px; margin-top: 30px; border-radius: 5px;">
-					<table>
+				</form>
+				<div id="box">
+					<table id="members">
 						<tr>
-							<td name="memberId"
-								style="padding-left: 10px; width: 140px; text-align: left"><%=id%></td>
-							<td style="width: 50%; text-align: right;"></td>
-						</tr>
-						<%--
-						현재까지 된 부분 : ajax 이용 검색한 아이디 콘솔에 찍는 것 까지 함.
-						질문할 부분 : 가져온 데이터를 원하는 위치(test)에 넣는 방법
-							윗부분 : 현재 세션에 저장된 사용자는 무조건 그룹에 포함, 아래부분 : 검색한 아이디가 있을 경우 반복 
-							test 부분에 조회 결과에 따라서 값 넣기
-							--%>
-						<tr>
-							<td name="memberId"
-								style="padding-left: 10px; width: 140px; text-align: left">test</td>
-							<td style="width: 50%; text-align: right;">
-								<button type="button"
-									style="background-color: #df3278; border: none; color: #fff; border-radius: 5px;">삭제</button>
+							<td class="memberId"
+								style="padding-left: 10px; width: 140px; text-align: left"><%=id%>
 							</td>
 						</tr>
-
+						<tr>
+							<td style="padding-left: 10px; width: 140px; text-align: left">
+								sample</td>
+							<td class="delete" style="width: 50%; text-align: right;">
+								<button class="delete_btn" type="button" onclick="delmem()">삭제</button>
+							</td>
+						</tr>
 					</table>
 				</div>
-				</form>
+
 				<p></p>
 				<p>
-					<input type="submit" value="그룹생성" class="btn">
+					<button class="btn" onclick="create()">그룹생성</button>
 				</p>
-
 				<hr>
 				<p class="find">
 					<span><a href="groups.jsp">그룹 페이지로 이동</a></span>

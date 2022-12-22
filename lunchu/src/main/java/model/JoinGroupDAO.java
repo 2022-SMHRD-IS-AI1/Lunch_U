@@ -47,15 +47,16 @@ public class JoinGroupDAO {
 	}
 
 	
-	public int joingroup(String member) {
+	public int joingroup(String member, int groupseq) {
 		try {
 			getconn();
 
-			String sql = "insert into t_joingroup values(t_joingroup_seq.nextval, ?, t_group_seq.currval, sysdate)";
+			String sql = "insert into t_joingroup values(t_joingroup_seq.nextval, ?, ?, current_date)";
 			psmt = conn.prepareStatement(sql);
 
 			// 3-2 바인드 변수(?) 채우기
 			psmt.setString(1, member);
+			psmt.setInt(2, groupseq);
 
 			// 4. 실행
 			cnt = psmt.executeUpdate();
