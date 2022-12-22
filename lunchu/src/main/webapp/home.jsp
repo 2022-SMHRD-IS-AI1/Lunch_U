@@ -89,6 +89,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 								<%
 								if (info != null) {
 								%>
+								<li><a href="Lunch_U_Map.jsp">지도</a></li>
 								<li><a href="LogoutService">로그아웃</a></li>
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
