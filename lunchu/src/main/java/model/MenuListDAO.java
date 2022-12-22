@@ -1,0 +1,94 @@
+package model;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class MenuListDAO {
+
+
+
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	ResultSet rs = null;
+	int cnt = 0;
+
+	
+	public void getConn() {
+		
+		try {
+			
+			Class.forName("oracle.jdbc.OracleDriver");
+
+			
+			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String db_id = "cgi_4_1220_2";
+			String db_pw = "smhrd2"; 
+			conn = DriverManager.getConnection(db_url, db_id, db_pw);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void close() {
+		
+		try {
+			
+			if (rs != null)
+				rs.close();
+			if (psmt != null)
+				psmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+	
+	ArrayList<MenuListDTO> list = new ArrayList<>();
+	
+	
+	
+	public ArrayList<MenuListDTO> menuList() {
+		System.out.println("메뉴리스트 들어옴");
+		ArrayList<MenuListDTO> menuList = new ArrayList<MenuListDTO>();
+		
+		try {
+			
+			getConn();
+			
+			String sql = "select * from t_restaurant where cate_name='한식'";
+			
+			psmt=conn.prepareStatement(sql);
+			
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+				int restSeq = rs.getInt(1);
+				String restName = rs.getString(2);
+				String restAddr = rs.getString(3);
+				String cateName = rs. getString(4);
+				String restTel = rs. getString(5);
+				menuList.add(new MenuListDTO(restSeq, restName, restAddr, cateName, restTel));
+			}
+						
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return menuList;
+	}
+
+
+		
+		
+
+}
