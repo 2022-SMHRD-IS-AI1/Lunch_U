@@ -23,6 +23,8 @@ public class MemberDTO {
 
 		// 회원 유형 회원:'M', 관리자:'A'
 		private String memType;
+		
+		private String test;
 
 		
 
