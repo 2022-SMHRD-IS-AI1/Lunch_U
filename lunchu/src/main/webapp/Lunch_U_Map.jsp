@@ -1,3 +1,6 @@
+<%@page import="model.MemberDTO"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +19,10 @@
 <script src="js/jquery.easing.1.3.js"></script>
 
 </head>
+<%
+	MemberDTO info = (MemberDTO) session.getAttribute("info");
+	System.out.println(info.getMemAddr());
+%>
 <body>
 <div class="main">
   <header>
@@ -46,16 +53,16 @@
     </div>
   </header>
   <div class="content">
-    <!-- ì§€ë„ ì˜ì—­ -->
+    <!-- Áöµµ ¿µ¿ª -->
     <div class="container_12">
         <div class="grid_3">
-            <h2 class="head2">ìŒì‹ì  ëª©ë¡</h2>
+            <h2 class="head2">À½½ÄÁ¡ ¸ñ·Ï</h2>
             <ul class="list l1">
-                <li><a href="#">ë‹¬ë¹™ê³  ì„ ìš´ì </a></li>
-                <li><a href="#">ìš°ë¦¬ì‚¬ì´ ì›”ê³¡1ë™</a></li>
-                <li><a href="#">ê°€ë§ˆì†¥í† ì¢…ìˆœëŒ€êµ­ ìˆ˜ì™„ë™</a></li>
-                <li><a href="#">ì˜¤ë¦¬ëž‘ë¼ì§€ëž‘ ì–´ë£¡ë™</a></li>
-                <li><a href="#">ê¹€ê°€ë„¤ ì²¨ë‹¨1ë™</a></li>
+                <li><a href="#">´Þºù°í ¼±¿îÁ¡</a></li>
+                <li><a href="#">¿ì¸®»çÀÌ ¿ù°î1µ¿</a></li>
+                <li><a href="#">°¡¸¶¼ÜÅäÁ¾¼ø´ë±¹ ¼ö¿Ïµ¿</a></li>
+                <li><a href="#">¿À¸®¶ûµÅÁö¶û ¾î·æµ¿</a></li>
+                <li><a href="#">±è°¡³× Ã·´Ü1µ¿</a></li>
             </ul>
         </div>
         <div id="map" style="width:700px;height:500px;"></div>
@@ -80,7 +87,7 @@
                 getMap();
                 function restInfo(restaurant) {
                     let list = [];
-                    // for ë°˜ë³µë¬¸ì˜ ë²”ìœ„ ë¥¼ ?
+                    // for ¹Ýº¹¹®ÀÇ ¹üÀ§ ¸¦ ?
                     for (let i = 0; i < restaurant.length; i++) {
                         list.push({
                             "restNm": restaurant[i].restName,
@@ -92,10 +99,10 @@
                 }
 
                 function createMap(addressList) {
-                    let mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
+                    let mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
                         mapOption = {
-                            center: new kakao.maps.LatLng(33.450701, 126.570667), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
-                            level: 3 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
+                            center: new kakao.maps.LatLng(35.1904480847838, 126.812984611101), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
+                            level: 5 // ÁöµµÀÇ È®´ë ·¹º§
                         };
 
                     let map = new kakao.maps.Map(mapContainer, mapOption);
@@ -107,30 +114,30 @@
                             if (status === kakao.maps.services.Status.OK) {
                                 let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                                // ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¥¼ ë§ˆì»¤ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
+                                // °á°ú°ªÀ¸·Î ¹ÞÀº À§Ä¡¸¦ ¸¶Ä¿·Î Ç¥½ÃÇÕ´Ï´Ù
                                 let marker = new kakao.maps.Marker({
                                     map: map,
                                     position: coords
                                 });
 
-                                // ë§ˆì»¤ ìœ„ì— ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
-                                // ë§ˆì»¤ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•˜ê¸°ìœ„í•´ CSSë¥¼ ì´ìš©í•´ ìœ„ì¹˜ë¥¼ ì„¤ì •í–ˆìŠµë‹ˆë‹¤
+                                // ¸¶Ä¿ À§¿¡ Ä¿½ºÅÒ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÕ´Ï´Ù
+                                // ¸¶Ä¿¸¦ Áß½ÉÀ¸·Î Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÏ±âÀ§ÇØ CSS¸¦ ÀÌ¿ëÇØ À§Ä¡¸¦ ¼³Á¤Çß½À´Ï´Ù
                                 let overlay = new kakao.maps.CustomOverlay({
                                     // content: content,
                                     // map: map,
                                     position: marker.getPosition()
                                 });
 
-                                //overlayê°ì²´ì— content ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
+                                //overlay°´Ã¼¿¡ content Ãß°¡ÇÏ´Â ÇÔ¼ö
                                 overlay.setContent(createOverlayContent(overlay, restNm, restAdd, restCate));
 
-                                // ë§ˆì»¤ë¥¼ í´ë¦­í–ˆì„ ë•Œ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
+                                // ¸¶Ä¿¸¦ Å¬¸¯ÇßÀ» ¶§ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÕ´Ï´Ù
                                 kakao.maps.event.addListener(marker, 'click', mouseClickEventHandler(map, overlay));
 
                                 overlayList.push(overlay);
 
-                                // ì§€ë„ì˜ ì¤‘ì‹¬ì„ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚µë‹ˆë‹¤
-                                map.setCenter(coords);
+                                // ÁöµµÀÇ Áß½ÉÀ» °á°ú°ªÀ¸·Î ¹ÞÀº À§Ä¡·Î ÀÌµ¿½ÃÅµ´Ï´Ù
+                                // map.setCenter(coords);
 
                             }
                         }
@@ -140,20 +147,20 @@
                         let restCate = addressList[i].restCate;
                         let restAdd = addressList[i].restAdd;
 
-                        // ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤
+                        // ÁÖ¼Ò·Î ÁÂÇ¥¸¦ °Ë»öÇÕ´Ï´Ù
                         geocoder.addressSearch(restAdd, info(null, null, restNm, restCate, restAdd));
                     }
                 }
 
 
-                //ë§ˆì»¤ë³„ ì˜¤ë²„ë ˆì´ë¥¼ ìƒì„± ë° ë‹«ê¸°ë²„íŠ¼ ì´ë²¤íŠ¸ë¥¼ ì ìš©í•˜ëŠ” í•¨ìˆ˜
-                //ì˜¤ë²„ë ˆì´ì˜ êµ¬ì¡°ë¥¼ ë³€ê²½í•˜ê±°ë‚˜ ë””ìžì¸ì„ ìœ„í•œ í´ëž˜ìŠ¤ëª…ì„ ì¶”ê°€í•˜ë ¤ë©´ ì´ í•¨ìˆ˜ ë‚´ì—ì„œ ìˆ˜ì •í•´ì•¼ í•¨
+                //¸¶Ä¿º° ¿À¹ö·¹ÀÌ¸¦ »ý¼º ¹× ´Ý±â¹öÆ° ÀÌº¥Æ®¸¦ Àû¿ëÇÏ´Â ÇÔ¼ö
+                //¿À¹ö·¹ÀÌÀÇ ±¸Á¶¸¦ º¯°æÇÏ°Å³ª µðÀÚÀÎÀ» À§ÇÑ Å¬·¡½º¸íÀ» Ãß°¡ÇÏ·Á¸é ÀÌ ÇÔ¼ö ³»¿¡¼­ ¼öÁ¤ÇØ¾ß ÇÔ
                 const createOverlayContent = function (overlay, restNm, restAdd, restCate) {
 
-                    // HTMLê°ì²´ë¥¼ ìƒì„± : document.createElement(íƒœê·¸ì´ë¦„)
-                    // HTMLê°ì²´ í´ëž˜ìŠ¤ì´ë¦„ ì„¤ì • : document.createElement(íƒœê·¸ì´ë¦„).className = ì¶”ê°€í•  í´ëž˜ìŠ¤ì´ë¦„
-                    // HTMLê°ì²´ì˜ ìžì‹ìš”ì†Œë¡œ ì¶”ê°€ : ë¶€ëª¨HTMLê°ì²´.appendChild(ìžì‹HTMLê°ì²´)
-                    // HTMLê°ì²´ ìŠ¤íƒ€ì¼ ì ìš© : HTMLê°ì²´.style.ìŠ¤íƒ€ì¼ì†ì„± = ê°’ ( * í¬ê¸°ê°’ì„ ì¤„ ê²½ìš° ë°˜ë“œì‹œ 'px'ë‚˜ 'em' ë‹¨ìœ„ë¥¼ ìž‘ì„±í•´ì•¼ í•¨ )
+                    // HTML°´Ã¼¸¦ »ý¼º : document.createElement(ÅÂ±×ÀÌ¸§)
+                    // HTML°´Ã¼ Å¬·¡½ºÀÌ¸§ ¼³Á¤ : document.createElement(ÅÂ±×ÀÌ¸§).className = Ãß°¡ÇÒ Å¬·¡½ºÀÌ¸§
+                    // HTML°´Ã¼ÀÇ ÀÚ½Ä¿ä¼Ò·Î Ãß°¡ : ºÎ¸ðHTML°´Ã¼.appendChild(ÀÚ½ÄHTML°´Ã¼)
+                    // HTML°´Ã¼ ½ºÅ¸ÀÏ Àû¿ë : HTML°´Ã¼.style.½ºÅ¸ÀÏ¼Ó¼º = °ª ( * Å©±â°ªÀ» ÁÙ °æ¿ì ¹Ýµå½Ã 'px'³ª 'em' ´ÜÀ§¸¦ ÀÛ¼ºÇØ¾ß ÇÔ )
                     const divWrap = document.createElement("div");
                     divWrap.className = "wrap";
 
@@ -166,7 +173,7 @@
 
                     const divClose = document.createElement("div");
                     divClose.className = "close";
-                    divClose.setAttribute("title", "ë‹«ê¸°");
+                    divClose.setAttribute("title", "´Ý±â");
                     divClose.addEventListener("click", function () {
                         overlay.setMap(null);
                     });
@@ -182,7 +189,7 @@
                     divJibun.className = "jibun ellipsis";
                     divJibun.textContent = restCate;
 
-                    //ìƒì„±ëœ HTMLê°ì²´ë¥¼ í•˜ë‚˜ì”© ìžì‹ìš”ì†Œë¡œ ì¶”ê°€
+                    //»ý¼ºµÈ HTML°´Ã¼¸¦ ÇÏ³ª¾¿ ÀÚ½Ä¿ä¼Ò·Î Ãß°¡
                     divTitle.appendChild(divClose);
                     divBody.appendChild(divEllipsis);
                     divBody.appendChild(divJibun);
