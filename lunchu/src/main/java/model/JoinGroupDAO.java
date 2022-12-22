@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class JoinGroupDAO {
 
@@ -46,7 +47,6 @@ public class JoinGroupDAO {
 		}
 	}
 
-	
 	public int joingroup(String member, int groupseq) {
 		try {
 			getconn();
@@ -68,5 +68,55 @@ public class JoinGroupDAO {
 			close();
 		}
 		return cnt;
+	}
+
+	public ArrayList<Integer> select(String id) {
+		ArrayList<Integer> groupseq = new ArrayList<>();
+		try {
+			getconn();
+
+			String sql = "select group_seq from t_joingroup where mem_id=?";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				groupseq.add(rs.getInt(1));
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return groupseq;
+
+	}
+	
+	public ArrayList<String> findmembers(int group_seq) {
+		ArrayList<String> members = new ArrayList<>();
+		try {
+			getconn();
+
+			String sql = "select mem_id from t_joingroup where group_seq=?";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, group_seq);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				members.add(rs.getString(1));
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return members;
+
 	}
 }
