@@ -22,7 +22,14 @@
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/slider.css">
-    <script src="js/jquery.js"></script>
+    
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<link rel="stylesheet" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+	
+	<script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.1.1.js"></script>
     <script src="js/superfish.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
@@ -48,63 +55,50 @@
                 progressBar: false
             })
         });
-        $(window).load(function () {
-            $('.carousel1').carouFredSel({
-                auto: false,
-                prev: '.prev',
-                next: '.next',
-                width: 960,
-                items: {
-                    visible: {
-                        min: 1,
-                        max: 4
-                    },
-                    height: 'auto',
-                    width: 240,
-                },
-                responsive: false,
-                scroll: 1,
-                mousewheel: false,
-                swipe: {
-                    onMouse: false,
-                    onTouch: false
-                }
-            });
-        });
+        
+        
     </script>
-    <!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<link rel="stylesheet" media="screen" href="css/ie.css">
-<![endif]-->
-</head>
-
+<%
+MemberDTO info = (MemberDTO) session.getAttribute("info");
+%>	
 <body>
-    <div class="main">
-        <header>
-            <div class="container_12">
-                <div class="grid_12">
-                    <h1><a href="index.html"><img src="images/lunchUlogo.png" alt=""></a></h1>
-                    <div class="menu_block">
-                        <nav>
-                            <ul class="sf-menu">
-                                <li class="current"><a href="index.html">Home</a></li>
-                                <li class="with_ul"><a href="about-us.html">About Us</a>
-                                    <ul>
-                                        <li><a href="#"> cuisine</a></li>
-                                        <li><a href="#">Good rest</a></li>
-                                        <li><a href="#">Services</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="menu.html">Menu</a></li>
-                                <li><a href="portfolio.html">Portfolio</a></li>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
+   <div class="main">
+		<header>
+			<div class="container_12">
+				<div class="grid_12">
+					<h1>
+						<a href="home.jsp"><img src="images/logo_lunchu1.png" alt=""></a>
+					</h1>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<%
+								if (info != null) {
+								%>
+								<li><a href="LogoutService">로그아웃</a></li>
+								<li class="with_ul"><a href="#">마이페이지</a>
+									<ul>
+										<li><a href="profile.jsp"> 내 정보</a></li>
+										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
+										<li><a href="groups.jsp"> 내 그룹</a></li>
+									</ul></li>
+								<%
+								} else {
+								%>
+								<li><a href="login.jsp">로그인</a></li>
+								<li><a href="join.jsp">회원가입</a></li>
+								<%
+								}
+								%>
+							</ul>
+						</nav>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</header>
 		<%
 		ReviewDAO re_dao = new ReviewDAO();
 		MemberDTO mem_dto = (MemberDTO) session.getAttribute("info");
