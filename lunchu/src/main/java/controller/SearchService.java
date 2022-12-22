@@ -33,7 +33,6 @@ public class SearchService extends HttpServlet {
 		
 		String[] memberIds = request.getParameterValues("memberIds[]");
 		for (int i = 0; i<memberIds.length; i++) {
-			if (memberId)
 		}
 		String searchId = request.getParameter("searchId");
 		MemberDAO dao = new MemberDAO();
