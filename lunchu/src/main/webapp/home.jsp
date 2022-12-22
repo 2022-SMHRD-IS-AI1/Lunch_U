@@ -1,3 +1,6 @@
+<%@page import="model.MenuListDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.MenuListDAO"%>
 <%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -73,6 +76,8 @@
 </head>
 <%
 MemberDTO info = (MemberDTO) session.getAttribute("info");
+MenuListDAO dao = new MenuListDAO();
+ArrayList<MenuListDTO> menulist = dao.menuList();
 %>
 
 <body>
@@ -134,56 +139,21 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 							<h2>Your Favorite</h2>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
 							<ul class="carousel1">
-								<li>
-									<div>
-										<img src="images/page1_img1.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img2.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img3.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img4.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img3.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
+											
+											<% for (int i = 0; i < menulist.size(); i++) {%>
+											<li>
+												<div>
+													<img src="images/page1_img1.jpg" alt="">
+													<div class="col1 upp">
+														<a href="#"><strong> <%= menulist.get(i).getRestName() %></strong></a>
+													</div>
+			
+												</div>
+											</li>
+					
+												
+											<%}%>
+							
 							</ul>
 						</div>
 					</div>
