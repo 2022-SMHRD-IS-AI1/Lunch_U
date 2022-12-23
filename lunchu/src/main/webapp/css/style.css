@@ -256,7 +256,7 @@ header h1 a {
 	display: block;
 	overflow: hidden;
 	margin: 0 auto;
-	width: 240px;
+	width: 113px;
 	float: left;
 	height: 75px;
 	text-indent: -999px;
@@ -786,7 +786,7 @@ td {
 }
 
 .group_detail {
-	width: 200px;
+	width: 80px;
 }
 
 .inn1>a:hover {

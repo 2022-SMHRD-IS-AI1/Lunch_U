@@ -1,4 +1,6 @@
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+select * from t_group;
+select * from t_joingroup;
 
 -- 테이블 삭제 
 drop table t_group cascade constraints;
@@ -70,7 +72,7 @@ COMMENT ON COLUMN t_member.mem_type IS '회원 유형. 회원:''M'', 관리자:'
 CREATE TABLE t_restaurant
 (
     rest_seq     NUMBER(18, 0)    NOT NULL, 
-    rest_name    VARCHAR2(30)     NOT NULL, 
+    rest_name    VARCHAR2(50)     NOT NULL, 
     rest_addr    VARCHAR2(500)    NOT NULL, 
     cate_seq     NUMBER(18, 0)    NOT NULL, 
     rest_tel     VARCHAR2(20)     NOT NULL, 
@@ -148,8 +150,7 @@ ALTER TABLE t_group
 -- Foreign Key 삭제 SQL - t_group(admin_id)
 -- ALTER TABLE t_group
 -- DROP CONSTRAINT FK_t_group_admin_id_t_member_m;
-
-
+select * from t_group;
 -- t_joingroup Table Create SQL
 -- 테이블 생성 SQL - t_joingroup
 CREATE TABLE t_joingroup
@@ -160,6 +161,7 @@ CREATE TABLE t_joingroup
     join_dt      DATE             NOT NULL, 
      PRIMARY KEY (join_seq)
 );
+
 
 -- Auto Increment를 위한 Sequence 추가 SQL - t_joingroup.join_seq
 CREATE SEQUENCE t_joingroup_SEQ

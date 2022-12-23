@@ -31,13 +31,29 @@ public class SearchService extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
+		boolean same = false;
 		String searchId = request.getParameter("searchId");
-		MemberDAO dao = new MemberDAO();
-		String searched = dao.search(searchId);
+		String[] memberIds = request.getParameterValues("memberIds[]");
+		for (int i = 0; i<memberIds.length; i++) {
+			if(memberIds[i].equals(searchId)) {
+				same = true;
+				break;
+			}
+		}
 		
-		if(searched!="") {
-			out.print(searched);
-		} 
+		MemberDAO dao = new MemberDAO();
+		String searched = "";
+		if (same) {
+			out.print("이미 추가한 아이디입니다.");
+		} else {
+			searched = dao.search(searchId);
+			if(searched!="") {
+				out.print(searched);
+			} else {
+				out.print("");
+			}
+		}
+		
 //		
 //		아이디 없을 경우 alert창 띄우기 - 지은
 		

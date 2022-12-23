@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="model.JoinGroupDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.GroupDTO"%>
 <%@page import="model.GroupDAO"%>
 <%@page import="model.MemberDTO"%>
@@ -23,14 +26,55 @@
 <link rel="stylesheet" media="screen" href="css/ie.css">
 <![endif]-->
 </head>
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+function popup() {
+	var url = "deletegroup.jsp?" + ;
+	var name = "delete group"
+	var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	window.open(url, name, option);
+}
 
+
+	$(document).on("click", ".element", function() {
+		var name = $(this).find("a").text();
+		$(".prefix_1").find("h2").text(name);
+		
+		var arr = $(this).find("span").text().trim().split(" ");
+		var str = "";
+		for (var i = 0; i<arr.length; i++){
+			str += ('<a href="#">'+arr[i]+'</a>,')
+		}
+		
+		$(".inn1").html(str.slice(0, -1));
+		
+		$.ajax({
+			url : "CreateGroup", //어디로 요청할 것인가?
+			type : "post", //요청방식(Get or Post)
+			async : false,
+			data : {
+				"groupname" : $("#groupname").val(),
+				"memberIds" : memberIds
+			}, //보내는 데이터
+			success : function(res) {
+				alert(res);
+				location.replace("groups.jsp");
+			},
+			error : function(e) {
+				alert("요청이 실패하였습니다. 관리자에게 문의하세요.");
+				// 요청이 실패했을 때, 실행되는 콜백함수
+			}
+
+		})
+	})
+</script>
 <body>
 	<div class="main">
 		<header>
 			<div class="container_12">
 				<div class="grid_12">
 					<h1>
-						<a href="index.html"><img src="images/logo_lunchu1.png" alt=""></a>
+						<a href="home.jsp"><img src="images/logo_lunchu1.png" alt=""></a>
 					</h1>
 					<div class="menu_block">
 						<nav>
@@ -40,7 +84,7 @@
                 <li><a href="index.html">회원가입</a></li>
               </ul> -->
 							<ul class="sf-menu">
-								<li><a href="index.html">로그아웃</a></li>
+								<li><a href="LogoutService">로그아웃</a></li>
 								<li><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp">내 정보</a></li>
@@ -49,80 +93,52 @@
 										<li><a href="groups.jsp">내 그룹</a></li>
 									</ul></li>
 							</ul>
-
 						</nav>
-						<div class="clear"></div>
 					</div>
-					<div class="clear"></div>
 				</div>
 			</div>
 		</header>
 		<div class="content">
 			<div class="container_12">
-
 				<div class="group_list">
-					<h2 class="head2">Group List</h2>
+					<h2 class="head_groupList" style="display: content; width: 200px; margin-right: 0px">Group List</h2>
 					<div class="scroll_box">
 						<table>
-							<tbody>
-								<%-- 
-							<% 
-							MemberDTO info = (MemberDTO)session.getAttribute("info");
+
+							<%
+							MemberDTO info = (MemberDTO) session.getAttribute("info");
 							String id = info.getMemId();
-							
-							GroupDAO dao = new GroupDAO();
-							dao.create();
+
+							JoinGroupDAO JGdao = new JoinGroupDAO();
+							GroupDAO Gdao = new GroupDAO();
+
+							ArrayList<Integer> groupseq = JGdao.select(id);
+
+							ResultSet result = null;
+
+							for (int i = 0; i < groupseq.size(); i++) {
+								GroupDTO Gdto = Gdao.select(groupseq.get(i));
+								ArrayList<String> members = JGdao.findmembers(groupseq.get(i));
 							%>
-							--%>
+							<tbody class="element">
 								<tr>
-									<td class="group_sequence">1</td>
-									<td class="group_detail"><a href="#">UI설계팀</a><br> <span>김재민,
-											문경욱, 이상현</span></td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td class="group_sequence">2</td>
-									<td class="group_detail"><a href="#">DB설계팀</a><br>
-										박정한, 이민채, 이지은</td>
-									<td>5</td>
+									<td class="group_sequence"><%=i + 1%></td>
+									
+									<td class="group_detail"><a href="#"><%=Gdto.getGroupName()%></a><br>
+										<span><%
+											String temp = "";
+											for (String j : members) {
+												temp += j + " ";
+											}
+											%><%=temp%></span></td>
+									<td style="text-align: right;"><%=members.size()%>명</td>
+									<td value = <%=Gdto.getGroupSeq() %> style="color: red; text-align: right"><strong onclick="popup()">X</strong></td>
 								</tr>
 							</tbody>
+							<%
+							}
+							%>
+
 						</table>
 					</div>
 					<table>
@@ -132,40 +148,11 @@
 						</tr>
 					</table>
 				</div>
-				<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-				<script type="text/javascript">
-					function request() {
-						console.log("ajax")
-					}
-
-					$.ajax({
-						url : 'AjaxService', //어디로 요청할 것인가?
-						type : 'get', //요청방식(Get or Post)
-						data : {}, //보내는 데이터
-						error: function(err){
-				            console.log(err);
-				        },
-				        success: function(data){
-				            var checkWord = $("").val();
-				            var schoolList = $("#schoolList");
-				            console.log(checkWord);
-
-				            schoolList.empty();
-				            data.forEach((school)=>{
-				                if(school['name'].includes(checkWord)){
-				                    schoolList.append(`<span style="cursor: pointer;" onclick="select(this);"> ${school['name']} </span> <br/>`);                
-				                }
-				            })
-				        }
-
-					})
-				</script>
 
 				<div class="grid_5 prefix_1">
-					<h2>UI설계팀</h2>
-					<p>by. 김재민</p>
+					<h2></h2>
+					<p>by. 그룹 만든사람 표시하는거 해야함</p>
 					<p class="col2 inn1">
-						<a href="#">김재민</a>, <a href="">문경욱</a>, <a href="">이상현</a>
 					</p>
 
 					<div>
@@ -205,10 +192,10 @@
 										<td class="review_detail">2</td>
 										<td><a href="#">상무초밥</a></td>
 									</tr>
-
-								</tbody>
+							</div>
+							</tbody>
 						</table>
-						<button class="exit">나가기</button>
+						
 					</div>
 				</div>
 

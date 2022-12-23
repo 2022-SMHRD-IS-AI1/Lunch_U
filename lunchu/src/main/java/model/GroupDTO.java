@@ -4,7 +4,7 @@ package model;
 public class GroupDTO {
 	
 	 // 그룹 순번 
-    private Double groupSeq;
+    private int groupSeq;
 
     // 그룹 명 
     private String groupName;
@@ -15,11 +15,11 @@ public class GroupDTO {
     // 그룹 관리자 
     private String adminId;
 
-	public Double getGroupSeq() {
+	public int getGroupSeq() {
 		return groupSeq;
 	}
 
-	public void setGroupSeq(Double groupSeq) {
+	public void setGroupSeq(int groupSeq) {
 		this.groupSeq = groupSeq;
 	}
 
@@ -53,13 +53,15 @@ public class GroupDTO {
 		this.adminId = adminId;
 	}
 
-	public GroupDTO(Double groupSeq, String groupName, String groupDt, String adminId) {
+	public GroupDTO(int groupSeq, String groupName, String groupDt, String adminId) {
 		super();
 		this.groupSeq = groupSeq;
 		this.groupName = groupName;
 		this.groupDt = groupDt;
 		this.adminId = adminId;
 	}
+
+
     
     
 }
