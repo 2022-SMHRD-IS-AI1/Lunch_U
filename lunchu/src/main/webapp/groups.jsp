@@ -32,26 +32,32 @@
 					"click",
 					".deletegroup_btn",
 					function() {
-						var data = $(this).parent().parent()
-								.find(".groupseq_1").text();
+						var groupseq = $(this).parent().parent().find(
+								".groupseq_1").text();
 
+						var adminId = $(this).parent().parent()
+								.find(".adminId").text();
+						
+						console.log(adminId)
 						$.ajax({
 							type : "POST",
 							url : "deletegroup.jsp",
 							data : {
-								"data" : data
+								"groupseq" : groupseq,
+								"adminId" : adminId
 							},
 							success : function(res) {
-								// console.log("요청성공");
+								console.log("요청성공");
 							},
 							error : function(e) {
-								// console.log("요청실패");
+								console.log("요청실패");
 							}
 						})
 						var url = "deletegroup.jsp";
 						var name = "delete group"
 						var option = "width = 500, height = 500, top = 100, left = 200, location = no"
 						window.open(url, name, option);
+
 					})
 
 	$(document).on("click", ".element", function() {
@@ -133,7 +139,8 @@
 								<tr>
 									<td class="group_sequence"><%=i + 1%></td>
 									<td class="group_detail"><a class="groupname" href="#"><%=Gdto.getGroupName()%></a>
-										<a style="display: none" class="groupseq_1"><%=groupseq.get(i)%></a><br>
+										<a style="display: none" class="groupseq_1"><%=groupseq.get(i)%></a>
+										<a style="display: none" class="adminId"><%=Gdto.getAdminId()%></a><br>
 										<span> <%
  String temp = "";
  for (String j : members) {
@@ -162,51 +169,51 @@
 
 				<div class="grid_5 prefix_1">
 					<h2></h2>
-					<p>by. 그룹 만든사람 표시하는거 해야함</p>
-					<p class="col2 inn1"></p>
+					<span>by.</span><span class="adminId">그룹 만든사람 표시하는거 해야함</sapn>
+						<p class="col2 inn1"></p>
 
-					<div>
-						<button class="manage_favorites">삭제</button>
-						<table>
-							<thead>
-								<tr>
-									<td class="restaurant_col"></td>
-									<td class="restaurant_col">번호</td>
-									<td class="restaurant_col">음식점명</td>
-								</tr>
-							</thead>
-							<div class="scroll_box">
-								<tbody>
-									<tr class="review_detail">
-										<td><input type="checkbox"></td>
-										<td class="review_detail">1</td>
-										<td><a href="#">신쭈꾸미</a></td>
+						<div>
+							<button class="manage_favorites">삭제</button>
+							<table>
+								<thead>
+									<tr>
+										<td class="restaurant_col"></td>
+										<td class="restaurant_col">번호</td>
+										<td class="restaurant_col">음식점명</td>
 									</tr>
-									<tr class="review_detail">
-										<td><input type="checkbox"></td>
-										<td class="review_detail">2</td>
-										<td><a href="#">비바로마</a></td>
-									</tr>
-									<tr class="review_detail">
-										<td><input type="checkbox"></td>
-										<td class="review_detail">2</td>
-										<td><a href="#">바른초밥</a></td>
-									</tr>
-									<tr class="review_detail">
-										<td><input type="checkbox"></td>
-										<td class="review_detail">2</td>
-										<td><a href="#">상무초밥</a></td>
-									</tr>
-									<tr class="review_detail">
-										<td><input type="checkbox"></td>
-										<td class="review_detail">2</td>
-										<td><a href="#">상무초밥</a></td>
-									</tr>
-							</div>
-							</tbody>
-						</table>
+								</thead>
+								<div class="scroll_box">
+									<tbody>
+										<tr class="review_detail">
+											<td><input type="checkbox"></td>
+											<td class="review_detail">1</td>
+											<td><a href="#">신쭈꾸미</a></td>
+										</tr>
+										<tr class="review_detail">
+											<td><input type="checkbox"></td>
+											<td class="review_detail">2</td>
+											<td><a href="#">비바로마</a></td>
+										</tr>
+										<tr class="review_detail">
+											<td><input type="checkbox"></td>
+											<td class="review_detail">2</td>
+											<td><a href="#">바른초밥</a></td>
+										</tr>
+										<tr class="review_detail">
+											<td><input type="checkbox"></td>
+											<td class="review_detail">2</td>
+											<td><a href="#">상무초밥</a></td>
+										</tr>
+										<tr class="review_detail">
+											<td><input type="checkbox"></td>
+											<td class="review_detail">2</td>
+											<td><a href="#">상무초밥</a></td>
+										</tr>
+								</div>
+								</tbody>
+							</table>
 
-					</div>
+						</div>
 				</div>
 
 			</div>

@@ -1,3 +1,4 @@
+<%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -192,27 +193,67 @@ hr {
 function popupclose() {
 	window.close();
 }
+
+function request(){
+
+	var groupseq = "<%= request.getParameter("groupseq") %>";
+
+	.ajax({
+		type : "POST",
+		url : "DeleteGroupService",
+		data : {
+			"groupseq" : groupseq,
+		},
+		success : function(res) {
+			console.log("요청성공");
+		},
+		error : function(e) {
+			console.log("요청실패");
+		}
+	})
+}
 </script>
 <body>
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
 				<!--로그인 폼-->
-				<form action="DeleteGroupService" method="post">
 					<h3 class="login" style="letter-spacing: -1px;">그룹 삭제</h3>
 					<hr>
+					<% 
+					request.setCharacterEncoding("utf-8");
+					
+					String adminId = request.getParameter("adminId");
+					//int groupseq = Integer.valueOf(request.getParameter("groupseq"));
+					
+					MemberDTO info = (MemberDTO) session.getAttribute("info");
+					String id = info.getMemId();
+					
+					
+					String comment1 = "";
+					String comment2 = "";
+					String value1 = "";
+					if (id.equals(adminId)){
+						comment1 = "을";
+						comment2 = "삭제하시겠습니까?";
+						value1 = "삭제";
+					} else {
+						comment1 = "에서";
+						comment2 = "나가시겠습니까?";
+						value1 = "나가기";
+					}
+					%>
+					
+					<%--아이디랑 adminId랑 같은데 조건식이 정상 작동하지 않음. --%>
+					<h2>해당 그룹<%=comment1 %></h2>
+					<h2><%=comment2 %></h2>
 
-					<h2>해당 그룹을</h2>
-					<h2>삭제하시겠습니까?</h2>
 
+					<button type="button" class="btn" style="margin-top: 20px" onclick ="request()"><%=value1 %></button>
 
-					<input type="submit" value="삭제" class="btn"
-						style="margin-top: 20px">
-
-					<button type="button" value="취소" class="btn"
+					<button type="button" value=<%=value1 %> class="btn"
 						style="margin-top: 10px" onclick="popupclose()">취소</button>
 					<hr>
-				</form>
 			</div>
 		</div>
 	</div>
