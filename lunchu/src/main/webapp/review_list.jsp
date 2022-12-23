@@ -120,15 +120,15 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
                                         <td class="review_col">¸®ºä</td>
                                     </tr>
                                 </thead>
-                                <div class="scroll_box">
+                               
                                     <tbody>
                                     	<%for(int i =0; i < re_dto.size(); i++) { %>
                                         <tr class="review_detail">
                                             <td><input type="checkbox"></td>
                                             <td class="review_detail"><%= i+1 %></td>
                                             <td><a href="#"><%= re_dto.get(i).getRest_seq() %></a></td>
-                                            <td><%= re_dto.get(i+3).getRv_rating() %></td>
-                                            <td><%= re_dto.get(i+4).getRv_content() %></td>
+                                            <td><%= re_dto.get(i).getRv_rating() %></td>
+                                            <td><%= re_dto.get(i).getRv_content() %></td>
                                         </tr>
                                        <% }%>                                                                                                               
                                     </tbody>
@@ -137,7 +137,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
                             </form>
                         </table>
                     </div>
-                </div>
+                
                 <!--  <div class="bottom_block">
                     <div class="grid_6">
                         <h3>Follow Us</h3>
