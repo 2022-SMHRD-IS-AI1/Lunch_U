@@ -28,12 +28,13 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
-function popup() {
-	var url = "deletegroup.jsp?" + ;
+
+$(document).on("click",".deletebtn", function() {
+	var url = "deletegroup.jsp?"+;
 	var name = "delete group"
 	var option = "width = 500, height = 500, top = 100, left = 200, location = no"
 	window.open(url, name, option);
-}
+})
 
 
 	$(document).on("click", ".element", function() {
@@ -101,7 +102,9 @@ function popup() {
 		<div class="content">
 			<div class="container_12">
 				<div class="group_list">
-					<h2 class="head_groupList" style="display: content; width: 200px; margin-right: 0px">Group List</h2>
+					<h2 class="head_groupList"
+						style="display: content; width: 200px; margin-right: 0px">Group
+						List</h2>
 					<div class="scroll_box">
 						<table>
 
@@ -123,16 +126,17 @@ function popup() {
 							<tbody class="element">
 								<tr>
 									<td class="group_sequence"><%=i + 1%></td>
-									
+
 									<td class="group_detail"><a href="#"><%=Gdto.getGroupName()%></a><br>
-										<span><%
+										<span>
+											<%
 											String temp = "";
 											for (String j : members) {
 												temp += j + " ";
 											}
 											%><%=temp%></span></td>
 									<td style="text-align: right;"><%=members.size()%>명</td>
-									<td value = <%=Gdto.getGroupSeq() %> style="color: red; text-align: right"><strong onclick="popup()">X</strong></td>
+									<td class="deletebtn" style="color: red; text-align: right">X</td>
 								</tr>
 							</tbody>
 							<%
@@ -152,8 +156,7 @@ function popup() {
 				<div class="grid_5 prefix_1">
 					<h2></h2>
 					<p>by. 그룹 만든사람 표시하는거 해야함</p>
-					<p class="col2 inn1">
-					</p>
+					<p class="col2 inn1"></p>
 
 					<div>
 						<button class="manage_favorites">삭제</button>
@@ -195,7 +198,7 @@ function popup() {
 							</div>
 							</tbody>
 						</table>
-						
+
 					</div>
 				</div>
 
@@ -204,39 +207,7 @@ function popup() {
 		</div>
 		<div class="clear"></div>
 
-		<div class="bottom_block">
-			<div class="grid_6">
-				<h3>Follow Us</h3>
-				<div class="socials">
-					<a href="#"></a> <a href="#"></a> <a href="#"></a>
-				</div>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about-us.html">About Us</a></li>
-						<li class="current"><a href="menu.html">Menu</a></li>
-						<li><a href="portfolio.html">Portfolio</a></li>
-						<li><a href="news.html">News</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
-					</ul>
-				</nav>
-			</div>
-			<div class="grid_6">
-				<h3>Email Updates</h3>
-				<p class="col1">
-					Join our digital mailing list and get news<br> deals and be
-					first to know about events
-				</p>
-				<form id="newsletter" action="#">
-					<div class="success">Your subscribe request has been sent!</div>
-					<label class="email"> <input type="email"
-						value="Enter e-mail address"> <a href="#" class="btn"
-						data-type="submit">subscribe</a> <span class="error">*This
-							is not a valid email address.</span>
-					</label>
-				</form>
-			</div>
-		</div>
+
 		<div class="clear"></div>
 	</div>
 	</div>
