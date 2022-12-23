@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
-<script src="js/superfish.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/sForm.js"></script>
 <!--[if lt IE 9]>
@@ -28,45 +27,45 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
+	$(document)
+			.on(
+					"click",
+					".deletegroup_btn",
+					function() {
+						var data = $(this).parent().parent()
+								.find(".groupseq_1").text();
 
-$(document).on("click",".deletebtn", function() {
-	var url = "deletegroup.jsp?"+;
-	var name = "delete group"
-	var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-	window.open(url, name, option);
-})
-
+						$.ajax({
+							type : "POST",
+							url : "deletegroup.jsp",
+							data : {
+								"data" : data
+							},
+							success : function(res) {
+								// console.log("요청성공");
+							},
+							error : function(e) {
+								// console.log("요청실패");
+							}
+						})
+						var url = "deletegroup.jsp";
+						var name = "delete group"
+						var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+						window.open(url, name, option);
+					})
 
 	$(document).on("click", ".element", function() {
-		var name = $(this).find("a").text();
+		var name = $(this).find(".groupname").text();
 		$(".prefix_1").find("h2").text(name);
-		
+
 		var arr = $(this).find("span").text().trim().split(" ");
 		var str = "";
-		for (var i = 0; i<arr.length; i++){
-			str += ('<a href="#">'+arr[i]+'</a>,')
+		for (var i = 0; i < arr.length; i++) {
+			str += ('<a href="#">' + arr[i] + '</a>,')
 		}
-		
-		$(".inn1").html(str.slice(0, -1));
-		
-		$.ajax({
-			url : "CreateGroup", //어디로 요청할 것인가?
-			type : "post", //요청방식(Get or Post)
-			async : false,
-			data : {
-				"groupname" : $("#groupname").val(),
-				"memberIds" : memberIds
-			}, //보내는 데이터
-			success : function(res) {
-				alert(res);
-				location.replace("groups.jsp");
-			},
-			error : function(e) {
-				alert("요청이 실패하였습니다. 관리자에게 문의하세요.");
-				// 요청이 실패했을 때, 실행되는 콜백함수
-			}
 
-		})
+		$(".inn1").html(str.slice(0, -1));
+
 	})
 </script>
 <body>
@@ -118,7 +117,14 @@ $(document).on("click",".deletebtn", function() {
 							ArrayList<Integer> groupseq = JGdao.select(id);
 
 							ResultSet result = null;
-
+							if (groupseq.size() == 0) {
+							%>
+							<tr>
+								<td style="text-align: center; vertical-align: center">생성된
+									그룹이 없습니다.</td>
+							</tr>
+							<%
+							} else {
 							for (int i = 0; i < groupseq.size(); i++) {
 								GroupDTO Gdto = Gdao.select(groupseq.get(i));
 								ArrayList<String> members = JGdao.findmembers(groupseq.get(i));
@@ -126,20 +132,21 @@ $(document).on("click",".deletebtn", function() {
 							<tbody class="element">
 								<tr>
 									<td class="group_sequence"><%=i + 1%></td>
-
-									<td class="group_detail"><a href="#"><%=Gdto.getGroupName()%></a><br>
-										<span>
-											<%
-											String temp = "";
-											for (String j : members) {
-												temp += j + " ";
-											}
-											%><%=temp%></span></td>
+									<td class="group_detail"><a class="groupname" href="#"><%=Gdto.getGroupName()%></a>
+										<a style="display: none" class="groupseq_1"><%=groupseq.get(i)%></a><br>
+										<span> <%
+ String temp = "";
+ for (String j : members) {
+ 	temp += j + " ";
+ }
+ %><%=temp%></span></td>
 									<td style="text-align: right;"><%=members.size()%>명</td>
-									<td class="deletebtn" style="color: red; text-align: right">X</td>
+									<td style="color: red; text-align: right"><strong
+										class="deletegroup_btn">X</strong></td>
 								</tr>
 							</tbody>
 							<%
+							}
 							}
 							%>
 
@@ -207,7 +214,39 @@ $(document).on("click",".deletebtn", function() {
 		</div>
 		<div class="clear"></div>
 
-
+		<div class="bottom_block">
+			<div class="grid_6">
+				<h3>Follow Us</h3>
+				<div class="socials">
+					<a href="#"></a> <a href="#"></a> <a href="#"></a>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="about-us.html">About Us</a></li>
+						<li class="current"><a href="menu.html">Menu</a></li>
+						<li><a href="portfolio.html">Portfolio</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="contacts.html">Contacts</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="grid_6">
+				<h3>Email Updates</h3>
+				<p class="col1">
+					Join our digital mailing list and get news<br> deals and be
+					first to know about events
+				</p>
+				<form id="newsletter" action="#">
+					<div class="success">Your subscribe request has been sent!</div>
+					<label class="email"> <input type="email"
+						value="Enter e-mail address"> <a href="#" class="btn"
+						data-type="submit">subscribe</a> <span class="error">*This
+							is not a valid email address.</span>
+					</label>
+				</form>
+			</div>
+		</div>
 		<div class="clear"></div>
 	</div>
 	</div>
@@ -221,5 +260,6 @@ $(document).on("click",".deletebtn", function() {
 			<div class="clear"></div>
 		</div>
 	</footer>
+
 </body>
 </html>

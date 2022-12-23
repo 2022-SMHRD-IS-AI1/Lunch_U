@@ -81,7 +81,8 @@ public class JoinGroupDAO {
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
+				System.out.println(rs.getInt(1));
 				groupseq.add(rs.getInt(1));
 			}
 			
