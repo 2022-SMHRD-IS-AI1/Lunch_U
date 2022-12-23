@@ -56,6 +56,10 @@ public class ReviewDAO {
 			
 			String sql = "select * from t_review where mem_id=?";
 			
+			System.out.println(psmt);
+			
+			psmt = conn.prepareStatement(sql);
+			
 			psmt.setString(1, dto.getMemId());
 			
 			rs = psmt.executeQuery();
