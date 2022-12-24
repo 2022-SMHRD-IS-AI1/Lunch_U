@@ -52,6 +52,18 @@
 		<description></description>
 		<servlet-class>controller.DeleteGroupService</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SelectRestGroupService</servlet-name>
+		<display-name>SelectRestGroupService</display-name>
+		<description></description>
+		<servlet-class>controller.SelectRestGroupService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RestGroupService</servlet-name>
+		<display-name>RestGroupService</display-name>
+		<description></description>
+		<servlet-class>controller.RestGroupService</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginService</servlet-name>
 		<url-pattern>/LoginService</url-pattern>
@@ -79,5 +91,13 @@
 	<servlet-mapping>
 		<servlet-name>DeleteGroupService</servlet-name>
 		<url-pattern>/DeleteGroupService</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SelectRestGroupService</servlet-name>
+		<url-pattern>/SelectRestGroupService</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RestGroupService</servlet-name>
+		<url-pattern>/RestGroupService</url-pattern>
 	</servlet-mapping>
 </web-app>

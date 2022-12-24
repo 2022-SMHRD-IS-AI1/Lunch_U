@@ -194,10 +194,11 @@ function popupclose() {
 	window.close();
 }
 
-function request(){
-
+function exitGroup(){
+	
 	var groupseq = "<%= request.getParameter("groupseq") %>";
-
+	console.log(groupseq);
+	/*
 	.ajax({
 		type : "POST",
 		url : "DeleteGroupService",
@@ -206,11 +207,12 @@ function request(){
 		},
 		success : function(res) {
 			console.log("요청성공");
+			console.log(res);
 		},
 		error : function(e) {
 			console.log("요청실패");
 		}
-	})
+	})*/
 }
 </script>
 <body>
@@ -224,7 +226,10 @@ function request(){
 					request.setCharacterEncoding("utf-8");
 					
 					String adminId = request.getParameter("adminId");
-					//int groupseq = Integer.valueOf(request.getParameter("groupseq"));
+					System.out.println("test : " + adminId);
+					
+					String groupseq = request.getParameter("groupseq");
+					//System.out.println("test : " +groupseq);
 					
 					MemberDTO info = (MemberDTO) session.getAttribute("info");
 					String id = info.getMemId();
@@ -241,18 +246,17 @@ function request(){
 						comment1 = "에서";
 						comment2 = "나가시겠습니까?";
 						value1 = "나가기";
-					}
-					%>
-					
+					}%>
+
+
 					<%--아이디랑 adminId랑 같은데 조건식이 정상 작동하지 않음. --%>
 					<h2>해당 그룹<%=comment1 %></h2>
 					<h2><%=comment2 %></h2>
 
 
-					<button type="button" class="btn" style="margin-top: 20px" onclick ="request()"><%=value1 %></button>
+					<button type="button" class="btn" style="margin-top: 20px" onclick ="exitGroup()"><%=value1 %></button>
 
-					<button type="button" value=<%=value1 %> class="btn"
-						style="margin-top: 10px" onclick="popupclose()">취소</button>
+					<button type="button" class="btn" style="margin-top: 10px" onclick="popupclose()">취소</button>
 					<hr>
 			</div>
 		</div>

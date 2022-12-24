@@ -2,20 +2,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.GroupDAO;
-import model.MemberDTO;
+import model.MenuListDAO;
+import model.RestGroupDAO;
 
 /**
- * Servlet implementation class DeleteGroupService
+ * Servlet implementation class RestGroupService
  */
-public class DeleteGroupService extends HttpServlet {
+public class RestGroupService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,14 +28,17 @@ public class DeleteGroupService extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		HttpSession session = request.getSession();
+		int groupseq = Integer.valueOf(request.getParameter("groupseq"));
+		RestGroupDAO RGdao = new RestGroupDAO();
 		
-		MemberDTO Mdto = (MemberDTO) session.getAttribute("info");
-		out.print(Mdto.getMemId());
+		ArrayList<Integer> restseq = RGdao.list(groupseq);
 		
+		MenuListDAO Rdao = new MenuListDAO();
 		
-		//Gdao.delete();
+		ArrayList<String> restNames =  Rdao.getName(restseq);
 		
+		out.print(restNames);
+	
 	}
 
 }

@@ -1,3 +1,4 @@
+<%@page import="javax.swing.text.Document"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="model.JoinGroupDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -37,8 +38,10 @@
 
 						var adminId = $(this).parent().parent()
 								.find(".adminId").text();
-						
-						console.log(adminId)
+
+						console.log(groupseq);
+						console.log(adminId);
+
 						$.ajax({
 							type : "POST",
 							url : "deletegroup.jsp",
@@ -60,19 +63,59 @@
 
 					})
 
-	$(document).on("click", ".element", function() {
-		var name = $(this).find(".groupname").text();
-		$(".prefix_1").find("h2").text(name);
+	$(document)
+			.on(
+					"click",
+					".element",
+					function() {
+						var name = $(this).find(".groupname").text();
+						$(".prefix_1").find("h2").text(name);
 
-		var arr = $(this).find("span").text().trim().split(" ");
-		var str = "";
-		for (var i = 0; i < arr.length; i++) {
-			str += ('<a href="#">' + arr[i] + '</a>,')
-		}
+						var adminId = $(this).find(".adminId").text();
+						$(".prefix_1").find("span").text(
+								"created by. " + adminId);
 
-		$(".inn1").html(str.slice(0, -1));
+						var arr = $(this).find("span").text().trim().split(" ");
+						var str = "";
+						for (var i = 0; i < arr.length; i++) {
+							str += ('<a href="#">' + arr[i] + '</a>,')
+						}
+						$(".inn1").html(str.slice(0, -1));
 
-	})
+						var groupseq = $(this).find(".groupseq_1").text();
+
+						$
+								.ajax({
+									type : "POST",
+									url : "RestGroupService",
+									data : {
+										"groupseq" : groupseq
+									},
+									success : function(res) {
+										console.log("요청성공");
+
+										var arr = res.slice(1, res.length - 1)
+												.split(",");
+										var str = ""
+										for (var i = 0; i < arr.length; i++) {
+											var temp = '<tr><td style = "width : 30px"><input type="checkbox"></td><td style = "width : 23px" class="review_detail">'
+													+ (i + 1)
+													+ '</td><td style = "width : 330px; text-align : center"><a href="restaurant_detail.html">'
+													+ arr[i] + '</a></td></tr>';
+											str += temp;
+										}
+										$(".prefix_1 tbody").html(str);
+										$(".manage_favorites").attr("style",
+												"display:block")
+										$(".prefix_1 hr").attr("style",
+												"display:block")
+									},
+									error : function(e) {
+										console.log("요청실패");
+									}
+								})
+
+					})
 </script>
 <body>
 	<div class="main">
@@ -137,11 +180,11 @@
 							%>
 							<tbody class="element">
 								<tr>
-									<td class="group_sequence"><%=i + 1%></td>
+									<td class="sequence"><%=i + 1%></td>
 									<td class="group_detail"><a class="groupname" href="#"><%=Gdto.getGroupName()%></a>
-										<a style="display: none" class="groupseq_1"><%=groupseq.get(i)%></a>
-										<a style="display: none" class="adminId"><%=Gdto.getAdminId()%></a><br>
-										<span> <%
+										<a class="groupseq_1" style="display: none;"><%=groupseq.get(i)%></a>
+										<a class="adminId" style="display: none;"><%=Gdto.getAdminId()%></a>
+										<br> <span> <%
  String temp = "";
  for (String j : members) {
  	temp += j + " ";
@@ -169,51 +212,21 @@
 
 				<div class="grid_5 prefix_1">
 					<h2></h2>
-					<span>by.</span><span class="adminId">그룹 만든사람 표시하는거 해야함</sapn>
-						<p class="col2 inn1"></p>
+					<span></span>
+					<p class="col2 inn1"></p>
 
-						<div>
-							<button class="manage_favorites">삭제</button>
-							<table>
-								<thead>
-									<tr>
-										<td class="restaurant_col"></td>
-										<td class="restaurant_col">번호</td>
-										<td class="restaurant_col">음식점명</td>
-									</tr>
-								</thead>
-								<div class="scroll_box">
-									<tbody>
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">1</td>
-											<td><a href="#">신쭈꾸미</a></td>
-										</tr>
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">2</td>
-											<td><a href="#">비바로마</a></td>
-										</tr>
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">2</td>
-											<td><a href="#">바른초밥</a></td>
-										</tr>
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">2</td>
-											<td><a href="#">상무초밥</a></td>
-										</tr>
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">2</td>
-											<td><a href="#">상무초밥</a></td>
-										</tr>
-								</div>
-								</tbody>
-							</table>
 
-						</div>
+					<div>
+
+						<button class="manage_favorites" style="display: none">삭제</button>
+						<table>
+							<hr style="display: none;">
+
+							<tbody>
+							</tbody>
+						</table>
+
+					</div>
 				</div>
 
 			</div>
