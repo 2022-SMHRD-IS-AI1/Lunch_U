@@ -1,7 +1,7 @@
 package model;
 
 public class ReviewDTO {
-	
+
 	// 리뷰 순번
 	private int rv_seq;
 
@@ -87,10 +87,13 @@ public class ReviewDTO {
 		this.rv_dt = rv_dt;
 	}
 
-	
+	public ReviewDTO(String rv_content, double rating, String rv_dt, String memId) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.rv_content = rv_content;
+		this.rv_rating = rating;
+		this.rv_dt = rv_dt;
+		this.mem_id = memId;
+	}
 
-	
-	
-	
-	
 }

@@ -1,25 +1,121 @@
 /**/
 @import "../css/reset.css";
+
 @import "../css/grid.css";
+
 @import "../css/superfish.css";
+
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 
-.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-.wrap * {padding: 0;margin: 0;}
-.wrap .info {width: auto;height: auto;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.info .close:hover {cursor: pointer;}
-.info .body {position: relative;overflow: hidden;}
-.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-.info .link {color: #5085BB;}
+.wrap {
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 288px;
+	height: 132px;
+	margin-left: -144px;
+	text-align: left;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	line-height: 1.5;
+}
 
+.wrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap .info {
+	width: auto;
+	height: auto;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wrap .info:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.info .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #888;
+	width: 17px;
+	height: 17px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.info .close:hover {
+	cursor: pointer;
+}
+
+.info .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.info .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+}
+
+.desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.desc .jibun {
+	font-size: 11px;
+	color: #888;
+	margin-top: -2px;
+}
+
+.info .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: 71px;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.info .link {
+	color: #5085BB;
+}
 
 html {
 	width: 100%;
@@ -34,14 +130,12 @@ a[href^="tel:"] {
 	-webkit-text-size-adjust: none;
 }
 
-
 body {
 	font: 14px/18px Arial, Helvetica, sans-serif;
 	color: #826660;
 	position: relative;
 	min-width: 960px;
 	background: #f2f0f0;
-
 }
 
 .ic {
@@ -57,18 +151,11 @@ body {
 	padding: 0
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 	color: #5d0400;
 	font-family: Times New Roman;
-
 }
-
 
 h2 {
 	font-size: 25px;
@@ -88,7 +175,6 @@ p.inn1 {
 	padding-top: 2px;
 	margin-bottom: 20px;
 }
-
 
 img {
 	max-width: 100%;
@@ -116,7 +202,6 @@ ul.list.l1 li {
 }
 
 /*links*/
-
 a {
 	text-decoration: none;
 	color: inherit;
@@ -151,7 +236,6 @@ a.btn.m1 {
 }
 
 /*preclass*/
-
 .mb0 {
 	margin-bottom: 0px !important;
 }
@@ -185,7 +269,6 @@ a.btn.m1 {
 	margin-bottom: 19px;
 	box-shadow: 2px 2px 4px #ddd;
 } */
-
 .fleft {
 	float: left;
 	margin-right: 20px;
@@ -208,8 +291,7 @@ a.btn.m1 {
 	text-align: center;
 }
 
-.wrapper,
-.extra_wrapper {
+.wrapper, .extra_wrapper {
 	overflow: hidden;
 }
 
@@ -232,7 +314,6 @@ a.btn.m1 {
 }
 
 /*header*/
-
 header {
 	display: block;
 	padding-top: 16px;
@@ -244,12 +325,10 @@ header {
 	box-shadow: 0 1px 5px #ccc;
 }
 
-
 header h1 {
 	float: none;
 	position: relative;
 	z-index: 999;
-
 }
 
 header h1 a {
@@ -269,13 +348,11 @@ header h1 a img {
 	display: block;
 }
 
-
 .main {
 	background: #f2f0f0;
 }
 
 /*Content*/
-
 .content h2 {
 	padding-top: 36px;
 	font-size: 24px;
@@ -287,7 +364,6 @@ header h1 a img {
 	padding-top: 50px;
 	background: url(../images/hor_separator.png) center 50px no-repeat;
 } */
-
 .content.page1 h2 {
 	font-size: 25px;
 	padding-top: 43px;
@@ -338,7 +414,6 @@ header h1 a img {
 	text-align: center;
 	margin-top: 15px;
 }
-
 
 .carousel1 li span {
 	line-height: 16px;
@@ -407,12 +482,9 @@ header h1 a img {
 	padding-top: 27px;
 }
 
-
-
 .bottom_block nav li {
 	float: left;
 }
-
 
 .bottom_block nav li+li {
 	margin-left: 19px;
@@ -431,7 +503,6 @@ header h1 a img {
 .bottom_block nav li.current {
 	color: #699440;
 }
-
 
 .socials a {
 	background: url(../images/socials.png) 0 0 no-repeat;
@@ -458,7 +529,6 @@ header h1 a img {
 	background: url(../images/socials.png) right 0 no-repeat;
 }
 
-
 .carousel2 li img {
 	float: left;
 	margin-top: -1px;
@@ -484,7 +554,6 @@ header h1 a img {
 	margin-bottom: 6px;
 	padding-top: 10px;
 }
-
 
 .prev1 {
 	background: url(../images/prevnext.png) 0 bottom no-repeat;
@@ -513,7 +582,6 @@ header h1 a img {
 .next1:hover {
 	background-position: right 0;
 }
-
 
 .hor_separator.hor1 {
 	margin-top: 13px;
@@ -546,7 +614,6 @@ header h1 a img {
 
 .menu {
 	padding-top: 8px;
-
 }
 
 .menu h3 {
@@ -582,8 +649,6 @@ header h1 a img {
 	position: relative;
 }
 
-
-
 #newsletter label {
 	display: block;
 	position: relative;
@@ -594,7 +659,6 @@ header h1 a img {
 }
 
 #newsletter input {
-
 	border: 1px solid #d9d8d8;
 	float: left;
 	color: #a8a8a8;
@@ -618,8 +682,7 @@ header h1 a img {
 	padding-bottom: 6px;
 }
 
-#newsletter .error,
-#form1 .empty {
+#newsletter .error, #form1 .empty {
 	height: 0px;
 	top: 35px;
 	width: 100%;
@@ -639,7 +702,6 @@ header h1 a img {
 #newsletter label.invalid .error {
 	/*display: block;*/
 	height: 40px;
-
 }
 
 #newsletter .success {
@@ -665,20 +727,15 @@ header h1 a img {
 }
 
 /****Map***/
-
 .map {
 	padding-top: 6px;
 	color: #848383;
-	margin-left: 30px;
 }
-
 
 .map figure iframe {
 	position: relative;
 	display: grid;
 	width: 100%;
-	height: 600px;
-	max-width: 100%;
 }
 
 .map address {
@@ -691,12 +748,7 @@ header h1 a img {
 	margin-bottom: 2px;
 }
 
-
-
-
-
 /************Footer***********/
-
 footer {
 	display: block;
 	padding: 45px 0;
@@ -711,8 +763,6 @@ footer a:hover {
 }
 
 /****************지은*****************/
-
-
 table {
 	/* border-top: solid 1.5px black; */
 	border-collapse: collapse;
@@ -734,7 +784,6 @@ td {
 	height: 50px;
 	padding: 15px 0px;
 	border-bottom: 1px solid lightgrey;
-
 }
 
 .review_detail {
@@ -744,7 +793,6 @@ td {
 	text-align: center;
 	font-family: 'Nanum Gothic', sans-serif;
 }
-
 
 .review_delete {
 	font-size: 10px;
@@ -778,7 +826,6 @@ td {
 	display: grid;
 	position: relative;
 	width: 200px;
-
 }
 
 .sequence {
@@ -804,7 +851,6 @@ td {
 	overflow: auto;
 }
 
-
 tbody {
 	font-size: 12px;
 }
@@ -813,15 +859,11 @@ tbody {
 	float: right;
 }
 
-#restaurant_info_header{
-	font-size: 40px;
-}
-
-.restaurant_info{
+.restaurant_info {
 	margin-bottom: 20px;
 }
 
 .container_12 .restaurant_detail {
-	padding-left: 20px;
-	width: 35%;
+	padding-left: 10px;
+	width: 38%;
 }

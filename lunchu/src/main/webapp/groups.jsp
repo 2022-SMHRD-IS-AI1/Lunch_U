@@ -223,6 +223,7 @@
 							<hr style="display: none;">
 
 							<tbody>
+							<%-- 클릭하면 그룹 상세정보 뜰 곳 --%>
 							</tbody>
 						</table>
 
