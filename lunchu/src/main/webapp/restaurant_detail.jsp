@@ -75,6 +75,10 @@ thead {
 .date {
 	width: 100px;
 }
+
+tbody .date, tbody .writer, tbody .review {
+	border-right: solid 1px #dcdcdc;
+}
 </style>
 </head>
 <body>
