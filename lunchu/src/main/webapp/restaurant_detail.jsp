@@ -81,6 +81,15 @@ tbody .date, tbody .writer, tbody .review {
 }
 </style>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+	function add2group() {
+		var url = "add2group.jsp";
+		var name = "add 2 group"
+		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+		window.open(url, name, option);
+	}
+</script>
 <body>
 	<div class="main">
 		<header>
@@ -137,9 +146,8 @@ tbody .date, tbody .writer, tbody .review {
 
 						</table>
 						<div style="left: 0px">
-							<button id="add2group">그룹에 추가</button>
-							<button onclick="location.href='popup_review.jsp'">리뷰 및
-								평점</button>
+							<button id="add2group" onclick="add2group()">그룹에 추가</button>
+							<button onclick="">리뷰 및 평점</button>
 							<br>
 						</div>
 						<hr>

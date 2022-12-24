@@ -66,7 +66,7 @@
 	$(document)
 			.on(
 					"click",
-					".element",
+					".group_detail",
 					function() {
 						var name = $(this).find(".groupname").text();
 						$(".prefix_1").find("h2").text(name);
@@ -181,8 +181,9 @@
 							<tbody class="element">
 								<tr>
 									<td class="sequence"><%=i + 1%></td>
-									<td class="group_detail"><a class="groupname" href="#"><%=Gdto.getGroupName()%></a>
-										<a class="groupseq_1" style="display: none;"><%=groupseq.get(i)%></a>
+									<td class="group_detail" style="width: 200px"><a
+										class="groupname" href="#"><%=Gdto.getGroupName()%></a> <a
+										class="groupseq_1" style="display: none;"><%=groupseq.get(i)%></a>
 										<a class="adminId" style="display: none;"><%=Gdto.getAdminId()%></a>
 										<br> <span> <%
  String temp = "";
@@ -190,7 +191,6 @@
  	temp += j + " ";
  }
  %><%=temp%></span></td>
-									<td style="text-align: right;"><%=members.size()%>명</td>
 									<td style="color: red; text-align: right"><strong
 										class="deletegroup_btn">X</strong></td>
 								</tr>
@@ -219,11 +219,10 @@
 					<div>
 
 						<button class="manage_favorites" style="display: none">삭제</button>
+						<hr style="display: none;">
 						<table>
-							<hr style="display: none;">
-
 							<tbody>
-							<%-- 클릭하면 그룹 상세정보 뜰 곳 --%>
+								<%-- 클릭하면 그룹 상세정보 뜰 곳 --%>
 							</tbody>
 						</table>
 
