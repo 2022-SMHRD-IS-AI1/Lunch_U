@@ -263,6 +263,7 @@ ALTER TABLE t_rest_group
 
 -- t_review Table Create SQL
 -- 테이블 생성 SQL - t_review
+
 CREATE TABLE t_review
 (
     rv_seq        NUMBER(18, 0)     NOT NULL, 
