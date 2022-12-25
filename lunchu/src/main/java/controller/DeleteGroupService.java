@@ -32,7 +32,7 @@ public class DeleteGroupService extends HttpServlet {
 		
 		MemberDTO Mdto = (MemberDTO) session.getAttribute("info");
 		out.print(Mdto.getMemId());
-		
+		out.close();
 		
 		//Gdao.delete();
 		

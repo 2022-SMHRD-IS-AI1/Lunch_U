@@ -1,3 +1,6 @@
+<%@page import="model.MenuListDAO"%>
+<%@page import="model.MenuListDTO"%>
+<%@page import="model.RestGroupDTO"%>
 <%@page import="model.GroupDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.JoinGroupDAO"%>
@@ -215,43 +218,7 @@ hr {
 
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
-	function search() {
-
-		var memberIds = [];
-
-		for (var i = 0; i < arr.length; i++) {
-			memberIds.push(arr[i].innerText);
-		}
-
-		$
-				.ajax({
-					url : "SearchService", //어디로 요청할 것인가?
-					type : "post", //요청방식(Get or Post)
-					async : false,
-					data : {
-						"searchId" : $("#searchid").val(),
-						"memberIds" : memberIds
-					}, //보내는 데이터
-					success : function(res) {
-						if (res == "") {
-							alert("존재하지 않는 아이디입니다. 검색한 아이디를 확인해주세요.")
-						} else if (res == "이미 추가한 아이디입니다.") {
-							alert(res);
-						} else {
-							$("#members")
-									.append(
-											'<tr><td class = "memberId" style="padding-left: 10px; width: 140px; text-align: left">'
-													+ res
-													+ '</td><td class = "delete" style="width: 50%; text-align: right;"><button class = "delete_btn" type="button" style="background-color: #df3278; border: none; color: #fff; border-radius: 5px;">삭제</button></td></tr>');
-						}
-
-					},
-					error : function(e) {
-						alert("존재하지 않는 아이디입니다.");
-						// 요청이 실패했을 때, 실행되는 콜백함수
-					}
-				})
-	}
+	
 </script>
 <%
 MemberDTO info = (MemberDTO) session.getAttribute("info");
@@ -264,36 +231,48 @@ ArrayList<Integer> Glist = JGdao.select(id);
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
+				<%
+				request.setCharacterEncoding("utf-8");
+				response.setContentType("text/html; charset=UTF-8");
 
+				int restseq = Integer.valueOf(request.getParameter("restseq"));
+				MenuListDAO Mdao = new MenuListDAO();
+
+				String restname = Mdao.getName(restseq);
+				%>
 				<h3 class="login" style="letter-spacing: -1px;">그룹에 추가</h3>
 				<hr>
 				<p style="text-align: left; font-size: 15px; color: #666">식당이름</p>
-				<input type="text" class="size" id="restname">
+				<input type="text" class="size" id="restname" value="<%=restname%>"
+					readonly="readonly">
 
 				<p style="text-align: left; font-size: 15px; color: #666">그룹 선택</p>
 				<div id="box">
-					<table id="members">
-						<%
-						GroupDAO Gdao = new GroupDAO();
-						ArrayList<String> result = new ArrayList<String>();
-						for (int i : Glist) {
-							GroupDTO Gdto = Gdao.select(i);
-						%>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td style="padding-left: 10px; width: 140px; text-align: left"><%=Gdto.getGroupName()%>
-							</td>
-						</tr>
-						<%
-						}
-						%>
+					<form action="Add2GroupService">
+						<table id="members">
+							<%
+							GroupDAO Gdao = new GroupDAO();
+							ArrayList<String> result = new ArrayList<String>();
+							for (int i : Glist) {
+								GroupDTO Gdto = Gdao.select(i);
+							%>
+							<tr>
+								<td><input value="<%=Gdto.getGroupSeq()%>"
+									name="groupcheck" type="checkbox"></td>
+								<td style="padding-left: 10px; width: 140px; text-align: left"><%=Gdto.getGroupName()%>
+								</td>
+							</tr>
+							<%
+							}
+							%>
 
-					</table>
+						</table>
+					</form>
 				</div>
 
 				<p></p>
 				<p>
-					<button class="btn" onclick="add2group()">추가하기</button>
+					<button class="btn" type="submit">추가하기</button>
 				</p>
 				<hr>
 				<p class="find">

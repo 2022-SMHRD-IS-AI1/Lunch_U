@@ -145,7 +145,7 @@ ArrayList<MenuListDTO> menulist = dao.menuList();
 												<div>
 													<img src="images/page1_img1.jpg" alt="">
 													<div class="col1 upp">
-														<a href="#"><strong> <%= menulist.get(i).getRestName() %></strong></a>
+														<a href="restaurant_detail.jsp"><strong> <%= menulist.get(i).getRestName() %></strong></a>
 													</div>
 			
 												</div>

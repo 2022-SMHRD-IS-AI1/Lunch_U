@@ -35,7 +35,7 @@ public class RestGroupService extends HttpServlet {
 		
 		MenuListDAO Rdao = new MenuListDAO();
 		
-		ArrayList<String> restNames =  Rdao.getName(restseq);
+		ArrayList<String> restNames =  Rdao.getNames(restseq);
 		
 		out.print(restNames);
 	
