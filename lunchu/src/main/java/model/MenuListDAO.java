@@ -90,7 +90,6 @@ public class MenuListDAO {
 				psmt.setInt(1, i);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
-
 					String restName = rs.getString(2);
 					restNames.add(restName);
 				}

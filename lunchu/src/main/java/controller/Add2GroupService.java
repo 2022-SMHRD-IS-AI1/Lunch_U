@@ -27,9 +27,11 @@ public class Add2GroupService extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		String[] groupseq = request.getParameterValues("groupcheck");
+		String[] groupseq = request.getParameterValues("arr[]");
+
 		int restseq = Integer.valueOf("1");
-		// requst.getParameter("restseq");
+		//requst.getParameter("restseq");
+		// restaurant_detail에 음식점 번호 추가가 안된 상태여서 테스트로 1번 식당으로 체크함.
 
 		RestGroupDAO RGdao = new RestGroupDAO();
 
@@ -42,8 +44,7 @@ public class Add2GroupService extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		if (cnt == groupseq.length) {
-			out.print(
-					"<script>alert('그룹에 추가를 성공했습니다.');opener.parent.location.relodad('add2group.jsp');window.close();</script>");
+			out.print("성공");
 			out.close();
 		}
 

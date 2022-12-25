@@ -52,7 +52,7 @@ public class RestGroupDAO {
 		try {
 			getconn();
 
-			String sql = "select from t_rest_group where group_seq = ?";
+			String sql = "select * from t_rest_group where group_seq = ?";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, groupseq);

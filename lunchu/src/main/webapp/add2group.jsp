@@ -218,7 +218,39 @@ hr {
 
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
-	
+	function popupclose() {
+		window.close();
+	}
+	function togroup() {
+		window.close();
+		window.opener.location.href = "groups.jsp";
+	}
+
+	function add2group() {
+		var arr = [];
+		$("input:checkbox[name='groupcheck']:checked").each(function() {
+			var checked = $(this).val();
+			arr.push(checked);
+		})
+
+		$.ajax({
+			type : "POST",
+			url : "Add2GroupService",
+			data : {
+				"arr" : arr,
+			},
+			success : function(res) {
+				alert("그룹에 음식점 추가를 성공했습니다.");
+				opener.parent.location = "restaurant_detail.jsp";
+				window.close();
+
+			},
+			error : function(e) {
+				console.log("요청실패");
+			}
+		})
+
+	}
 </script>
 <%
 MemberDTO info = (MemberDTO) session.getAttribute("info");
@@ -235,10 +267,11 @@ ArrayList<Integer> Glist = JGdao.select(id);
 				request.setCharacterEncoding("utf-8");
 				response.setContentType("text/html; charset=UTF-8");
 
-				int restseq = Integer.valueOf(request.getParameter("restseq"));
+				//int restseq = Integer.valueOf(request.getParameter("restseq"));
+				int restseq_test = 1;
 				MenuListDAO Mdao = new MenuListDAO();
 
-				String restname = Mdao.getName(restseq);
+				String restname = Mdao.getName(restseq_test);
 				%>
 				<h3 class="login" style="letter-spacing: -1px;">그룹에 추가</h3>
 				<hr>
@@ -248,36 +281,34 @@ ArrayList<Integer> Glist = JGdao.select(id);
 
 				<p style="text-align: left; font-size: 15px; color: #666">그룹 선택</p>
 				<div id="box">
-					<form action="Add2GroupService">
-						<table id="members">
-							<%
-							GroupDAO Gdao = new GroupDAO();
-							ArrayList<String> result = new ArrayList<String>();
-							for (int i : Glist) {
-								GroupDTO Gdto = Gdao.select(i);
-							%>
-							<tr>
-								<td><input value="<%=Gdto.getGroupSeq()%>"
-									name="groupcheck" type="checkbox"></td>
-								<td style="padding-left: 10px; width: 140px; text-align: left"><%=Gdto.getGroupName()%>
-								</td>
-							</tr>
-							<%
-							}
-							%>
+					<table id="members">
+						<%
+						GroupDAO Gdao = new GroupDAO();
+						ArrayList<String> result = new ArrayList<String>();
+						for (int i : Glist) {
+							GroupDTO Gdto = Gdao.select(i);
+						%>
+						<tr>
+							<td><input value="<%=Gdto.getGroupSeq()%>" name="groupcheck"
+								type="checkbox"></td>
+							<td style="padding-left: 10px; width: 140px; text-align: left"><%=Gdto.getGroupName()%>
+							</td>
+						</tr>
+						<%
+						}
+						%>
 
-						</table>
-					</form>
+					</table>
 				</div>
 
 				<p></p>
 				<p>
-					<button class="btn" type="submit">추가하기</button>
+					<button class="btn" onclick="add2group()">추가하기</button>
 				</p>
 				<hr>
 				<p class="find">
-					<span><a href="#">그룹 페이지로 이동</a></span> <span><a href="#"
-						onclick="">닫기</a></span>
+					<span><a href="#" onclick="togroup()">그룹 페이지로 이동</a></span> <span><a
+						href="#" onclick="popupclose()">닫기</a></span>
 				</p>
 			</div>
 		</div>
