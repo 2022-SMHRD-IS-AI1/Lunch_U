@@ -106,7 +106,7 @@ COMMENT ON COLUMN t_restaurant.cate_seq IS '카테고리 순번';
 -- 컬럼 Comment 설정 SQL - t_restaurant.rest_tel
 COMMENT ON COLUMN t_restaurant.rest_tel IS '음식점 연락처';
 
-
+select * from t_review;
 -- t_group Table Create SQL
 -- 테이블 생성 SQL - t_group
 CREATE TABLE t_group

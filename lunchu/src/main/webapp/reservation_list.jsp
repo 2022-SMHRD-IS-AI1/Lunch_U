@@ -1,4 +1,4 @@
-<%@page import="model.MenuListDAO"%>
+<%@page import="model.RestaurantDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.MemberDTO"%>
 <%@page import="model.ReservationDAO"%>
@@ -123,14 +123,14 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 
 								<tbody>
 									<%
-									MenuListDAO Mdao = new MenuListDAO();
+									RestaurantDAO Restdao = new RestaurantDAO();
 									
 									for (int i = 0; i < re_dto.size(); i++) {
 									%>
 									<tr class="reservation_detail">
 										<td><input type="checkbox"></td>
 										<td class="reservation_detail"><%=i + 1%></td>
-										<td><a href=""><%= Mdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
+										<td><a href=""><%= Restdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
 										<tdReservationDTO.get(i).restName(i)(i)%>
 										</td>
 										<tdReservationDTO.get(i).reservDate(i)(i)%>

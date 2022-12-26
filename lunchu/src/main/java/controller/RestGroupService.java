@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.MenuListDAO;
-import model.MenuListDTO;
 import model.RestGroupDAO;
+import model.RestaurantDAO;
 
 /**
  * Servlet implementation class RestGroupService
@@ -37,7 +35,7 @@ public class RestGroupService extends HttpServlet {
 
 		ArrayList<Integer> restseq = RGdao.list(groupseq);
 
-		MenuListDAO Rdao = new MenuListDAO();
+		RestaurantDAO Rdao = new RestaurantDAO();
 
 		ArrayList<String> restNames = Rdao.getNames(restseq);
 
