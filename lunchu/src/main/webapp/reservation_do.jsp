@@ -1,3 +1,4 @@
+<%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -28,44 +29,61 @@
     <script src="js/tms-0.4.1.js"></script>
     <script>
         const btn_btn_primary = document.getElementsByClassName("btn btn-primary");
-
+        const name = document.getElementById('name').value;
+        const name = document.getElementById('name').value;
+        const name = document.getElementById('name').value;
+        const name = document.getElementById('select_time').value;
         function doPopupopen() {
+        	
+        	//사용자가 입력한 
+        	// 이름, 번호, 날짜 를 가져오기
+        	
+        	// 가져온 데이터를 세션에 저장
+        	
             window.open("pay_1.jsp", 'popup', 'width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no');
         }
 
         btn_btn_primary.addEventListener("click", doPopupopen);
     </script>
-
 </head>
 
 <body>
     <div class="main">
-        <header>
-            <div class="container_12">
-                <div class="grid_12">
-                    <h1>
-                        <a href="index.html"><img src="images/logo_lunchu1.png" alt=""></a>
-                    </h1>
-                    <div class="menu_block">
-                        <nav>
-                            <ul class="sf-menu">
-                                <li><a href="LogoutService">로그아웃</a></li>
-                                <li class="with_ul"><a href="#">마이페이지</a>
-                                    <ul>
-                                        <li><a href="profile.jsp"> 내 정보</a></li>
-                                        <li><a href="reservation.jsp"> 내 예약</a></li>
-                                        <li><a href="reviews.jsp"> 내 리뷰 </a></li>
-                                        <li><a href="groups.jsp"> 내 그룹</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-        </header>
+		<header>
+			<div class="container_12">
+				<div class="grid_12">
+					<h1>
+						<a href="home.jsp"><img src="images/logo_lunchu1.png" alt=""></a>
+					</h1>
+					<div class="menu_block">
+						<nav>
+							<ul class="sf-menu">
+								<%
+								MemberDTO info = (MemberDTO) session.getAttribute("info");
+								if (info != null) {
+								%>
+								<li><a href="LogoutService">로그아웃</a></li>
+								<li class="with_ul"><a href="#">마이페이지</a>
+									<ul>
+										<li><a href="profile.jsp"> 내 정보</a></li>
+										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
+										<li><a href="groups.jsp"> 내 그룹</a></li>
+									</ul></li>
+								<%
+								} else {
+								%>
+								<li><a href="login.jsp">로그인</a></li>
+								<li><a href="join.jsp">회원가입</a></li>
+								<%
+								}
+								%>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
         <div class="content page1">
             <div class="container_12">
                 <div class="grid_12">
@@ -73,10 +91,10 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6 to-animate-2">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
+                                    <img src="images/음식/메밀소바.jfif" alt="이미지 준비중..">
+                                    <img src="images/음식/불고기.jfif" alt="이미지 준비중..">
+                                    <img width = "300px" height="300px" src="images/음식/야무친백반.jfif" alt="이미지 준비중..">
+                                    <img width = "200px" height="300px" src="images/음식/양곱창.jpg" alt="이미지 준비중..">
                                 </div>
                                 <div class="col-md-6 to-animate-2">
                                     <h3>Reservation Form</h3>
@@ -111,6 +129,7 @@
                                     <div class="form-group">
                                         <input class="btn btn-primary" value="예약하기" type="submit"
                                             onclick="doPopupopen()">
+                                           
                                     </div>
                                 </div>
                             </div>
