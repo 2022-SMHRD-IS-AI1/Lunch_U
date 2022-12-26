@@ -8,20 +8,31 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
+<script>
+	const input_btn = document.getElementById("input_btn");
 
-<body>
+	function do_alert() {
+
+		alert("결제가 완료되었습니다.");
+
+		opener.location.href = "reservation.jsp";
+		self.close();
+	}
+</script>
+
 <body>
 	<%
 	//request.setCharacterEncoding("utf-8");
 	response.setContentType("text/html; charset=utf-8");
-	
+
 	String data = request.getParameter("data");
-	System.out.println("Test "+data);
+	System.out.println("Test " + data);
 	%>
 
 	<form action="">
 		<fieldset>
 			<legend>주문/결제</legend>
+			<a></a>
 			<table border="1" align="center">
 				<tr>
 					<td>카드결제</td>
@@ -80,16 +91,6 @@
 			</table>
 		</fieldset>
 	</form>
-	<script>
-		const input_btn = document.getElementById("input_btn");
-
-		function do_alert() {
-			alert("결제가 완료되었습니다.");
-
-			opener.location.href = "reservation.jsp";
-			self.close();
-		}
-	</script>
 </body>
 
 </html>
