@@ -42,7 +42,7 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<h1>
-						<a href="index.html"><img src="images/logo_lunchu1.png" alt=""></a>
+						<a href="home.jsp"><img src="images/logo_lunchu1.png" alt=""></a>
 					</h1>
 					<div class="menu_block">
 						<nav>
