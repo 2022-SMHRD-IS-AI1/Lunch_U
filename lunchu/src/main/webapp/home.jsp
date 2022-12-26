@@ -159,6 +159,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 					<div class="grid_12">
 						<div class="car_wrap">
 							<h2><%=hanlist.get(0).getCateName() %></h2>
+							<a href="Lunch_U_Map.jsp"><img src="./images/map_marker.png"></a>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
 							<ul class="carousel1">
 
@@ -307,8 +308,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 
 			</div>
 			<%
-			}%>
-			<%
+			}
 			if (bunsiklist.size() != 0) {
 			%>
 			<div class="container_12">
@@ -347,6 +347,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			</div>
 
 			<%
+			}
 			if (fusionlist.size() != 0) {
 			%>
 			<div class="container_12">
