@@ -1,5 +1,4 @@
-<%@page import="model.MenuListDAO"%>
-<%@page import="model.MenuListDTO"%>
+<%@page import="model.RestaurantDAO"%>
 <%@page import="model.RestGroupDTO"%>
 <%@page import="model.GroupDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -269,9 +268,9 @@ ArrayList<Integer> Glist = JGdao.select(id);
 
 				//int restseq = Integer.valueOf(request.getParameter("restseq"));
 				int restseq_test = 1;
-				MenuListDAO Mdao = new MenuListDAO();
+				RestaurantDAO Rdao = new RestaurantDAO();
 
-				String restname = Mdao.getName(restseq_test);
+				String restname = Rdao.getName(restseq_test);
 				%>
 				<h3 class="login" style="letter-spacing: -1px;">그룹에 추가</h3>
 				<hr>

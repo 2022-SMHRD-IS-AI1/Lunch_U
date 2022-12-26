@@ -14,9 +14,9 @@
 	<%
 	//request.setCharacterEncoding("utf-8");
 	response.setContentType("text/html; charset=utf-8");
-	
+
 	String data = request.getParameter("data");
-	System.out.println("Test "+data);
+	System.out.println("Test " + data);
 	%>
 
 	<form action="">
