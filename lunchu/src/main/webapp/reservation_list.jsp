@@ -1,6 +1,10 @@
+<%@page import="model.MenuListDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.MemberDTO"%>
+<%@page import="model.ReservationDAO"%>
+<%@page import="model.ReservationDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,6 +24,13 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/slider.css">
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<link rel="stylesheet" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -46,36 +57,10 @@
 			progressBar : false
 		})
 	});
-	$(window).load(function() {
-		$('.carousel1').carouFredSel({
-			auto : false,
-			prev : '.prev',
-			next : '.next',
-			width : 960,
-			items : {
-				visible : {
-					min : 1,
-					max : 4
-				},
-				height : 'auto',
-				width : 240,
-			},
-			responsive : false,
-			scroll : 1,
-			mousewheel : false,
-			swipe : {
-				onMouse : false,
-				onTouch : false
-			}
-		});
-	});
 </script>
-<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<link rel="stylesheet" media="screen" href="css/ie.css">
-<![endif]-->
-</head>
-
+<%
+MemberDTO info = (MemberDTO) session.getAttribute("info");
+%>
 <body>
 	<div class="main">
 		<header>
@@ -87,79 +72,95 @@
 					<div class="menu_block">
 						<nav>
 							<ul class="sf-menu">
+								<%
+								if (info != null) {
+								%>
 								<li><a href="LogoutService">로그아웃</a></li>
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
 										<li><a href="reservation.jsp"> 내 예약</a></li>
-										<li><a href="reviews.jsp"> 내 리뷰 </a></li>
+										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
 										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
+								<%
+								} else {
+								%>
+								<li><a href="login.jsp">로그인</a></li>
+								<li><a href="join.jsp">회원가입</a></li>
+								<%
+								}
+								%>
 							</ul>
 						</nav>
+						<div class="clear"></div>
 					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 		</header>
-
+		<%
+		ReservationDAO Rdao = new ReservationDAO();
+		String id = info.getMemId();
+		ArrayList<ReservationDTO> re_dto = Rdao.select(id);
+		%>
 		<div class="content page1">
 			<div class="container_12">
 				<div class="grid_12">
-					<div class="review">
+					<div class="reservation">
 						<h2>Evaluation</h2>
-						<table class="review_list">
-							<form action="">
+						<table class="reservation_list">
+							<form action="" method="post">
 								<thead>
 									<tr>
-										<td class="review_col"></td>
-										<td class="review_col">번호</td>
-										<td class="review_col">음식점명</td>
-										<td class="review_col">평점</td>
-										<td class="review_col">리뷰</td>
+										<td class="reservation_col"></td>
+										<td class="reservation_col">번호</td>
+										<td class="reservation_col">음식점명</td>
+										<td class="reservation_col">평점</td>
+										
 									</tr>
 								</thead>
-								<div class="scroll_box">
-									<tbody>
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">1</td>
-											<td><a href="#">신쭈꾸미</a></td>
-											<td>4.5</td>
-											<td>맛있음</td>
-										</tr>
 
-										<tr class="review_detail">
-											<td><input type="checkbox"></td>
-											<td class="review_detail">2</td>
-											<td><a href="#">비바로마</a></td>
-											<td>5</td>
-											<td>분위기 좋음</td>
-										</tr>
-
-									</tbody>
+								<tbody>
+									<%
+									MenuListDAO Mdao = new MenuListDAO();
+									
+									for (int i = 0; i < re_dto.size(); i++) {
+									%>
+									<tr class="reservation_detail">
+										<td><input type="checkbox"></td>
+										<td class="reservation_detail"><%=i + 1%></td>
+										<td><a href=""><%= Mdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
+										<tdReservationDTO.get(i).restName(i)(i)%>
+										</td>
+										<tdReservationDTO.get(i).reservDate(i)(i)%>
+										</td>
+									</tr>
+									<%
+									}
+									%>
+								</tbody>
 								</div>
-								<button class="review_delete">삭제</button>
+								<button class="reservation_delete">삭제</button>
 							</form>
 						</table>
 					</div>
-				</div>
-				<div class="bottom_block">
-					<div class="grid_6">
-						<h3>Follow Us</h3>
-						<div class="socials">
-							<a href="#"></a> <a href="#"></a> <a href="#"></a>
-						</div>
-						<nav>
-							<ul>
-								<li class="current"><a href="index.html">Home</a></li>
-								<li><a href="about-us.html">About Us</a></li>
-								<li><a href="menu.html">Menu</a></li>
-								<li><a href="portfolio.html">Portfolio</a></li>
-								<li><a href="news.html">News</a></li>
-								<li><a href="contacts.html">Contacts</a></li>
-							</ul>
-						</nav>
-					</div>
+
+					<!--  <div class="bottom_block">
+                    <div class="grid_6">
+                        <h3>Follow Us</h3>
+                        <div class="socials"> <a href="#"></a> <a href="#"></a> <a href="#"></a> </div>
+                        <nav>
+                            <ul>
+                                <li class="current"><a href="index.html">Home</a></li>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="menu.html">Menu</a></li>
+                                <li><a href="portfolio.html">Portfolio</a></li>
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="contacts.html">Contacts</a></li>
+                            </ul>
+                        </nav>
+                    </div> -->
 					<div class="grid_6">
 						<h3>Email Updates</h3>
 						<p class="col1">
