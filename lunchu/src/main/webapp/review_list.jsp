@@ -60,7 +60,7 @@
     </script>
 <%
 MemberDTO info = (MemberDTO) session.getAttribute("info");
-%>	
+%>
 <body>
    <div class="main">
 		<header>

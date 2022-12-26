@@ -77,7 +77,26 @@
 <%
 MemberDTO info = (MemberDTO) session.getAttribute("info");
 MenuListDAO dao = new MenuListDAO();
-ArrayList<MenuListDTO> menulist = dao.menuList();
+String han = "한식";
+String il = "일식";
+String yang = "양식";
+String buffet = "부페";
+String bunsik = "분식";
+String fusion = "퓨전";
+String fastfood = "패스트푸드";
+String joong = "중식";
+String chicken = "닭요리";
+
+
+ArrayList<MenuListDTO> hanlist = dao.menuList(han);
+ArrayList<MenuListDTO> illist = dao.menuList(il);
+ArrayList<MenuListDTO> yanglist = dao.menuList(yang);
+ArrayList<MenuListDTO> buffetlist = dao.menuList(buffet);
+ArrayList<MenuListDTO> bunsiklist = dao.menuList(bunsik);
+ArrayList<MenuListDTO> fusionlist = dao.menuList(fusion);
+ArrayList<MenuListDTO> fastfoodlist = dao.menuList(fastfood);
+ArrayList<MenuListDTO> joonglist = dao.menuList(joong);
+ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 %>
 
 <body>
@@ -132,22 +151,26 @@ ArrayList<MenuListDTO> menulist = dao.menuList();
 		</div>
 
 		<div class="content page1">
+			<%
+			if (hanlist.size() != 0) {
+			%>
 			<div class="container_12">
 				<div class="grid_5">
 					<div class="grid_12">
 						<div class="car_wrap">
-							<h2>Your Favorite</h2>
+							<h2><%=hanlist.get(0).getCateName() %></h2>
+							<a href="Lunch_U_Map.jsp"><img src="./images/map_marker.png"></a>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
 							<ul class="carousel1">
 
 								<%
-								for (int i = 0; i < menulist.size(); i++) {
+								for (int i = 0; i < hanlist.size(); i++) {
 								%>
 								<li>
 									<div>
 										<img src="images/page1_img1.jpg" alt="">
 										<div class="col1 upp">
-											<a href="restaurant_detail.jsp"><strong> <%=menulist.get(i).getRestName()%></strong></a>
+											<a href="restaurant_detail.jsp"><strong> <%=hanlist.get(i).getRestName()%></strong></a>
 										</div>
 
 									</div>
@@ -167,64 +190,36 @@ ArrayList<MenuListDTO> menulist = dao.menuList();
 				</div>
 
 			</div>
-
+			<%
+			}
+			if (illist.size() != 0) {
+			%>
 			<div class="container_12">
 				<div class="grid_5">
 					<div class="grid_12">
 						<div class="car_wrap">
-							<h2>Your Favorite</h2>
+							<h2><%= illist.get(0).getCateName() %></h2>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
 							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < illist.size(); i++) {
+								%>
 								<li>
 									<div>
 										<img src="images/page1_img1.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
+											<a href="restaurant_detail.jsp"><strong> <%=illist.get(i).getRestName()%></strong></a>
 										</div>
-										<span> 음식점 추천 메뉴</span>
 
 									</div>
 								</li>
-								<li>
-									<div>
-										<img src="images/page1_img2.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
 
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img3.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
 
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img4.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
+								<%
+								}
+								%>
 
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img3.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -234,64 +229,36 @@ ArrayList<MenuListDTO> menulist = dao.menuList();
 				</div>
 
 			</div>
-
+			<%
+			}
+			if (yanglist.size() != 0) {
+			%>
 			<div class="container_12">
 				<div class="grid_5">
 					<div class="grid_12">
 						<div class="car_wrap">
-							<h2>Your Favorite</h2>
+							<h2><%=yanglist.get(0).getCateName() %></h2>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
 							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < yanglist.size(); i++) {
+								%>
 								<li>
 									<div>
 										<img src="images/page1_img1.jpg" alt="">
 										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
+											<a href="restaurant_detail.jsp"><strong> <%=yanglist.get(i).getRestName()%></strong></a>
 										</div>
-										<span> 음식점 추천 메뉴</span>
 
 									</div>
 								</li>
-								<li>
-									<div>
-										<img src="images/page1_img2.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
 
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img3.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
 
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img4.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
+								<%
+								}
+								%>
 
-									</div>
-								</li>
-								<li>
-									<div>
-										<img src="images/page1_img3.jpg" alt="">
-										<div class="col1 upp">
-											<a href="#"><strong>음식점 이름</strong></a>
-										</div>
-										<span> 음식점 추천 메뉴</span>
-
-									</div>
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -301,7 +268,239 @@ ArrayList<MenuListDTO> menulist = dao.menuList();
 				</div>
 
 			</div>
+			<%
+			}
+			if (buffetlist.size() != 0) {
+			%>
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=buffetlist.get(0).getCateName() %></h2>
+							<a href="#" class="prev"></a><a href="#" class="next"></a>
+							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < buffetlist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=buffetlist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<%
+								}
+								%>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="hor_separator"></div>
+				</div>
+
+			</div>
+			<%
+			}
+			if (bunsiklist.size() != 0) {
+			%>
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=bunsiklist.get(0).getCateName() %></h2>
+							<a href="#" class="prev"></a><a href="#" class="next"></a>
+							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < bunsiklist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=bunsiklist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<%
+								}
+								%>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="hor_separator"></div>
+				</div>
+			</div>
+
+			<%
+			}
+			if (fusionlist.size() != 0) {
+			%>
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=fusionlist.get(0).getCateName() %></h2>
+							<a href="#" class="prev"></a><a href="#" class="next"></a>
+							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < fusionlist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=fusionlist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<%
+								}
+								%>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="hor_separator"></div>
+				</div>
+
+			</div>
+			<%
+			}
+			if (fastfoodlist.size() != 0) {
+			%>
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%= fastfoodlist.get(0).getCateName() %></h2>
+							<a href="#" class="prev"></a><a href="#" class="next"></a>
+							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < fastfoodlist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=fastfoodlist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<%
+								}
+								%>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="hor_separator"></div>
+				</div>
+
+			</div>
+			<%
+			}
+			if (joonglist.size() != 0) {
+			%>
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=joonglist.get(0).getCateName() %></h2>
+							<a href="#" class="prev"></a><a href="#" class="next"></a>
+							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < joonglist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=joonglist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<%
+								}
+								%>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="hor_separator"></div>
+				</div>
+
+			</div>
+			<%
+			}
+			if (chickenlist.size() != 0) {
+			%>
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=chickenlist.get(0).getCateName() %></h2>
+							<a href="#" class="prev"></a><a href="#" class="next"></a>
+							<ul class="carousel1">
+
+								<%
+								for (int i = 0; i < chickenlist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=chickenlist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+								<%} %>
+
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="hor_separator"></div>
+				</div>
+			</div>
+			<%} %>
 		</div>
+	</div>
 </body>
 
 </html>
