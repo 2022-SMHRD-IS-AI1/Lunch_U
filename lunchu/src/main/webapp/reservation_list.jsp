@@ -1,3 +1,4 @@
+<%@page import="model.MenuListDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.MemberDTO"%>
 <%@page import="model.ReservationDAO"%>
@@ -99,9 +100,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 			</div>
 		</header>
 		<%
-		ReservationDAO res_dao = new ReservationDAO();
+		ReservationDAO Rdao = new ReservationDAO();
 		String id = info.getMemId();
-		ArrayList<ReservationDTO> re_dto = res_dao.select(id);
+		ArrayList<ReservationDTO> re_dto = Rdao.select(id);
 		%>
 		<div class="content page1">
 			<div class="container_12">
@@ -116,22 +117,24 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 										<td class="reservation_col">번호</td>
 										<td class="reservation_col">음식점명</td>
 										<td class="reservation_col">평점</td>
-										<td class="revation_col">리뷰</td>
+										
 									</tr>
 								</thead>
 
 								<tbody>
 									<%
+									MenuListDAO Mdao = new MenuListDAO();
+									
 									for (int i = 0; i < re_dto.size(); i++) {
 									%>
 									<tr class="reservation_detail">
 										<td><input type="checkbox"></td>
 										<td class="reservation_detail"><%=i + 1%></td>
-										<!--  
-                                            <td><a href="#"ReservationDTO.get(i).reservSeq()q() %></a></td>
-                                            <tdReservationDTO.get(i).restName(i)(i) %></td>
-                                            <tdReservationDTO.get(i).reservDate(i)(i) %></td>
-                                            -->
+										<td><a href=""><%= Mdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
+										<tdReservationDTO.get(i).restName(i)(i)%>
+										</td>
+										<tdReservationDTO.get(i).reservDate(i)(i)%>
+										</td>
 									</tr>
 									<%
 									}

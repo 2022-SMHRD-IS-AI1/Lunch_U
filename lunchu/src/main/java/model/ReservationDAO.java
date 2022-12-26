@@ -13,7 +13,6 @@ public class ReservationDAO {
 	PreparedStatement psmt = null;
 	int cnt = 0;
 	ResultSet rs = null;
-	ArrayList<ReservationDTO> result = null;
 	ReservationDTO dto = null;
 
 	public void getconn() {
@@ -50,7 +49,7 @@ public class ReservationDAO {
 	}
 
 	public ArrayList<ReservationDTO> select(String id) {
-
+		ArrayList<ReservationDTO> result = new ArrayList<ReservationDTO>();
 		try {
 			getconn();
 			
@@ -68,7 +67,7 @@ public class ReservationDAO {
 				String mem_id = rs.getString(5); 
 				
 				
-				result.add(new ReservationDTO(reserv_seq, rest_seq, rerserv_time, reserv_date, mem_id ));
+				result.add(new ReservationDTO(reserv_seq, rest_seq, rerserv_time, reserv_date, mem_id));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,7 +75,6 @@ public class ReservationDAO {
 		} finally {
 			close();
 		} return result;
-		
 		
 	}
 
