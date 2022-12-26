@@ -81,20 +81,8 @@ button {
 		console.log(card)
 		
 		
-		$.ajax({
-			url : 'pay_2.jsp',
-			type : 'get',
-			data : {
-				"card" : card
-			},
-			success : function(res) {
-				console.log("요청성공");
-				location.href = "pay_2.jsp";
-			},
-			error : function(e) {
-				alert("error!");
-			}
-		})
+		location.href = "pay_2.jsp?data="+card;
+		
 	})
 	
 </script>

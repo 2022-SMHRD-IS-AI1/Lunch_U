@@ -11,19 +11,27 @@
 
 <body>
 <body>
+	<%
+	//request.setCharacterEncoding("utf-8");
+	response.setContentType("text/html; charset=utf-8");
+	
+	String data = request.getParameter("data");
+	System.out.println("Test "+data);
+	%>
+
 	<form action="">
 		<fieldset>
 			<legend>주문/결제</legend>
 			<table border="1" align="center">
 				<tr>
 					<td>카드결제</td>
-					<%
+					<%--
 					request.setCharacterEncoding("utf-8");
 					response.setContentType("text/html; charset=utf-8");
 					String card = request.getParameter("card");
 					System.out.print(card);
-					%>
-					<td><%=card%></td>
+					--%>
+					<td><%=data%></td>
 				</tr>
 				<tr>
 					<td>결제정보</td>
@@ -77,11 +85,10 @@
 
 		function do_alert() {
 			alert("결제가 완료되었습니다.");
+
 			opener.location.href = "reservation.jsp";
 			self.close();
 		}
-
-//		addButton.addEventListener("click", do_alert);
 	</script>
 </body>
 
