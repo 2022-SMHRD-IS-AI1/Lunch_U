@@ -126,5 +126,27 @@ public class RestaurantDAO {
 		}
 		return result;
 	}
+	
+	public RestaurantDTO getRestaurant(int rest_seq) {
+		RestaurantDTO resultDto = null;
+		try {
+			getConn();
+			String sql = "select * from t_restaurant where rest_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, rest_seq);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				resultDto = new RestaurantDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return resultDto;
+		
+	}
 
 }

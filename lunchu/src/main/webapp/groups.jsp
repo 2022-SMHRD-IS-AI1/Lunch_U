@@ -20,13 +20,14 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
+<script src="js/superfish.js"></script>
 <script src="js/sForm.js"></script>
+
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <link rel="stylesheet" media="screen" href="css/ie.css">
 <![endif]-->
 </head>
-<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
 	$(document).on("click", ".deletegroup_btn", function() {
 		var groupseq = $(this).parent().parent().find(".groupseq_1").text();

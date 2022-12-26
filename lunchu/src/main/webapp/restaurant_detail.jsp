@@ -1,3 +1,5 @@
+<%@page import="model.RestaurantDTO"%>
+<%@page import="model.RestaurantDAO"%>
 <%@page import="model.ReviewDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.ReviewDAO"%>
@@ -14,11 +16,14 @@
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/slider.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/sForm.js"></script>
+<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script src="js/tms-0.4.1.js"></script>
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <link rel="stylesheet" media="screen" href="css/ie.css">
@@ -81,7 +86,6 @@ tbody .date, tbody .writer, tbody .review {
 }
 </style>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
 	function add2group() {
 		var url = "add2group.jsp";
@@ -127,6 +131,12 @@ tbody .date, tbody .writer, tbody .review {
 				</div>
 			</div>
 		</header>
+		<%
+		int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
+		
+		RestaurantDAO dao = new RestaurantDAO();
+		RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
+		%>
 		<div class="content">
 			<div class="container_12">
 				<div class="grid_3 restaurant_detail">
@@ -135,19 +145,27 @@ tbody .date, tbody .writer, tbody .review {
 							<tr>
 								<td>
 									<h2>
-										<strong>미미원</strong>
+										<strong><%=restaurant.getRestName() %></strong>
+										<span id="restSeq" style="display: none"><%=restaurant.getRestSeq()%></span>
 									</h2>
 								</td>
 							</tr>
 							<tr>
-								<td style="height: 20px">동명동 | 한식</td>
+								<td style="height: 20px"><%=restaurant.getCateName() %></td>
 								<td style="text-align: right;">8명의 평가 4.8</td>
 							</tr>
 
 						</table>
 						<div style="left: 0px">
+						<%
+						if (info != null) {
+						%>
+							<button id="reservation" onclick="">예약하기</button>
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
 							<button onclick="">리뷰 및 평점</button>
+						<%}else{ %>
+							<button onclick="">리뷰 및 평점</button>
+						<%} %>
 							<br>
 						</div>
 						<hr>
@@ -156,23 +174,10 @@ tbody .date, tbody .writer, tbody .review {
 					<div id="detail">
 						<table>
 							<tr>
-								<td>광주 서구 상무누리로 20 1층 비바로마</td>
+								<td>주소 : <%=restaurant.getRestAddr() %></td>
 							</tr>
 							<tr>
-								<td>김대중컨벤션 제2주차장 무료 -매장 앞 대로변 11:00~14:00 단속 유예 -매장 뒤 매장 건물
-									주차장 (6~7대 공간)</td>
-							</tr>
-							<tr>
-								<td>매일 11:00 - 23:00</td>
-							</tr>
-							<tr>
-								<td>0507-1439-9806</td>
-							</tr>
-							<tr>
-								<td>단체석, 포장, 예약, 무선 인터넷</td>
-							</tr>
-							<tr style="border-bottom: none">
-								<td>https://www.instagram.com/vivaroma_insta/</td>
+								<td>전화번호 : <%=restaurant.getRestTel() %></td>
 							</tr>
 						</table>
 					</div>
@@ -191,7 +196,7 @@ tbody .date, tbody .writer, tbody .review {
 								<%
 								ReviewDAO Rdao = new ReviewDAO();
 
-								ArrayList<ReviewDTO> review = Rdao.restReview(1);
+								ArrayList<ReviewDTO> review = Rdao.restReview(restaurant.getRestSeq());
 
 								for (int i = 0; i < review.size(); i++) {
 								%>
@@ -209,45 +214,47 @@ tbody .date, tbody .writer, tbody .review {
 					</div>
 				</div>
 				<div class="grid_7 map">
-					<figure class="img_inner">
-						<iframe style="height: 700px; width: 540px;"
-							src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Brooklyn,+New+York,+NY,+United+States&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=61.282355,146.513672&amp;ie=UTF8&amp;hq=&amp;hnear=Brooklyn,+Kings,+New+York&amp;ll=40.649974,-73.950005&amp;spn=0.01628,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed">
-						</iframe>
-					</figure>
+				<div id="map" style="width:700px;height:500px;"></div>
+        
+		        <script type="text/javascript"
+		            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
+
+		       <script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					    mapOption = {
+					        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					        level: 3 // 지도의 확대 레벨
+					    };  
+					
+					// 지도를 생성합니다    
+					var map = new kakao.maps.Map(mapContainer, mapOption); 
+					
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
+					
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch('<%=restaurant.getRestAddr()%>', function(result, status) {
+					    // 정상적으로 검색이 완료됐으면 
+					     if (status === kakao.maps.services.Status.OK) {
+					
+					        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					
+					        // 결과값으로 받은 위치를 마커로 표시합니다
+					        var marker = new kakao.maps.Marker({
+					            map: map,
+					            position: coords
+					        });
+					
+					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+					        map.setCenter(coords);
+					    } 
+					});    
+				</script>
+				
 				</div>
 				<div class="clear"></div>
 				<div class="bottom_block">
-					<div class="grid_6">
-						<h3>Follow Us</h3>
-						<div class="socials">
-							<a href="#"></a> <a href="#"></a> <a href="#"></a>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about-us.html">About Us</a></li>
-								<li><a href="menu.html">Menu</a></li>
-								<li><a href="portfolio.html">Portfolio</a></li>
-								<li class="current"><a href="news.html">News</a></li>
-								<li><a href="contacts.html">Contacts</a></li>
-							</ul>
-						</nav>
-					</div>
-					<div class="grid_6">
-						<h3>Email Updates</h3>
-						<p class="col1">
-							Join our digital mailing list and get news<br> deals and be
-							first to know about events
-						</p>
-						<form id="newsletter" action="#">
-							<div class="success">Your subscribe request has been sent!</div>
-							<label class="email"> <input type="email"
-								value="Enter e-mail address"> <a href="#" class="btn"
-								data-type="submit">subscribe</a> <span class="error">*This
-									is not a valid email address.</span>
-							</label>
-						</form>
-					</div>
+					
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -255,11 +262,6 @@ tbody .date, tbody .writer, tbody .review {
 	</div>
 	<footer>
 		<div class="container_12">
-			<div class="grid_12">
-				Gourmet Traditional Restaurant &copy; 2045 | <a href="#">Privacy
-					Policy</a> | Design by: <a href="http://www.templatemonster.com/">TemplateMonster.com</a>
-			</div>
-			<div class="clear"></div>
 		</div>
 	</footer>
 </body>
