@@ -306,6 +306,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 					<div class="hor_separator"></div>
 				</div>
 
+
 			</div>
 			<%
 			}
