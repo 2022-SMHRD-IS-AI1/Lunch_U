@@ -42,7 +42,7 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<h1>
-						<a href="index.html"><img src="images/logo.png" alt=""></a>
+						<a href="index.html"><img src="images/logo_lunchu1.png" alt=""></a>
 					</h1>
 					<div class="menu_block">
 						<nav>
@@ -66,7 +66,7 @@
 		<div class="content">
 			<div class="container_12">
 				<div class="grid_12">
-					<h2>내 정보 수정하기</h2>
+					<h2>내 정보</h2>
 				</div>
 				<div class="portfolio">
 					<form action="UpdateMember" method="post">

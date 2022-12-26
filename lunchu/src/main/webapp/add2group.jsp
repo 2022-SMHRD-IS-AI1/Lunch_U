@@ -1,11 +1,21 @@
+<%@page import="model.MenuListDAO"%>
+<%@page import="model.MenuListDTO"%>
+<%@page import="model.RestGroupDTO"%>
+<%@page import="model.GroupDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.JoinGroupDAO"%>
+<%@page import="model.GroupDAO"%>
+<%@page import="model.RestGroupDAO"%>
 <%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
 </head>
 
 <style>
@@ -187,81 +197,121 @@ hr {
 .find a:hover {
 	color: #707070;
 }
-</style>
-<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-<script type="text/javascript">
-function popupclose() {
-	window.close();
+
+.delete_btn {
+	background-color: #df3278;
+	border: none;
+	color: #fff;
+	border-radius: 5px;
+	margin-right: 10px
 }
 
-function exitGroup(){
-	
-	var groupseq = "<%= request.getParameter("groupseq") %>";
-	console.log(groupseq);
-	/*
-	.ajax({
-		type : "POST",
-		url : "DeleteGroupService",
-		data : {
-			"groupseq" : groupseq,
-		},
-		success : function(res) {
-			console.log("요청성공");
-			console.log(res);
-		},
-		error : function(e) {
-			console.log("요청실패");
-		}
-	})*/
+#box {
+	padding-left: 10px;
+	width: 300px;
+	background-color: #f2f0f0;
+	height: 200px;
+	margin-top: 10px;
+	border-radius: 5px;
 }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+	function popupclose() {
+		window.close();
+	}
+	function togroup() {
+		window.close();
+		window.opener.location.href = "groups.jsp";
+	}
+
+	function add2group() {
+		var arr = [];
+		$("input:checkbox[name='groupcheck']:checked").each(function() {
+			var checked = $(this).val();
+			arr.push(checked);
+		})
+
+		$.ajax({
+			type : "POST",
+			url : "Add2GroupService",
+			data : {
+				"arr" : arr,
+			},
+			success : function(res) {
+				alert("그룹에 음식점 추가를 성공했습니다.");
+				opener.parent.location = "restaurant_detail.jsp";
+				window.close();
+
+			},
+			error : function(e) {
+				console.log("요청실패");
+			}
+		})
+
+	}
 </script>
+<%
+MemberDTO info = (MemberDTO) session.getAttribute("info");
+String id = info.getMemId();
+
+JoinGroupDAO JGdao = new JoinGroupDAO();
+ArrayList<Integer> Glist = JGdao.select(id);
+%>
 <body>
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
-				<!--로그인 폼-->
-					<h3 class="login" style="letter-spacing: -1px;">그룹 삭제</h3>
-					<hr>
-					<% 
-					request.setCharacterEncoding("utf-8");
-					
-					String adminId = request.getParameter("adminId");
-					System.out.println("test : " + adminId);
-					
-					String groupseq = request.getParameter("groupseq");
-					//System.out.println("test : " +groupseq);
-					
-					MemberDTO info = (MemberDTO) session.getAttribute("info");
-					String id = info.getMemId();
-					
-					
-					String comment1 = "";
-					String comment2 = "";
-					String value1 = "";
-					if (id.equals(adminId)){
-						comment1 = "을";
-						comment2 = "삭제하시겠습니까?";
-						value1 = "삭제";
-					} else {
-						comment1 = "에서";
-						comment2 = "나가시겠습니까?";
-						value1 = "나가기";
-					}%>
+				<%
+				request.setCharacterEncoding("utf-8");
+				response.setContentType("text/html; charset=UTF-8");
 
+				//int restseq = Integer.valueOf(request.getParameter("restseq"));
+				int restseq_test = 1;
+				MenuListDAO Mdao = new MenuListDAO();
 
-					<%--아이디랑 adminId랑 같은데 조건식이 정상 작동하지 않음. --%>
-					<h2>해당 그룹<%=comment1 %></h2>
-					<h2><%=comment2 %></h2>
+				String restname = Mdao.getName(restseq_test);
+				%>
+				<h3 class="login" style="letter-spacing: -1px;">그룹에 추가</h3>
+				<hr>
+				<p style="text-align: left; font-size: 15px; color: #666">식당이름</p>
+				<input type="text" class="size" id="restname" value="<%=restname%>"
+					readonly="readonly">
 
+				<p style="text-align: left; font-size: 15px; color: #666">그룹 선택</p>
+				<div id="box">
+					<table id="members">
+						<%
+						GroupDAO Gdao = new GroupDAO();
+						ArrayList<String> result = new ArrayList<String>();
+						for (int i : Glist) {
+							GroupDTO Gdto = Gdao.select(i);
+						%>
+						<tr>
+							<td><input value="<%=Gdto.getGroupSeq()%>" name="groupcheck"
+								type="checkbox"></td>
+							<td style="padding-left: 10px; width: 140px; text-align: left"><%=Gdto.getGroupName()%>
+							</td>
+						</tr>
+						<%
+						}
+						%>
 
-					<button type="button" class="btn" style="margin-top: 20px" onclick ="exitGroup()"><%=value1 %></button>
+					</table>
+				</div>
 
-					<button type="button" class="btn" style="margin-top: 10px" onclick="popupclose()">취소</button>
-					<hr>
+				<p></p>
+				<p>
+					<button class="btn" onclick="add2group()">추가하기</button>
+				</p>
+				<hr>
+				<p class="find">
+					<span><a href="#" onclick="togroup()">그룹 페이지로 이동</a></span> <span><a
+						href="#" onclick="popupclose()">닫기</a></span>
+				</p>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
 </body>
 </html>

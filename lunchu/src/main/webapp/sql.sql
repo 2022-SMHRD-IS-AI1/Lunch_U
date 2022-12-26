@@ -150,7 +150,7 @@ ALTER TABLE t_group
 -- Foreign Key 삭제 SQL - t_group(admin_id)
 -- ALTER TABLE t_group
 -- DROP CONSTRAINT FK_t_group_admin_id_t_member_m;
-select * from t_group;
+select * from t_restaurant;
 -- t_joingroup Table Create SQL
 -- 테이블 생성 SQL - t_joingroup
 CREATE TABLE t_joingroup
@@ -161,7 +161,6 @@ CREATE TABLE t_joingroup
     join_dt      DATE             NOT NULL, 
      PRIMARY KEY (join_seq)
 );
-
 
 -- Auto Increment를 위한 Sequence 추가 SQL - t_joingroup.join_seq
 CREATE SEQUENCE t_joingroup_SEQ
@@ -205,7 +204,7 @@ ALTER TABLE t_joingroup
 -- ALTER TABLE t_joingroup
 -- DROP CONSTRAINT FK_t_joingroup_group_seq_t_gro;
 
-
+select * from t_rest_group;
 -- t_rest_group Table Create SQL
 -- 테이블 생성 SQL - t_rest_group
 CREATE TABLE t_rest_group
@@ -263,6 +262,7 @@ ALTER TABLE t_rest_group
 
 -- t_review Table Create SQL
 -- 테이블 생성 SQL - t_review
+
 CREATE TABLE t_review
 (
     rv_seq        NUMBER(18, 0)     NOT NULL, 

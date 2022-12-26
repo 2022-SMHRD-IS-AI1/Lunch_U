@@ -6,15 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class JoinGroupDAO {
+public class RestGroupDAO {
 
 	Connection conn = null;
 	PreparedStatement psmt = null;
-	int cnt = 0;
 	ResultSet rs = null;
-	MemberDTO result = null;
+	int cnt = 0;
 
-	public void getconn() {
+	private void getconn() {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 
@@ -31,7 +30,7 @@ public class JoinGroupDAO {
 
 	}
 
-	public void close() {
+	private void close() {
 		// 1. try catch
 		String nextPage = "";
 		try {
@@ -47,18 +46,45 @@ public class JoinGroupDAO {
 		}
 	}
 
-	public int joingroup(String member, int groupseq) {
+	public ArrayList<Integer> list(int groupseq) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> result = new ArrayList<Integer>();
 		try {
 			getconn();
 
-			String sql = "insert into t_joingroup values(t_joingroup_seq.nextval, ?, ?, current_date)";
+			String sql = "select * from t_rest_group where group_seq = ?";
+
 			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, groupseq);
 
-			// 3-2 바인드 변수(?) 채우기
-			psmt.setString(1, member);
-			psmt.setInt(2, groupseq);
+			rs = psmt.executeQuery();
 
-			// 4. 실행
+			while (rs.next()) {
+				int rest_seq = rs.getInt(2);
+
+				result.add(rest_seq);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+
+	public int add(int rest_seq, int group_seq) {
+		// TODO Auto-generated method stub
+		try {
+			getconn();
+
+			String sql = "insert into t_rest_group values(t_rest_group_seq.nextval, ?, ?, sysdate)";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, rest_seq);
+			psmt.setInt(2, group_seq);
+
 			cnt = psmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -68,56 +94,5 @@ public class JoinGroupDAO {
 			close();
 		}
 		return cnt;
-	}
-
-	public ArrayList<Integer> select(String id) {
-		ArrayList<Integer> groupseq = new ArrayList<>();
-		try {
-			getconn();
-
-			String sql = "select group_seq from t_joingroup where mem_id=?";
-			psmt = conn.prepareStatement(sql);
-
-			psmt.setString(1, id);
-			rs = psmt.executeQuery();
-
-			while (rs.next()) {
-				System.out.println(rs.getInt(1));
-				groupseq.add(rs.getInt(1));
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return groupseq;
-
-	}
-	
-	public ArrayList<String> findmembers(int group_seq) {
-		ArrayList<String> members = new ArrayList<>();
-		try {
-			getconn();
-
-			String sql = "select mem_id from t_joingroup where group_seq=?";
-			psmt = conn.prepareStatement(sql);
-
-			psmt.setInt(1, group_seq);
-			rs = psmt.executeQuery();
-
-			while (rs.next()) {
-				members.add(rs.getString(1));
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return members;
-
 	}
 }

@@ -122,4 +122,9 @@ public class GroupDAO {
 
 	}
 
+	public void delete() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

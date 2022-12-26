@@ -53,7 +53,8 @@ public class UpdateMember extends HttpServlet {
 			if(cnt > 0) {
 				session.setAttribute("info", dto);
 				nextPage = "home.jsp";
-				// 성공했을 때 alert창으로 수정됐다는 메세지 표시하면 좋을 것 같음. - 지은
+				writer.println("<script>alert('회원정보 수정이 완료되었습니다.'); location.href='profile.jsp';</script>"); 
+				writer.close();
 			} else {
 				writer.println("<script>alert('회원정보 수정에 실패했습니다. 입력하신 내용을 확인해주세요.'); location.href='profile.jsp';</script>"); 
 				writer.close();
@@ -64,8 +65,8 @@ public class UpdateMember extends HttpServlet {
 			// 여기 쿠키 사용해서 입력하던 내용이 그대로 유지되면 좋을 것 같음. - 지은
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher(nextPage);
-		rd.forward(request, response);
+		//RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+		//rd.forward(request, response);
 		
 	}
 
