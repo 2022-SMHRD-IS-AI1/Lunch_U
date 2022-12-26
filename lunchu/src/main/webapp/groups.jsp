@@ -28,40 +28,40 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.on(
-					"click",
-					".deletegroup_btn",
-					function() {
-						var groupseq = $(this).parent().parent().find(
-								".groupseq_1").text();
+	$(document).on("click", ".deletegroup_btn", function() {
+		var groupseq = $(this).parent().parent().find(".groupseq_1").text();
 
-						var adminId = $(this).parent().parent()
-								.find(".adminId").text();
+		var adminId = $(this).parent().parent().find(".adminId").text();
 
-						console.log(groupseq);
-						console.log(adminId);
+		var id = $("#id").text();
 
-						$.ajax({
-							type : "POST",
-							url : "deletegroup.jsp",
-							data : {
-								"groupseq" : groupseq,
-								"adminId" : adminId
-							},
-							success : function(res) {
-								console.log("요청성공");
-							},
-							error : function(e) {
-								console.log("요청실패");
-							}
-						})
-						var url = "deletegroup.jsp";
-						var name = "delete group"
-						var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-						window.open(url, name, option);
-
-					})
+		console.log(groupseq, adminId, id);
+		var answer = null;
+		if (adminId == id) {
+			console.log("같음.")
+			answer = confirm("그룹을 삭제하시겠습니까?");
+		} else {
+			answer = confirm("그룹에서 나가시겠습니까?");
+		}
+		if (answer) {
+			$.ajax({
+				type : "POST",
+				url : "DeleteGroupService",
+				data : {
+					"groupseq" : groupseq,
+					"adminId" : adminId,
+				},
+				success : function(res) {
+					console.log("요청성공");
+					alert(res);
+					location.reload("groups.jsp");
+				},
+				error : function(e) {
+					console.log("요청실패");
+				}
+			})
+		}
+	})
 
 	$(document)
 			.on(
@@ -168,9 +168,6 @@
 
 					})
 </script>
-<%
-MemberDTO info = (MemberDTO) session.getAttribute("info");
-%>
 <body>
 	<div class="main">
 		<header>
@@ -183,6 +180,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 						<nav>
 							<ul class="sf-menu">
 								<%
+								MemberDTO info = (MemberDTO) session.getAttribute("info");
 								if (info != null) {
 								%>
 								<li><a href="LogoutService">로그아웃</a></li>
@@ -252,8 +250,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
  	temp += j + " ";
  }
  %><%=temp%></span></td>
-									<td style="color: red; text-align: right"><strong
-										class="deletegroup_btn">X</strong></td>
+									<td class="deletegroup_btn"
+										style="color: red; text-align: right"><strong>X</strong>
+									</td>
 								</tr>
 							</tbody>
 							<%
@@ -264,10 +263,14 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 						</table>
 					</div>
 					<table>
-						<tr>
-							<td colspan="3" onclick="location.href='creategroup.jsp'"
-								class="add_new_group" align="center"><br> ➕새 그룹</td>
-						</tr>
+						<thead>
+							<tr style="display: none">
+								<td id="id"><%=id%></td>
+							</tr>
+							<tr>
+								<td colspan="3" onclick="location.href='creategroup.jsp'"
+									class="add_new_group" align="center"><br> ➕새 그룹</td>
+							</tr>
 					</table>
 				</div>
 

@@ -120,4 +120,47 @@ public class JoinGroupDAO {
 		return members;
 
 	}
+	
+	public int deleteMember(int group_seq, String mem_id) {
+		try {
+			getconn();
+			
+			String sql = "delete from t_joingroup where group_seq = ? and mem_id =? ";
+			
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, group_seq);
+			psmt.setString(2, mem_id);
+			
+			cnt = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	public int delete(int group_seq) {
+		try {
+			getconn();
+			
+			String sql = "delete from t_joingroup where group_seq = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, group_seq);
+			
+			cnt = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 }

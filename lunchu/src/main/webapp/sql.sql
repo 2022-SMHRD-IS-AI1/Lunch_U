@@ -124,7 +124,7 @@ START WITH 1
 INCREMENT BY 1;
 
 
-
+select * from t_group;
 -- DROP SEQUENCE t_group_SEQ; 
 
 -- 테이블 Comment 설정 SQL - t_group
@@ -204,7 +204,6 @@ ALTER TABLE t_joingroup
 -- ALTER TABLE t_joingroup
 -- DROP CONSTRAINT FK_t_joingroup_group_seq_t_gro;
 
-select * from t_rest_group;
 -- t_rest_group Table Create SQL
 -- 테이블 생성 SQL - t_rest_group
 CREATE TABLE t_rest_group

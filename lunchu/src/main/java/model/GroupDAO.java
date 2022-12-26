@@ -103,14 +103,13 @@ public class GroupDAO {
 			psmt.setInt(1, groupseq);
 
 			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				String groupName = rs.getString(2);
 				String groupDt = rs.getString(3);
-				String adminId=rs.getString(4);
+				String adminId = rs.getString(4);
 				dto = new GroupDTO(groupseq, groupName, groupDt, adminId);
 			}
-
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -122,9 +121,26 @@ public class GroupDAO {
 
 	}
 
-	public void delete() {
+	public int delete(int group_seq) {
 		// TODO Auto-generated method stub
-		
+		try {
+			getconn();
+
+			String sql = "delete from t_group where group_seq = ?";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, group_seq);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
 	}
 
 }
