@@ -73,10 +73,10 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-6 to-animate-2">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
-                                    <img src="../bank_logo/우체국.jfif" alt="이미지 준비중..">
+                                    <img src="images/bank_logo/우체국.jfif" alt="이미지 준비중..">
+                                    <img src="images/bank_logo/우체국.jfif" alt="이미지 준비중..">
+                                    <img src="images/bank_logo/우체국.jfif" alt="이미지 준비중..">
+                                    <img src="images/bank_logo/우체국.jfif" alt="이미지 준비중..">
                                 </div>
                                 <div class="col-md-6 to-animate-2">
                                     <h3>Reservation Form</h3>
