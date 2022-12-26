@@ -29,7 +29,7 @@ public class RestGroupDAO {
 		}
 
 	}
-	
+
 	private void close() {
 		// 1. try catch
 		String nextPage = "";
@@ -51,17 +51,17 @@ public class RestGroupDAO {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		try {
 			getconn();
-			
-			String sql = "select from t_rest_group where group_seq = ?";
-			
+
+			String sql = "select * from t_rest_group where group_seq = ?";
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, groupseq);
-			
+
 			rs = psmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int rest_seq = rs.getInt(2);
-				
+
 				result.add(rest_seq);
 			}
 
@@ -70,6 +70,29 @@ public class RestGroupDAO {
 			e.printStackTrace();
 		} finally {
 			close();
-		} return result;
+		}
+		return result;
+	}
+
+	public int add(int rest_seq, int group_seq) {
+		// TODO Auto-generated method stub
+		try {
+			getconn();
+
+			String sql = "insert into t_rest_group values(t_rest_group_seq.nextval, ?, ?, sysdate)";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, rest_seq);
+			psmt.setInt(2, group_seq);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
 	}
 }

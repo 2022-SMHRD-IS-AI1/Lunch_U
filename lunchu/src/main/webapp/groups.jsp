@@ -66,7 +66,7 @@
 	$(document)
 			.on(
 					"click",
-					".element",
+					".group_detail",
 					function() {
 						var name = $(this).find(".groupname").text();
 						$(".prefix_1").find("h2").text(name);
@@ -93,6 +93,56 @@
 									},
 									success : function(res) {
 										console.log("요청성공");
+										console.log(res);
+
+										var arr = res.slice(1, res.length - 1)
+												.split(",");
+										var str = ""
+										for (var i = 0; i < arr.length; i++) {
+											var temp = '<tr><td style = "width : 30px"><input name="restseq" value = "" type="checkbox"></td><td style = "width : 23px" class="review_detail">'
+													+ (i + 1)
+													+ '</td><td style = "width : 330px; text-align : center">'
+													+ '<a href="restaurant_detail.jsp">'
+													+ arr[i] + '</a></td></tr>';
+											str += temp;
+										}
+										$(".prefix_1 tbody").html(str);
+										$(".manage_favorites").attr("style",
+												"display:block")
+										$(".prefix_1 hr").attr("style",
+												"display:block")
+									},
+									error : function(e) {
+										console.log("요청실패");
+									}
+								})
+
+					})
+
+	$(document)
+			.on(
+					"click",
+					".manage_favorites",
+					function() {
+						var name = $(this).find(".groupname").text();
+						$(".prefix_1").find("h2").text(name);
+
+						var arr = [];
+						$("input:checkbox[name='groupcheck']:checked").each(
+								function() {
+									var checked = $(this).val();
+									arr.push(checked);
+								})
+
+						$
+								.ajax({
+									type : "POST",
+									url : "RestGroupService",
+									data : {
+										"groupseq" : groupseq
+									},
+									success : function(res) {
+										console.log("요청성공");
 
 										var arr = res.slice(1, res.length - 1)
 												.split(",");
@@ -100,7 +150,8 @@
 										for (var i = 0; i < arr.length; i++) {
 											var temp = '<tr><td style = "width : 30px"><input type="checkbox"></td><td style = "width : 23px" class="review_detail">'
 													+ (i + 1)
-													+ '</td><td style = "width : 330px; text-align : center"><a href="restaurant_detail.html">'
+													+ '</td><td style = "width : 330px; text-align : center">'
+													+ '<a href="restaurant_detail.jsp">'
 													+ arr[i] + '</a></td></tr>';
 											str += temp;
 										}
@@ -117,6 +168,9 @@
 
 					})
 </script>
+<%
+MemberDTO info = (MemberDTO) session.getAttribute("info");
+%>
 <body>
 	<div class="main">
 		<header>
@@ -127,23 +181,31 @@
 					</h1>
 					<div class="menu_block">
 						<nav>
-							<!-- 로그인 전 
-                <ul class="sf-menu">
-                <li><a href="index.html">로그인</a></li>
-                <li><a href="index.html">회원가입</a></li>
-              </ul> -->
 							<ul class="sf-menu">
+								<%
+								if (info != null) {
+								%>
 								<li><a href="LogoutService">로그아웃</a></li>
-								<li><a href="#">마이페이지</a>
+								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
-										<li><a href="profile.jsp">내 정보</a></li>
-										<li><a href="reservation.jsp">내 예약</a></li>
-										<li><a href="reviews.jsp">내 리뷰</a></li>
-										<li><a href="groups.jsp">내 그룹</a></li>
+										<li><a href="profile.jsp"> 내 정보</a></li>
+										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
+										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
+								<%
+								} else {
+								%>
+								<li><a href="login.jsp">로그인</a></li>
+								<li><a href="join.jsp">회원가입</a></li>
+								<%
+								}
+								%>
 							</ul>
 						</nav>
+						<div class="clear"></div>
 					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 		</header>
@@ -157,7 +219,6 @@
 						<table>
 
 							<%
-							MemberDTO info = (MemberDTO) session.getAttribute("info");
 							String id = info.getMemId();
 
 							JoinGroupDAO JGdao = new JoinGroupDAO();
@@ -181,8 +242,9 @@
 							<tbody class="element">
 								<tr>
 									<td class="sequence"><%=i + 1%></td>
-									<td class="group_detail"><a class="groupname" href="#"><%=Gdto.getGroupName()%></a>
-										<a class="groupseq_1" style="display: none;"><%=groupseq.get(i)%></a>
+									<td class="group_detail" style="width: 200px"><a
+										class="groupname" href="#"><%=Gdto.getGroupName()%></a> <a
+										class="groupseq_1" style="display: none;"><%=groupseq.get(i)%></a>
 										<a class="adminId" style="display: none;"><%=Gdto.getAdminId()%></a>
 										<br> <span> <%
  String temp = "";
@@ -190,7 +252,6 @@
  	temp += j + " ";
  }
  %><%=temp%></span></td>
-									<td style="text-align: right;"><%=members.size()%>명</td>
 									<td style="color: red; text-align: right"><strong
 										class="deletegroup_btn">X</strong></td>
 								</tr>
@@ -219,11 +280,10 @@
 					<div>
 
 						<button class="manage_favorites" style="display: none">삭제</button>
+						<hr style="display: none;">
 						<table>
-							<hr style="display: none;">
-
 							<tbody>
-							<%-- 클릭하면 그룹 상세정보 뜰 곳 --%>
+								<%-- 클릭하면 그룹 상세정보 뜰 곳 --%>
 							</tbody>
 						</table>
 

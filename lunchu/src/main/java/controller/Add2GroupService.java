@@ -2,22 +2,18 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.MenuListDAO;
-import model.MenuListDTO;
 import model.RestGroupDAO;
 
 /**
- * Servlet implementation class RestGroupService
+ * Servlet implementation class Add2GroupService
  */
-public class RestGroupService extends HttpServlet {
+public class Add2GroupService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -30,18 +26,27 @@ public class RestGroupService extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
 
-		int groupseq = Integer.valueOf(request.getParameter("groupseq"));
+		String[] groupseq = request.getParameterValues("arr[]");
+
+		int restseq = Integer.valueOf("1");
+		//requst.getParameter("restseq");
+		// restaurant_detail에 음식점 번호 추가가 안된 상태여서 테스트로 1번 식당으로 체크함.
+
 		RestGroupDAO RGdao = new RestGroupDAO();
 
-		ArrayList<Integer> restseq = RGdao.list(groupseq);
+		int cnt = 0;
 
-		MenuListDAO Rdao = new MenuListDAO();
+		for (String i : groupseq) {
+			cnt += RGdao.add(restseq, Integer.valueOf(i));
+		}
 
-		ArrayList<String> restNames = Rdao.getNames(restseq);
+		PrintWriter out = response.getWriter();
 
-		out.print(restNames);
+		if (cnt == groupseq.length) {
+			out.print("성공");
+			out.close();
+		}
 
 	}
 

@@ -139,21 +139,25 @@ ArrayList<MenuListDTO> menulist = dao.menuList();
 							<h2>Your Favorite</h2>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
 							<ul class="carousel1">
-											
-											<% for (int i = 0; i < menulist.size(); i++) {%>
-											<li>
-												<div>
-													<img src="images/page1_img1.jpg" alt="">
-													<div class="col1 upp">
-														<a href="#"><strong> <%= menulist.get(i).getRestName() %></strong></a>
-													</div>
-			
-												</div>
-											</li>
-					
-												
-											<%}%>
-							
+
+								<%
+								for (int i = 0; i < menulist.size(); i++) {
+								%>
+								<li>
+									<div>
+										<img src="images/page1_img1.jpg" alt="">
+										<div class="col1 upp">
+											<a href="restaurant_detail.jsp"><strong> <%=menulist.get(i).getRestName()%></strong></a>
+										</div>
+
+									</div>
+								</li>
+
+
+								<%
+								}
+								%>
+
 							</ul>
 						</div>
 					</div>

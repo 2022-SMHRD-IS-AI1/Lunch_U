@@ -78,7 +78,7 @@ public class MenuListDAO {
 		return menuList;
 	}
 
-	public ArrayList<String> getName(ArrayList<Integer> restseq) {
+	public ArrayList<String> getNames(ArrayList<Integer> restseq) {
 		ArrayList<String> restNames = new ArrayList<String>();
 		try {
 
@@ -90,7 +90,6 @@ public class MenuListDAO {
 				psmt.setInt(1, i);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
-
 					String restName = rs.getString(2);
 					restNames.add(restName);
 				}
@@ -103,4 +102,29 @@ public class MenuListDAO {
 		}
 		return restNames;
 	}
+
+	public String getName(int restseq) {
+		String result = "";
+		try {
+
+			getConn();
+			String sql = "select rest_name from t_restaurant where rest_seq=?";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, restseq);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				result = rs.getString(1);
+			}
+
+		} catch (
+
+		Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
+
 }
