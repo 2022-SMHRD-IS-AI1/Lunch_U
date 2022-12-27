@@ -55,38 +55,48 @@ button {
 </head>
 <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
 <script type="text/javascript">
-	$(document).on("click", ".card", function() {
-		var card1 = document.getElementById("shinhan").textContent;
-		var card2 = document.getElementById("BC").textContent;
-		var card3 = document.getElementById("hyundai").textContent;
-		var card4 = document.getElementById("samsung").textContent;
-		var card5 = document.getElementById("gookmin").textContent;
-		var card6 = document.getElementById("hana").textContent;
-		var card7 = document.getElementById("woori").textContent;
-		var card8 = document.getElementById("citi").textContent;
-		var card9 = document.getElementById("NH").textContent;
-		var card10 = document.getElementById("why").textContent;
-		var card11 = document.getElementById("kakao").textContent;
-		var card12 = document.getElementById("shin").textContent;
-		
-		
-		cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12];
-		var card = $(this).text();
-		for(i = 0; i<cards.length; i++){
-			if(card==cards[i]){
-				card = cards[i];
-			}
-		}
-		
-		console.log(card)
-		
-		
-		location.href = "pay_2.jsp?data="+card;
-		
-	})
-	
+	$(document).on(
+			"click",
+			".card",
+			function() {
+				var card1 = document.getElementById("shinhan").textContent;
+				var card2 = document.getElementById("BC").textContent;
+				var card3 = document.getElementById("hyundai").textContent;
+				var card4 = document.getElementById("samsung").textContent;
+				var card5 = document.getElementById("gookmin").textContent;
+				var card6 = document.getElementById("hana").textContent;
+				var card7 = document.getElementById("woori").textContent;
+				var card8 = document.getElementById("citi").textContent;
+				var card9 = document.getElementById("NH").textContent;
+				var card10 = document.getElementById("why").textContent;
+				var card11 = document.getElementById("kakao").textContent;
+				var card12 = document.getElementById("shin").textContent;
+
+				cards = [ card1, card2, card3, card4, card5, card6, card7,
+						card8, card9, card10, card11, card12 ];
+				var card = $(this).text();
+				for (i = 0; i < cards.length; i++) {
+					if (card == cards[i]) {
+						card = cards[i];
+					}
+				}
+
+				var date = $("#date").text();
+				var time = $("#time").text();
+				
+				console.log(date, time);
+				location.href = "pay_2.jsp?card=" + card + "&date=" +date+"&time="+time;
+
+			})
 </script>
 <body onload="window.resizeTo(600,800)">
+	<%
+	String date = request.getParameter("date");
+	String time = request.getParameter("select_time");
+	System.out.print(date + "," + time);
+	%>
+	<div id="date" style="display: none"><%=date%></div>
+	<div id="time" style="display: none"><%=time%></div>
 	<fieldset align="center" id="fieldset">
 		<legend id="legend">결제수단</legend>
 		<table border="1" align="center">

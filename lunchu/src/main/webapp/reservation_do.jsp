@@ -30,15 +30,20 @@
 <script src="js/tms-0.4.1.js"></script>
 <script>
 	const btn_btn_primary = document.getElementsByClassName("btn btn-primary");
-	const date = document.getElementById('date').value;
+	//const date = document.getElementById('date').val;
 	const time = document.getElementById('select_time').value;
 	// 가져온 데이터를 세션에 저장
 
 	function doPopupopen() {
+
 		window
-				.open("pay_1.jsp", 'popup',
+				.open("", 'popup',
 						'width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no');
 
+		var frmData = document.frmData;
+		frmData.target = "popup";
+		frmData.action = "pay_1.jsp";
+		frmData.submit();
 	}
 
 	btn_btn_primary.addEventListener("click", doPopupopen);
@@ -97,37 +102,45 @@
 								</div>
 								<div class="col-md-6 to-animate-2">
 									<h3>Reservation Form</h3>
+
 									<div class="form-group">
 										<label for="id" class="sr-only">id</label>
-										<p id="id"><%-- <%=info.getMemId()%> --%></p>
+										<p id="id">
+											<%-- <%=info.getMemId()%> --%>
+										</p>
 									</div>
-									<div class="form-group">
-										<label for="tel" class="sr-only">연락처 ( - 를 빼고
-											입력해주세요. )</label> <input id="tel" class="form-control"
-											placeholder="연락처 ( - 를 빼고 입력해주세요. )" type="text">
-									</div>
-									<div class="form-group">
-										<label for="date" class="sr-only">Date</label> <input
-											id="date" class="form-control" placeholder="date" type="date">
-									</div>
-									<div class="form-group">
-										<label for="occation" class="sr-only">Occation</label> <select
-											class="form-control" id="select_time">
-											<option>11:30</option>
-											<option>12:00</option>
-											<option>12:30</option>
-											<option>13:00</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="message" class="sr-only">사장님께 요청사항</label>
-										<textarea name="" id="message" cols="30" rows="5"
-											class="form-control" placeholder="사장님께 요청사항"></textarea>
-									</div>
-									<div class="form-group">
-										<input class="btn btn-primary" value="예약하기" type="submit"
-											onclick="doPopupopen()">
-									</div>
+									<form name="frmData" id="frmData" method="post">
+										<div class="form-group">
+											<label for="tel" class="sr-only">연락처 ( - 를 빼고 입력해주세요.
+												)</label> <input name = "tel" id="tel" class="form-control"
+												placeholder="연락처 ( - 를 빼고 입력해주세요. )" type="text">
+										</div>
+										<div class="form-group">
+											<label for="date" class="sr-only">Date</label> <input name="date"
+												id="date" class="form-control" placeholder="date"
+												type="date">
+										</div>
+										<div class="form-group">
+											<label for="occation" class="sr-only">Occation</label> <select
+												class="form-control" id="select_time" name="select_time">
+												<option>11:30</option>
+												<option>12:00</option>
+												<option>12:30</option>
+												<option>13:00</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="message" class="sr-only">사장님께 요청사항</label>
+											<textarea name="" id="message" cols="30" rows="5"
+												class="form-control" placeholder="사장님께 요청사항"></textarea>
+										</div>
+										<div class="form-group">
+											<input class="btn btn-primary" value="예약하기" type="submit"
+												onclick="doPopupopen()">
+										</div>
+									</form>
+
+
 								</div>
 								<p></p>
 							</div>

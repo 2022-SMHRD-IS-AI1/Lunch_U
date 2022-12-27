@@ -25,8 +25,8 @@
 	//request.setCharacterEncoding("utf-8");
 	response.setContentType("text/html; charset=utf-8");
 
-	String data = request.getParameter("data");
-	System.out.println("Test " + data);
+	String card = request.getParameter("card");
+	System.out.println("Test " + card);
 	%>
 
 	<form action="">
@@ -42,7 +42,7 @@
 					String card = request.getParameter("card");
 					System.out.print(card);
 					--%>
-					<td><%=data%></td>
+					<td><%=card%></td>
 				</tr>
 				<tr>
 					<td>결제정보</td>
