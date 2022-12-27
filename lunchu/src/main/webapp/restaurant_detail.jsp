@@ -167,10 +167,11 @@ tbody .date, tbody .writer, tbody .review {
 						}
 						</script>
 						<div style="left: 0px">
-						<%
-						if (info != null) {
-						%>
-							<button id="reservation" onclick="reservation_do.jsp?rest_seq"+<%=rest_seq %>>>예약하기</button>
+							<%
+							if (info != null) {
+							%>
+							<a href="reservation_do.jsp?rest_seq"+<%=rest_seq%>><button
+									id="reservation">예약하기</button></a>
 
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
 							<button onclick="doPopupopen()">리뷰 및 평점</button>
@@ -248,7 +249,8 @@ tbody .date, tbody .writer, tbody .review {
 					var geocoder = new kakao.maps.services.Geocoder();
 					
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('<%=restaurant.getRestAddr()%>',
+					geocoder.addressSearch('<%=restaurant.getRestAddr()%>
+						',
 										function(result, status) {
 											// 정상적으로 검색이 완료됐으면 
 											if (status === kakao.maps.services.Status.OK) {
