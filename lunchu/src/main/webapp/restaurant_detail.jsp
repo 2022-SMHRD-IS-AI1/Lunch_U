@@ -167,17 +167,11 @@ tbody .date, tbody .writer, tbody .review {
 						}
 						</script>
 						<div style="left: 0px">
-<<<<<<< HEAD
 						<%
 						if (info != null) {
 						%>
 							<button id="reservation" onclick="reservation_do.jsp?rest_seq"+<%=rest_seq %>>>예약하기</button>
-=======
-							<%
-							if (info != null) {
-							%>
-							<button id="reservation" onclick="">예약하기</button>
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-IS-AI1/Lunch_U.git
+
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
 							<button onclick="doPopupopen()">리뷰 및 평점</button>
 							<%
