@@ -95,7 +95,7 @@ button {
 	<%
 	MemberDTO info = (MemberDTO) session.getAttribute("info");
 	response.setContentType("text/html; charset=utf-8");
-	int restSeq = Integer.valueOf(request.getParameter("restSeq"));
+	int restSeq = Integer.valueOf(request.getParameter("rest_seq"));
 	String date = request.getParameter("date");
 	String time = request.getParameter("select_time");
 	System.out.print(date + "," + time);

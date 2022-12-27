@@ -33,11 +33,13 @@
 
 	function doPopupopen() {
 
+		var rest_seq = $.("#hide_restseq").text();
+		console.log(rest_seq);
 		window.open("", 'popup', 'width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no');
 
 		var frmData = document.frmData;
 		frmData.target = "popup";
-		frmData.action = "pay_1.jsp";
+		frmData.action = "pay_1.jsp?rest_seq="+ ";
 		frmData.submit();
 	}
 
@@ -59,7 +61,7 @@
 								<%
 								MemberDTO info = (MemberDTO) session.getAttribute("info");
 								if (info != null) {
-								%>
+									%>
 								<li><a href="LogoutService">로그아웃</a></li>
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
@@ -83,6 +85,8 @@
 			</div>
 		</header>
 		<div class="content page1">
+		<% int rest_seq = Integer.valueOf(request.getParameter("rest_seq")); %>
+		<p id = "hide_restseq" style="display: none;"> <%= rest_seq %></p>
 			<div class="container_12">
 				<div class="grid_12">
 					<div id="fh5co-contact" data-section="reservation">
