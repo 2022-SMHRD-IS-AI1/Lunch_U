@@ -34,7 +34,6 @@ public class ReservationDAO {
 
 	public void close() {
 		// 1. try catch
-		String nextPage = "";
 		try {
 			// 2.
 			if (rs != null)
@@ -66,7 +65,6 @@ public class ReservationDAO {
 				String reserv_date = rs.getString(4);
 				String mem_id = rs.getString(5); 
 				
-				
 				result.add(new ReservationDTO(reserv_seq, rest_seq, rerserv_time, reserv_date, mem_id));
 			}
 		} catch (SQLException e) {
@@ -79,17 +77,16 @@ public class ReservationDAO {
 	}
 
 	
-	public int add(int restSeq, String reservTime, String reservDate, String memId) {
+	public int add(int restSeq, String reservTime, String memId) {
 		try {
 			getconn();
 
-			String sql = "insert into t_reservation values(reserv_seq.nextval, ?, ?, ?, ?)";
+			String sql = "insert into t_reservation values(t_reservation_seq.nextval, ?, ?, current_date, ?)";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, restSeq);
 			psmt.setString(2, reservTime);
-			psmt.setString(3, reservDate);
-			psmt.setString(4, memId);
+			psmt.setString(3, memId);
 
 			cnt = psmt.executeUpdate();
 
@@ -101,5 +98,26 @@ public class ReservationDAO {
 		return cnt;
 	}
 
+	public ResultSet check(int rest_seq, String reserv_time) {
+		boolean Booked = false;
+		try {
+			getconn();
+			
+			String sql = "select * from t_reservation where rest_seq= ? and reserv_time = ? and reserv_date = current_date";
+			
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, rest_seq);
+			psmt.setString(2, reserv_time);
+			
+			rs = psmt.executeQuery();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			close();
+		}
+		return rs;
+	}
 }
 

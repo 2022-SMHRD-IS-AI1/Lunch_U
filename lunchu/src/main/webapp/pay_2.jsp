@@ -17,7 +17,7 @@
 
 		alert("결제가 완료되었습니다.");
 
-		opener.location.href = "reservation.jsp";
+		opener.location.href = "reservation_list.jsp";
 		self.close();
 	}
 </script>
@@ -30,9 +30,10 @@
 
 	String card = request.getParameter("card");
 	int restSeq = Integer.valueOf(request.getParameter("restSeq"));
-	String reservDate = request.getParameter("date");
-	String reservTime = request.getParameter("select_time");
-	System.out.println("Test" + card);
+	String reservTime = request.getParameter("time");
+	System.out.println("test: "+card);
+	System.out.println("test: "+restSeq);
+	System.out.println("test: "+reservTime);
 	%>
 
 	<fieldset>
@@ -95,7 +96,10 @@
 			<%
 				ReservationDAO dao = new ReservationDAO();
 				String memId=info.getMemId();
-				dao.add(restSeq, reservTime, reservDate, memId);
+				int cnt = dao.add(restSeq, reservTime, memId);
+				if (cnt>0){
+					
+				}
 			%>
 		</table>
 	</fieldset>

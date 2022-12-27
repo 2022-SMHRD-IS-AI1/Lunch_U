@@ -87,7 +87,7 @@ button {
 				var time = $("#time").text();
 				
 				console.log(restSeq, date, time);
-				location.href = "pay_2.jsp?card=" + card + "&restSeq=" + restSeq + "&date=" + date + "&time=" + time;
+				location.href = "pay_2.jsp?card=" + card + "&restSeq=" + restSeq + "&time=" + time;
 
 			})
 </script>
@@ -96,12 +96,9 @@ button {
 	MemberDTO info = (MemberDTO) session.getAttribute("info");
 	response.setContentType("text/html; charset=utf-8");
 	int restSeq = Integer.valueOf(request.getParameter("rest_seq"));
-	String date = request.getParameter("date");
 	String time = request.getParameter("select_time");
-	System.out.print(date + "," + time);
 	%>
 	<div id="restSeq" name="restSeq" style="display: none"><%=restSeq%></div>
-	<div id="date" name="date" style="display: none"><%=date%></div>
 	<div id="time" name="time" style="display: none"><%=time%></div>
 	<fieldset align="center" id="fieldset">
 		<legend id="legend">결제수단</legend>

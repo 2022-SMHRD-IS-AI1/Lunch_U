@@ -1,3 +1,4 @@
+<%@page import="model.ReservationDAO"%>
 <%@page import="model.RestaurantDTO"%>
 <%@page import="model.RestaurantDAO"%>
 <%@page import="model.ReviewDTO"%>
@@ -94,8 +95,6 @@ tbody .date, tbody .writer, tbody .review {
 		window.open(url, name, option);
 	}
 
-	
-	
 </script>
 <body>
 	<div class="main">
@@ -136,7 +135,7 @@ tbody .date, tbody .writer, tbody .review {
 		</header>
 		<%
 		int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
-
+		System.out.println(rest_seq);
 		RestaurantDAO dao = new RestaurantDAO();
 		RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
 		%>
@@ -170,7 +169,7 @@ tbody .date, tbody .writer, tbody .review {
 							<%
 							if (info != null) {
 							%>
-							<a href="reservation_do.jsp?rest_seq"+<%=rest_seq%>><button
+							<a href="reservation_do.jsp?rest_seq=<%=rest_seq%>"><button
 									id="reservation">예약하기</button></a>
 
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
