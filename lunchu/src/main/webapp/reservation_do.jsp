@@ -30,15 +30,10 @@
 <script src="js/tms-0.4.1.js"></script>
 <script>
 	const btn_btn_primary = document.getElementsByClassName("btn btn-primary");
-	//const date = document.getElementById('date').val;
-	const time = document.getElementById('select_time').value;
-	// 가져온 데이터를 세션에 저장
 
 	function doPopupopen() {
 
-		window
-				.open("", 'popup',
-						'width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no');
+		window.open("", 'popup', 'width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no');
 
 		var frmData = document.frmData;
 		frmData.target = "popup";
@@ -94,11 +89,10 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-md-6 to-animate-2">
-									<img src="images/음식/메밀소바.jfif" alt="이미지 준비중.."> <img
-										src="images/음식/불고기.jfif" alt="이미지 준비중.."> <img
-										width="300px" height="300px" src="images/음식/야무친백반.jfif"
-										alt="이미지 준비중.."> <img width="200px" height="300px"
-										src="images/음식/양곱창.jpg" alt="이미지 준비중..">
+									<img src="images/foodfood/soba.jfif" alt="이미지 준비중..">
+									<img src="images/foodfood/bulgogi.jfif" alt="이미지 준비중..">
+									<img width="300px" height="300px" src="images/foodfood/beakban.jfif" alt="이미지 준비중.."> 
+									<img width="200px" height="300px" src="images/foodfood/sheepgobchang.jpg" alt="이미지 준비중..">
 								</div>
 								<div class="col-md-6 to-animate-2">
 									<h3>Reservation Form</h3>
@@ -111,14 +105,21 @@
 									</div>
 									<form name="frmData" id="frmData" method="post">
 										<div class="form-group">
+											<label for="restName" class="sr-only">가게이름</label>
+											<p id="restName">
+												<%-- <%=info.getrestSeq()%> --%>
+											</p>
+											<p style="display: none" id="restSeq"><%-- <%=info.getrestSeq()%> --%></p>
+										</div>
+										<div class="form-group">
 											<label for="tel" class="sr-only">연락처 ( - 를 빼고 입력해주세요.
-												)</label> <input name = "tel" id="tel" class="form-control"
+												)</label> <input name="tel" id="tel" class="form-control"
 												placeholder="연락처 ( - 를 빼고 입력해주세요. )" type="text">
 										</div>
 										<div class="form-group">
-											<label for="date" class="sr-only">Date</label> <input name="date"
-												id="date" class="form-control" placeholder="date"
-												type="date">
+											<label for="date" class="sr-only">Date</label> <input
+												name="date" id="date" class="form-control"
+												placeholder="date" type="date">
 										</div>
 										<div class="form-group">
 											<label for="occation" class="sr-only">Occation</label> <select

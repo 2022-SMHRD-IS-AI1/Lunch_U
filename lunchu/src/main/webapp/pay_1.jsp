@@ -1,3 +1,4 @@
+<%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -81,22 +82,27 @@ button {
 					}
 				}
 
+				var restSeq = $("#restSeq").text();
 				var date = $("#date").text();
 				var time = $("#time").text();
 				
-				console.log(date, time);
-				location.href = "pay_2.jsp?card=" + card + "&date=" +date+"&time="+time;
+				console.log(restSeq, date, time);
+				location.href = "pay_2.jsp?card=" + card + "&restSeq=" + restSeq + "&date=" + date + "&time=" + time;
 
 			})
 </script>
 <body onload="window.resizeTo(600,800)">
 	<%
+	MemberDTO info = (MemberDTO) session.getAttribute("info");
+	response.setContentType("text/html; charset=utf-8");
+	int restSeq = Integer.valueOf(request.getParameter("restSeq"));
 	String date = request.getParameter("date");
 	String time = request.getParameter("select_time");
 	System.out.print(date + "," + time);
 	%>
-	<div id="date" style="display: none"><%=date%></div>
-	<div id="time" style="display: none"><%=time%></div>
+	<div id="restSeq" name="restSeq" style="display: none"><%=restSeq%></div>
+	<div id="date" name="date" style="display: none"><%=date%></div>
+	<div id="time" name="time" style="display: none"><%=time%></div>
 	<fieldset align="center" id="fieldset">
 		<legend id="legend">결제수단</legend>
 		<table border="1" align="center">
@@ -106,11 +112,11 @@ button {
 			<div id="section1b" class="elements">
 				<ul align="center">
 					<li><a class="card" class="card" aria-selected="false"
-						role="tab"> <span><img src="images/bank_logo/신한.jfif"
+						role="tab"> <span><img src="images/bank_logo/shinhan.jfif"
 								alt="이미지 준비중.."></span> <br> <strong id="shinhan">신한카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/비씨.jfif" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/BC.jfif" alt="이미지 준비중.."></span> <br>
 							<strong id="BC">비씨카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
@@ -130,27 +136,28 @@ button {
 							<strong id="hana">하나카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/다운로드.png" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/woori.png" alt="이미지 준비중.."></span> <br>
 							<strong id="woori">우리카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/다운로드 (2).png" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/citi.png" alt="이미지 준비중.."></span> <br>
 							<strong id="citi">씨티카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/다운로드 (3).png" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/NH.png" alt="이미지 준비중.."></span> <br>
 							<strong id="NH">NH카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/다운로드.jfif" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/why.jfif" alt="이미지 준비중.."></span> <br>
 							<strong id="why">외환카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/다운로드 (4).jpg" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/kakao.jpg" alt="이미지 준비중.."></span> <br>
 							<strong id="kakao">카카오카드</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/다운로드 (5).png" alt="이미지 준비중.."></span> <br>
+								src="images/bank_logo/shin
+								.png" alt="이미지 준비중.."></span> <br>
 							<strong id="shin">신협카드</strong>
 					</a></li>
 				</ul>
