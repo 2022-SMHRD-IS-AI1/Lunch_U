@@ -1,6 +1,7 @@
 <%@page import="model.MemberDTO"%>
 <%@page import="model.ReservationDAO"%>
-<%@page import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
+<%@page
+	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -92,10 +93,9 @@
 				<td colspan="2"><input id="input_btn" type="submit" value="결제하기" onclick="do_alert()"></td>
 			</tr>
 			<%
-			ReservationDAO dao = new ReservationDAO();
-			String memId=info.getMemId();
-			dao.add(restSeq, reservTime, reservDate, memId);
-			
+				ReservationDAO dao = new ReservationDAO();
+				String memId=info.getMemId();
+				dao.add(restSeq, reservTime, reservDate, memId);
 			%>
 		</table>
 	</fieldset>
