@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.MemberDTO;
+import model.RestaurantDAO;
 import model.ReviewDAO;
 import model.ReviewDTO;
 @WebServlet("/replyService")
@@ -32,8 +33,13 @@ public class replyService extends HttpServlet {
 		String mem_id = request.getParameter("mem_id");
 		
 		ReviewDAO dao = new ReviewDAO();
+		RestaurantDAO restDao = new RestaurantDAO();
+		
 		
 		int cnt = dao.reply(rest_seq, rv_content, rv_rating, mem_id);
+		double restRating = restDao.getRating(rest_seq);
+		double sumRating = rv_rating+restRating;
+		restDao.updateRating(rest_seq,sumRating);
 		
 		if(cnt>0) {
 			writer.print("리뷰가 등록 되었습니다.");

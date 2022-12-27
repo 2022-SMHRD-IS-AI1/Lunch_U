@@ -136,7 +136,7 @@ public class RestaurantDAO {
 			psmt.setInt(1, rest_seq);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				resultDto = new RestaurantDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				resultDto = new RestaurantDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6));
 			}
 			
 		} catch (Exception e) {
@@ -147,6 +147,43 @@ public class RestaurantDAO {
 		
 		return resultDto;
 		
+	}
+
+	public void updateRating(int rest_seq, double rating) {
+		try {
+			getConn();
+			String sql = "update t_restaurant set rest_rating = ? where rest_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setDouble(1, rating);
+			psmt.setInt(2, rest_seq);
+			psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+	}
+	public double getRating(int rest_seq) {
+		double restRating = 0;
+		try {
+			getConn();
+			
+			String sql = "select rest_rating from t_restaurant where rest_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, rest_seq);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				restRating = rs.getDouble(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return restRating;
 	}
 
 }

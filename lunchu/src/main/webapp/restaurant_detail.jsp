@@ -139,6 +139,14 @@ tbody .date, tbody .writer, tbody .review {
 
 		RestaurantDAO dao = new RestaurantDAO();
 		RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
+		
+		ReviewDAO Rdao = new ReviewDAO();
+		ArrayList<ReviewDTO> review = Rdao.restReview(restaurant.getRestSeq());
+		
+		double rating = restaurant.getRest_rating()/review.size();
+		
+		String restRating = String.format("%.1f", rating);
+		
 		%>
 		<div class="content">
 			<div class="container_12">
@@ -155,7 +163,9 @@ tbody .date, tbody .writer, tbody .review {
 							</tr>
 							<tr>
 								<td style="height: 20px"><%=restaurant.getCateName()%></td>
-								<td style="text-align: right;">8명의 평가 4.8</td>
+								<%if(review.size()!=0){ %>
+								<td style="text-align: right;"><%=review.size() %>명의 평가 <%=restRating %></td>
+								<%} %>
 							</tr>
 
 						</table>
@@ -210,10 +220,6 @@ tbody .date, tbody .writer, tbody .review {
 							</thead>
 							<tbody>
 								<%
-								ReviewDAO Rdao = new ReviewDAO();
-
-								ArrayList<ReviewDTO> review = Rdao.restReview(restaurant.getRestSeq());
-
 								for (int i = 0; i < review.size(); i++) {
 								%>
 								<tr>
@@ -249,8 +255,7 @@ tbody .date, tbody .writer, tbody .review {
 					var geocoder = new kakao.maps.services.Geocoder();
 					
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('<%=restaurant.getRestAddr()%>
-						',
+					geocoder.addressSearch('<%=restaurant.getRestAddr()%>',
 										function(result, status) {
 											// 정상적으로 검색이 완료됐으면 
 											if (status === kakao.maps.services.Status.OK) {
