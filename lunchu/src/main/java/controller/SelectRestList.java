@@ -21,9 +21,10 @@ public class SelectRestList extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		String category = request.getParameter("category");
 		
 		SelectRestListTestDAO dao = new SelectRestListTestDAO();
-		ArrayList<SelectRestListTestDTO> list = dao.restList();
+		ArrayList<SelectRestListTestDTO> list = dao.restList(category);
 		
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();

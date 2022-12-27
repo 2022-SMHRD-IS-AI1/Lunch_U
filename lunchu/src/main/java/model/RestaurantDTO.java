@@ -30,6 +30,11 @@ public class RestaurantDTO {
 		return restSeq;
 	}
 
+	public RestaurantDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setRestSeq(int restSeq) {
 		this.restSeq = restSeq;
 	}

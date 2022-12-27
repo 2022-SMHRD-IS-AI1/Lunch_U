@@ -1,6 +1,9 @@
+<%@page import="model.MenuListDAO"%>
 <%@page import="model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="model.MenuListDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,40 +15,52 @@
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/prettyPhoto.css">
-<script src="js/jquery-3.6.1.min.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
+<script src="js/superfish.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
+<script src="js/sForm.js"></script>
+
 
 </head>
 <%
 	MemberDTO info = (MemberDTO) session.getAttribute("info");
-	System.out.println(info.getMemAddr());
+	String cate = request.getParameter("cate");
+	MenuListDAO dao = new MenuListDAO();
+	ArrayList<MenuListDTO> restaurantList = dao.menuList(cate);
+	
 %>
 <body>
 <div class="main">
   <header>
     <div class="container_12">
       <div class="grid_12">
-        <h1><a href="index.html"><img src="images/logo.png" alt=""></a></h1>
+        <h1>
+        <a href="home.jsp"><img src="images/logo_lunchu1.png" alt=""></a></h1>
         <div class="menu_block">
           <nav>
-            <ul class="sf-menu">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about-us.html">About Us</a>
-                <ul>
-                  <li><a href="#"> cuisine</a></li>
-                  <li><a href="#">Good rest</a></li>
-                  <li><a href="#">Services</a></li>
-                </ul>
-              </li>
-              <li><a href="menu.html">Menu</a></li>
-              <li class="current"><a href="portfolio.html">Portfolio</a></li>
-              <li><a href="news.html">News</a></li>
-              <li><a href="contacts.html">Contacts</a></li>
-            </ul>
-          </nav>
+			<ul class="sf-menu">
+				<%
+				if (info != null) {
+				%>
+				<li><a href="LogoutService">ë¡œê·¸ì•„ì›ƒ</a></li>
+				<li class="with_ul"><a href="#">ë§ˆì´í˜ì´ì§€</a>
+					<ul>
+						<li><a href="profile.jsp"> ë‚´ ì •ë³´</a></li>
+						<li><a href="reservation.jsp"> ë‚´ ì˜ˆì•½</a></li>
+						<li><a href="review_list.jsp"> ë‚´ ë¦¬ë·° </a></li>
+						<li><a href="groups.jsp"> ë‚´ ê·¸ë£¹</a></li>
+					</ul></li>
+				<%
+				} else {
+				%>
+				<li><a href="login.jsp">ë¡œê·¸ì¸</a></li>
+				<li><a href="join.jsp">íšŒì›ê°€ì…</a></li>
+				<%
+				}
+				%>
+			</ul>
+			</nav>
           <div class="clear"></div>
         </div>
         <div class="clear"></div>
@@ -53,29 +68,31 @@
     </div>
   </header>
   <div class="content">
-    <!-- Áöµµ ¿µ¿ª -->
+    <!-- ì§€ë„ ì˜ì—­ -->
     <div class="container_12">
         <div class="grid_3">
-            <h2 class="head2">À½½ÄÁ¡ ¸ñ·Ï</h2>
+            <h2 class="head2">ìŒì‹ì  ëª©ë¡<span id="category" style="display: none"><%=cate%></span></h2>
             <ul class="list l1">
-                <li><a href="#">´Şºù°í ¼±¿îÁ¡</a></li>
-                <li><a href="#">¿ì¸®»çÀÌ ¿ù°î1µ¿</a></li>
-                <li><a href="#">°¡¸¶¼ÜÅäÁ¾¼ø´ë±¹ ¼ö¿Ïµ¿</a></li>
-                <li><a href="#">¿À¸®¶ûµÅÁö¶û ¾î·æµ¿</a></li>
-                <li><a href="#">±è°¡³× Ã·´Ü1µ¿</a></li>
+            <% for (int i = 0; i < restaurantList.size(); i++) {%>
+                <li><a href="restaurant_detail.jsp?rest_seq=<%=restaurantList.get(i).getRestSeq()%>"><%=restaurantList.get(i).getRestName()%></a></li>
+            <%} %>
             </ul>
         </div>
         <div id="map" style="width:700px;height:500px;"></div>
-        <script src="./js/jquery-3.6.1.min.js"></script>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
 
         <script>
             
             $(function () {
+            	
+            	var category = $("#category").text();
                 function getMap() {
                     $.ajax({
                     	url : "SelectRestList",
+        				data : {
+        					"category" : category
+        				},
                         success: function (jsonData) {
                             const obj = JSON.parse(jsonData);
                             let addressList = restInfo(obj);
@@ -87,7 +104,7 @@
                 getMap();
                 function restInfo(restaurant) {
                     let list = [];
-                    // for ¹İº¹¹®ÀÇ ¹üÀ§ ¸¦ ?
+                    // for ë°˜ë³µë¬¸ì˜ ë²”ìœ„ ë¥¼ ?
                     for (let i = 0; i < restaurant.length; i++) {
                         list.push({
                             "restNm": restaurant[i].restName,
@@ -101,21 +118,21 @@
                 function createMap(addressList) {
                     
 
-                    let mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
+                    let mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
                         mapOption = {
-                            center: new kakao.maps.LatLng(35.1904480847838, 126.812984611101), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-                            level: 5 // ÁöµµÀÇ È®´ë ·¹º§
+                            center: new kakao.maps.LatLng(35.1904480847838, 126.812984611101), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+                            level: 5 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
                         };
                     let map = new kakao.maps.Map(mapContainer, mapOption);
                     let geocoder = new kakao.maps.services.Geocoder();
                     let overlayList = [];
                     
-                    var imageSrc = "images/company.jpg"; 
-                    var imageSize = new kakao.maps.Size(24, 35); 
+                    var imageSrc = "images/map_marker.png"; 
+                    var imageSize = new kakao.maps.Size(35, 40); 
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
                     
                     geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
-                        // Á¤»óÀûÀ¸·Î °Ë»öÀÌ ¿Ï·áµÆÀ¸¸é 
+                        // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´ 
                         if (status === kakao.maps.services.Status.OK) {
 
                             coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -133,29 +150,29 @@
                             if (status === kakao.maps.services.Status.OK) {
                                 let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                                // °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡¸¦ ¸¶Ä¿·Î Ç¥½ÃÇÕ´Ï´Ù
+                                // ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¥¼ ë§ˆì»¤ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
                                 let marker = new kakao.maps.Marker({
                                     map: map,
                                     position: coords
                                 });
 
-                                // ¸¶Ä¿ À§¿¡ Ä¿½ºÅÒ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÕ´Ï´Ù
-                                // ¸¶Ä¿¸¦ Áß½ÉÀ¸·Î Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÏ±âÀ§ÇØ CSS¸¦ ÀÌ¿ëÇØ À§Ä¡¸¦ ¼³Á¤Çß½À´Ï´Ù
+                                // ë§ˆì»¤ ìœ„ì— ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
+                                // ë§ˆì»¤ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•˜ê¸°ìœ„í•´ CSSë¥¼ ì´ìš©í•´ ìœ„ì¹˜ë¥¼ ì„¤ì •í–ˆìŠµë‹ˆë‹¤
                                 let overlay = new kakao.maps.CustomOverlay({
                                     // content: content,
                                     // map: map,
                                     position: marker.getPosition()
                                 });
 
-                                //overlay°´Ã¼¿¡ content Ãß°¡ÇÏ´Â ÇÔ¼ö
+                                //overlayê°ì²´ì— content ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
                                 overlay.setContent(createOverlayContent(overlay, restNm, restAdd, restCate));
 
-                                // ¸¶Ä¿¸¦ Å¬¸¯ÇßÀ» ¶§ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÕ´Ï´Ù
+                                // ë§ˆì»¤ë¥¼ í´ë¦­í–ˆì„ ë•Œ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
                                 kakao.maps.event.addListener(marker, 'click', mouseClickEventHandler(map, overlay));
 
                                 overlayList.push(overlay);
 
-                                // ÁöµµÀÇ Áß½ÉÀ» °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡·Î ÀÌµ¿½ÃÅµ´Ï´Ù
+                                // ì§€ë„ì˜ ì¤‘ì‹¬ì„ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚µë‹ˆë‹¤
                                 // map.setCenter(coords);
 
                             }
@@ -166,20 +183,20 @@
                         let restCate = addressList[i].restCate;
                         let restAdd = addressList[i].restAdd;
 
-                        // ÁÖ¼Ò·Î ÁÂÇ¥¸¦ °Ë»öÇÕ´Ï´Ù
+                        // ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤
                         geocoder.addressSearch(restAdd, info(null, null, restNm, restCate, restAdd));
                     }
                 }
 
 
-                //¸¶Ä¿º° ¿À¹ö·¹ÀÌ¸¦ »ı¼º ¹× ´İ±â¹öÆ° ÀÌº¥Æ®¸¦ Àû¿ëÇÏ´Â ÇÔ¼ö
-                //¿À¹ö·¹ÀÌÀÇ ±¸Á¶¸¦ º¯°æÇÏ°Å³ª µğÀÚÀÎÀ» À§ÇÑ Å¬·¡½º¸íÀ» Ãß°¡ÇÏ·Á¸é ÀÌ ÇÔ¼ö ³»¿¡¼­ ¼öÁ¤ÇØ¾ß ÇÔ
+                //ë§ˆì»¤ë³„ ì˜¤ë²„ë ˆì´ë¥¼ ìƒì„± ë° ë‹«ê¸°ë²„íŠ¼ ì´ë²¤íŠ¸ë¥¼ ì ìš©í•˜ëŠ” í•¨ìˆ˜
+                //ì˜¤ë²„ë ˆì´ì˜ êµ¬ì¡°ë¥¼ ë³€ê²½í•˜ê±°ë‚˜ ë””ìì¸ì„ ìœ„í•œ í´ë˜ìŠ¤ëª…ì„ ì¶”ê°€í•˜ë ¤ë©´ ì´ í•¨ìˆ˜ ë‚´ì—ì„œ ìˆ˜ì •í•´ì•¼ í•¨
                 const createOverlayContent = function (overlay, restNm, restAdd, restCate) {
 
-                    // HTML°´Ã¼¸¦ »ı¼º : document.createElement(ÅÂ±×ÀÌ¸§)
-                    // HTML°´Ã¼ Å¬·¡½ºÀÌ¸§ ¼³Á¤ : document.createElement(ÅÂ±×ÀÌ¸§).className = Ãß°¡ÇÒ Å¬·¡½ºÀÌ¸§
-                    // HTML°´Ã¼ÀÇ ÀÚ½Ä¿ä¼Ò·Î Ãß°¡ : ºÎ¸ğHTML°´Ã¼.appendChild(ÀÚ½ÄHTML°´Ã¼)
-                    // HTML°´Ã¼ ½ºÅ¸ÀÏ Àû¿ë : HTML°´Ã¼.style.½ºÅ¸ÀÏ¼Ó¼º = °ª ( * Å©±â°ªÀ» ÁÙ °æ¿ì ¹İµå½Ã 'px'³ª 'em' ´ÜÀ§¸¦ ÀÛ¼ºÇØ¾ß ÇÔ )
+                    // HTMLê°ì²´ë¥¼ ìƒì„± : document.createElement(íƒœê·¸ì´ë¦„)
+                    // HTMLê°ì²´ í´ë˜ìŠ¤ì´ë¦„ ì„¤ì • : document.createElement(íƒœê·¸ì´ë¦„).className = ì¶”ê°€í•  í´ë˜ìŠ¤ì´ë¦„
+                    // HTMLê°ì²´ì˜ ìì‹ìš”ì†Œë¡œ ì¶”ê°€ : ë¶€ëª¨HTMLê°ì²´.appendChild(ìì‹HTMLê°ì²´)
+                    // HTMLê°ì²´ ìŠ¤íƒ€ì¼ ì ìš© : HTMLê°ì²´.style.ìŠ¤íƒ€ì¼ì†ì„± = ê°’ ( * í¬ê¸°ê°’ì„ ì¤„ ê²½ìš° ë°˜ë“œì‹œ 'px'ë‚˜ 'em' ë‹¨ìœ„ë¥¼ ì‘ì„±í•´ì•¼ í•¨ )
                     const divWrap = document.createElement("div");
                     divWrap.className = "wrap";
 
@@ -192,7 +209,7 @@
 
                     const divClose = document.createElement("div");
                     divClose.className = "close";
-                    divClose.setAttribute("title", "´İ±â");
+                    divClose.setAttribute("title", "ë‹«ê¸°");
                     divClose.addEventListener("click", function () {
                         overlay.setMap(null);
                     });
@@ -208,7 +225,7 @@
                     divJibun.className = "jibun ellipsis";
                     divJibun.textContent = restCate;
 
-                    //»ı¼ºµÈ HTML°´Ã¼¸¦ ÇÏ³ª¾¿ ÀÚ½Ä¿ä¼Ò·Î Ãß°¡
+                    //ìƒì„±ëœ HTMLê°ì²´ë¥¼ í•˜ë‚˜ì”© ìì‹ìš”ì†Œë¡œ ì¶”ê°€
                     divTitle.appendChild(divClose);
                     divBody.appendChild(divEllipsis);
                     divBody.appendChild(divJibun);

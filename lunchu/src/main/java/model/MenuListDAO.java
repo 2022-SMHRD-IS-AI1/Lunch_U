@@ -51,7 +51,7 @@ public class MenuListDAO {
    
    
    
-   public ArrayList<MenuListDTO> menuList(String test) {
+   public ArrayList<MenuListDTO> menuList(String cate) {
       ArrayList<MenuListDTO> menuList = new ArrayList<MenuListDTO>();
 
       try {
@@ -61,7 +61,7 @@ public class MenuListDAO {
          String sql = "select * from t_restaurant where cate_name=?";
 
          psmt = conn.prepareStatement(sql);
-         psmt.setString(1, test);
+         psmt.setString(1, cate);
 
          rs = psmt.executeQuery();
 
