@@ -54,6 +54,7 @@ public class ReviewDAO {
 
 			String sql = "select * from t_review where mem_id=?";
 
+			System.out.println(psmt);
 
 			psmt = conn.prepareStatement(sql);
 
@@ -112,5 +113,34 @@ public class ReviewDAO {
 		}
 		return result;
 	}
+	
+	public int reply(int rest_seq, String rv_content, double rv_rating, String mem_id) {
+
+		try {
+			getConn();
+
+			String sql = "insert into t_review values(t_review_seq.nextval, ?, ?, ?, current_date, ?)";
+			psmt = conn.prepareStatement(sql);
+
+			// 3-2 바인드 변수(?) 채우기
+			
+			psmt.setInt(1,rest_seq);
+			psmt.setString(2,rv_content);
+			psmt.setDouble(3, rv_rating);			
+			psmt.setString(4,  mem_id);
+			
+			
+			// 4. 실행
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	
 
 }
