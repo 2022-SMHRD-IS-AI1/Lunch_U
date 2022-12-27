@@ -93,6 +93,7 @@ tbody .date, tbody .writer, tbody .review {
 		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
 		window.open(url, name, option);
 	}
+	
 </script>
 <body>
 	<div class="main">
@@ -132,10 +133,10 @@ tbody .date, tbody .writer, tbody .review {
 			</div>
 		</header>
 		<%
-		int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
-		
-		RestaurantDAO dao = new RestaurantDAO();
-		RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
+			int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
+
+			RestaurantDAO dao = new RestaurantDAO();
+			RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
 		%>
 		<div class="content">
 			<div class="container_12">
@@ -145,27 +146,31 @@ tbody .date, tbody .writer, tbody .review {
 							<tr>
 								<td>
 									<h2>
-										<strong><%=restaurant.getRestName() %></strong>
-										<span id="restSeq" style="display: none"><%=restaurant.getRestSeq()%></span>
+										<strong><%=restaurant.getRestName()%></strong> <span
+											id="restSeq" style="display: none"><%=restaurant.getRestSeq()%></span>
 									</h2>
 								</td>
 							</tr>
 							<tr>
-								<td style="height: 20px"><%=restaurant.getCateName() %></td>
+								<td style="height: 20px"><%=restaurant.getCateName()%></td>
 								<td style="text-align: right;">8명의 평가 4.8</td>
 							</tr>
 
 						</table>
 						<div style="left: 0px">
-						<%
-						if (info != null) {
-						%>
+							<%
+							if (info != null) {
+							%>
 							<button id="reservation" onclick="">예약하기</button>
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
+							<button id = "btn_open" onclick="doPopupopen()">리뷰 및 평점</button>
+							<%
+							} else {
+							%>
 							<button onclick="">리뷰 및 평점</button>
-						<%}else{ %>
-							<button onclick="">리뷰 및 평점</button>
-						<%} %>
+							<%
+							}
+							%>
 							<br>
 						</div>
 						<hr>
@@ -174,10 +179,10 @@ tbody .date, tbody .writer, tbody .review {
 					<div id="detail">
 						<table>
 							<tr>
-								<td>주소 : <%=restaurant.getRestAddr() %></td>
+								<td>주소 : <%=restaurant.getRestAddr()%></td>
 							</tr>
 							<tr>
-								<td>전화번호 : <%=restaurant.getRestTel() %></td>
+								<td>전화번호 : <%=restaurant.getRestTel()%></td>
 							</tr>
 						</table>
 					</div>
@@ -214,12 +219,12 @@ tbody .date, tbody .writer, tbody .review {
 					</div>
 				</div>
 				<div class="grid_7 map">
-				<div id="map" style="width:700px;height:500px;"></div>
-        
-		        <script type="text/javascript"
-		            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
+					<div id="map" style="width: 700px; height: 500px;"></div>
 
-		       <script>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
+
+					<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					    mapOption = {
 					        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -233,36 +238,45 @@ tbody .date, tbody .writer, tbody .review {
 					var geocoder = new kakao.maps.services.Geocoder();
 					
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('<%=restaurant.getRestAddr()%>', function(result, status) {
-					    // 정상적으로 검색이 완료됐으면 
-					     if (status === kakao.maps.services.Status.OK) {
-					
-					        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-					
-					        // 결과값으로 받은 위치를 마커로 표시합니다
-					        var marker = new kakao.maps.Marker({
-					            map: map,
-					            position: coords
-					        });
-					
-					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-					        map.setCenter(coords);
-					    } 
-					});    
-				</script>
+					geocoder.addressSearch('<%=restaurant.getRestAddr()%>
+						',
+										function(result, status) {
+											// 정상적으로 검색이 완료됐으면 
+											if (status === kakao.maps.services.Status.OK) {
+
+												var coords = new kakao.maps.LatLng(
+														result[0].y,
+														result[0].x);
+
+												// 결과값으로 받은 위치를 마커로 표시합니다
+												var marker = new kakao.maps.Marker(
+														{
+															map : map,
+															position : coords
+														});
+
+												// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+												map.setCenter(coords);
+											}
+										});
 				
+					</script>
+					<script>
+					function doPopupopen() {
+						window.open("LastPopup.jsp?rest_seq=" +<%=rest_seq%>, 'popup',
+										'width=500px, height=750px, scrollbars= 0, toolbar=0, menubar=no');
+					}
+					</script>
+
 				</div>
 				<div class="clear"></div>
-				<div class="bottom_block">
-					
-				</div>
+				<div class="bottom_block"></div>
 				<div class="clear"></div>
 			</div>
 		</div>
 	</div>
 	<footer>
-		<div class="container_12">
-		</div>
+		<div class="container_12"></div>
 	</footer>
 </body>
 </html>

@@ -128,20 +128,19 @@ textarea {
 		console.log(rv_rating);
 
 		$.ajax({
+			url : 'replyService',
+			type : 'POST',
 			data : {
 				"rest_seq" : rest_seq,
 				"mem_id" : mem_id,
 				"rv_rating" : rv_rating,
-				"rv_content" : rv_content	
+				"rv_content" : rv_content
 			},
-			
-			type : 'POST',
-			url : 'replyService',
 			success : function(result) {
 				alert(result);
-				window.close();
+				self.close();
 			},
-			error:function(e){
+			error : function(e) {
 				alert("리뷰 등록이 실패하였습니다.");
 			}
 
@@ -149,30 +148,23 @@ textarea {
 
 	});
 
-		function do_alert() {
-			opener.location.href = "restaurant_detail.jsp";
-			self.close();
-		}
-
-	
 </script>
 <body>
 
 	<%
 	MemberDTO info = (MemberDTO) session.getAttribute("info");
-	int rest_seq = Integer.valueOf(request.getParameter("rest_seq")) ;
+	int rest_seq = Integer.valueOf(request.getParameter("rest_seq"));
 	System.out.println(rest_seq);
 	RestaurantDAO rdao = new RestaurantDAO();
-	
 	%>
 	<div class="wrapper_div">
 		<div class="음식점명"></div>
 		<div id="id" style="display: none"><%=info.getMemId()%></div>
-		<div id="rest_seq" style="display: none" ><%=rest_seq%></div>
+		<div id="rest_seq" style="display: none"><%=rest_seq%></div>
 
 		<div class="input_wrap">
 			<div class="restName_div">
-				<h2><%=rdao.getName(rest_seq) %></h2>
+				<h2><%=rdao.getName(rest_seq)%></h2>
 			</div>
 			<div class="rating_div">
 				<h4>평점</h4>
@@ -206,20 +198,20 @@ textarea {
 	</div>
 
 	<script>
-	$('textarea').on('keyup', function() {
-		var content = $(this).val();
+		$('textarea').on('keyup', function() {
+			var content = $(this).val();
 
-		if (content.length == 0 || content == "") {
-			$('.lbl_cnt').text('0');
-		} else {
-			$('.lbl_cnt').text(content.length);
-		}
-		if (content.length > 800) {
-			$(this).val($(this).val().substring(0, 800));
-			alert('글자수는 800자까지 입력 가능합니다.')
-		}
+			if (content.length == 0 || content == "") {
+				$('.lbl_cnt').text('0');
+			} else {
+				$('.lbl_cnt').text(content.length);
+			}
+			if (content.length > 800) {
+				$(this).val($(this).val().substring(0, 800));
+				alert('글자수는 800자까지 입력 가능합니다.')
+			}
 
-	});
+		});
 	</script>
 </body>
 </html>

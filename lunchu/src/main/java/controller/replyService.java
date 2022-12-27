@@ -29,15 +29,15 @@ public class replyService extends HttpServlet {
 		double rv_rating = Double.valueOf(request.getParameter("rv_rating"));
 	
 		String mem_id = request.getParameter("mem_id");
-		
+		/**/
 		ReviewDAO dao = new ReviewDAO();
 		
-		int cnt = dao.reply( rest_seq, rv_content, rv_rating, mem_id);
+		int cnt = dao.reply(rest_seq, rv_content, rv_rating, mem_id);
 		
 		if(cnt>0) {
 			writer.print("리뷰가 등록 되었습니다.");
 		}else {
-			writer.print("리뷰가 등록 되지않았습니다.");
+			writer.print("리뷰가 등록 X.");
 		}
 		writer.close();
 		
