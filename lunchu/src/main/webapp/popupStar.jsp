@@ -1,149 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <style>
-        .star {
-            position: relative;
-            font-size: 2rem;
-            color: #ddd;
-        }
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
 
-        .star input {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
+<style>
+.star {
+	position: relative;
+	font-size: 2rem;
+	color: #ddd;
+}
 
-        .star span {
-            width: 0;
-            position: absolute;
-            left: 0;
-            color: red;
-            overflow: hidden;
-            pointer-events: none;
-        }
+.star input {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	cursor: pointer;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-        }
+.star span {
+	width: 0;
+	position: absolute;
+	left: 0;
+	color: red;
+	overflow: hidden;
+	pointer-events: none;
+}
 
-        a {
-            text-decoration: none;
-        }
+* {
+	margin: 0;
+	padding: 0;
+}
 
-        .wrap {
-            padding: 10px;
-        }
+a {
+	text-decoration: none;
+}
 
-        .btn_open {
-            font-weight: bold;
-            margin: 5px;
-            padding: 4px 6px;
-            background: #000;
-            color: #fff;
-        }
+.wrap {
+	padding: 10px;
+}
 
-        .pop_wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, .5);
-            font-size: 0;
-            text-align: center;
-        }
+.btn_open {
+	font-weight: bold;
+	margin: 5px;
+	padding: 4px 6px;
+	background: #000;
+	color: #fff;
+}
 
-        .pop_wrap:after {
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-            content: '';
-        }
+.pop_wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);
+	font-size: 0;
+	text-align: center;
+}
 
-        .pop_wrap .pop_inner {
-            display: inline-block;
-            padding: 20px 30px;
-            background: #fff;
-            width: 200px;
-            vertical-align: middle;
-            font-size: 15px;
-        }
-        .pop_wrap .dsc {
-            
-           
-        }
+.pop_wrap:after {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}
 
-    </style>
+.pop_wrap .pop_inner {
+	display: inline-block;
+	padding: 20px 30px;
+	background: #fff;
+	width: 200px;
+	vertical-align: middle;
+	font-size: 15px;
+}
+
+.pop_wrap .dsc {
+	
+}
+</style>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <body>
-    <!--ÆË¾÷ ¿­±â -->
-        <a href="#pop_info_1" class="btn_open">ÆË¾÷ ¿­±â1</a>
+	<!--ÆË¾÷ ¿­±â -->
+	<!--  <a href="#pop_info_1" class="btn_open">ÆË¾÷ ¿­±â1</a> -->
 
 
 
-        <div id="pop_info_1" class="pop_wrap" style="display:none;"><!--ÆË¾÷³»¿ë-->
-            <div class="pop_inner" id = "pop_inner">
-                <p class="dsc"><!--ÆË¾÷±Û-->
-                    <span class="star"> <!--º°Á¡ ºÎ¿©-->
-                        ¡Ú¡Ú¡Ú¡Ú¡Ú
-                        <span>¡Ú¡Ú¡Ú¡Ú¡Ú</span>
-                        <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-                    </span><!-- º°Á¡ ºÎ¿©³¡-->
-                
-                    <div class="section"><!-- ¸®ºä -->       
-                        <input id="hid_contents_deny" type="hidden" value="">
-                        <div style="position:relative">
-                            <div class="title">¸®ºä.<span class="deny fc-red"></span></div>
-                            <div style="position:absolute;right:0px;top:0px;"></div>
-                            <div class="clear"></div>
-                        </div>
-                
-                        <textarea id="txt_contents" name="content" class="fs-13" placeholder="¸®ºä¸¦ ³²°ÜÁÖ¼¼¿ä."
-                            style="border:solid 2px #D5D5D5; width:100%; height:120px;">
-                        </textarea><!--¸®ºä±¸¿ª³¡-->
-                        <div style="padding-top:5px;">
-                            <div id="div_contents_point" class="fl fc-blue " style="display:none"><img
-                                    src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/common/ic-review-point-save-ok.png"
-                                    style="margin-top:-3px;"></div>
-                            <div class="fr">
-                                <span class="lbl_cnt">0</span>/
-                                <span class="lbl_limit">1000</span><!--¸®ºä±æÀÌÁ¦ÇÑ-->
-                            </div>                
-                            <div class="clear"></div>
-                        </div>
-                    </div> 
-                </p>
-				<button type="button" class="btn_insert">µî·Ï</button>
-                <button type="button" class="btn_close">´Ý±â</button>
-                
-            </div>
-        </div>
+	<div id="pop_info_1" class="pop_wrap">
+		<!--ÆË¾÷³»¿ë-->
+		<div class="pop_inner" id="pop_inner">
+			<p class="dsc">
+				<!--ÆË¾÷±Û-->
+				<span class="star"> <!--º°Á¡ ºÎ¿©--> ¡Ú¡Ú¡Ú¡Ú¡Ú <span>¡Ú¡Ú¡Ú¡Ú¡Ú</span> <input
+					type="range" oninput="drawStar(this)" value="1" step="1" min="0"
+					max="10">
+				</span>
+				<!-- º°Á¡ ºÎ¿©³¡-->
+			<div class="section">
+				<!-- ¸®ºä -->
+				<input id="hid_contents_deny" type="hidden" value="">
+				<div style="position: relative">
+					<div class="title">
+						¸®ºä.<span class="deny fc-red"></span>
+					</div>
+					<div style="position: absolute; right: 0px; top: 0px;"></div>
+					<div class="clear"></div>
+				</div>
 
-    <script>//º°Á¡ js
+				<textarea id="txt_contents" name="content" class="fs-13"
+					placeholder="¸®ºä¸¦ ³²°ÜÁÖ¼¼¿ä."
+					style="border: solid 2px #D5D5D5; width: 100%; height: 120px;">
+                        </textarea>
+				<!--¸®ºä±¸¿ª³¡-->
+				<div style="padding-top: 5px;">
+					<div id="div_contents_point" class="fl fc-blue "
+						style="display: none">
+						<img
+							src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/img/common/ic-review-point-save-ok.png"
+							style="margin-top: -3px;">
+					</div>
+					<div class="fr">
+						<span class="lbl_cnt">0</span>/ <span class="lbl_limit">1000</span>
+						<!--¸®ºä±æÀÌÁ¦ÇÑ-->
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<button type="button" class="btn_insert">µî·Ï</button>
+			<button type="button" class="btn_close">´Ý±â</button>
+
+		</div>
+	</div>
+
+	<script>//º°Á¡ js
         const drawStar = (target) => {
             document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
         }
 
     </script>
-    <script>// ÆË¾÷Ã¢ js
-        var target = document.querySelectorAll('.btn_open');
+	<script>// ÆË¾÷Ã¢ js
+        //var target = document.querySelectorAll('.btn_open');
+        var target = document.querySelectorAll('.pop_wrap');
         var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
         var targetID;
-
+        
+        /*
         // ÆË¾÷¿­±â
         for (var i = 0; i < target.length; i++) {
             target[i].addEventListener('click', function () {
@@ -151,11 +160,12 @@
                 document.querySelector(targetID).style.display = 'block';
             });
         }
-
+*/
         // ÆË¾÷ ´Ý±â
         for (var j = 0; j < target.length; j++) {
             btnPopClose[j].addEventListener('click', function () {
                 this.parentNode.parentNode.style.display = 'none';
+                location.href = 'restaurant_detail.jsp';
             });
         }
        

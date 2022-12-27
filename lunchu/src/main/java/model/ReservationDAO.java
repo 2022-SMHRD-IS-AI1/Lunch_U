@@ -78,5 +78,28 @@ public class ReservationDAO {
 		
 	}
 
+	
+	public int add(int restSeq, String reservTime, String reservDate, String memId) {
+		try {
+			getconn();
+
+			String sql = "insert into t_reservation values(reserv_seq.nextval, ?, ?, ?, ?)";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, restSeq);
+			psmt.setString(2, reservTime);
+			psmt.setString(3, reservDate);
+			psmt.setString(4, memId);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 
 }
+
