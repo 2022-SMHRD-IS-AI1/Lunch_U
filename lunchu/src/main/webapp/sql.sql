@@ -33,8 +33,8 @@ CREATE TABLE t_member
     mem_id                  VARCHAR2(20)     NOT NULL, 
     mem_pw                  VARCHAR2(20)     NOT NULL, 
     mem_addr                VARCHAR2(500)    NOT NULL, 
-    mem_visit_restaurant    VARCHAR2(30)     NOT NULL, 
-    mem_pref_category       VARCHAR2(20)     NOT NULL, 
+    mem_visit_restaurant    VARCHAR2(30),
+    mem_pref_category       VARCHAR2(500)     NOT NULL, 
     mem_joindate            DATE             DEFAULT SYSDATE NOT NULL, 
     mem_type                CHAR(1)          DEFAULT 'M' NOT NULL, 
      PRIMARY KEY (mem_id)
@@ -49,9 +49,9 @@ CREATE TABLE t_restaurant
     rest_addr    VARCHAR2(500)    NOT NULL, 
     cate_seq     NUMBER(18, 0)    NOT NULL, 
     rest_tel     VARCHAR2(20)     NOT NULL,
+    rest_rating     NUMBER(18, 2)     NOT NULL,
     rest_lat     NUMBER(18, 2)     NOT NULL, 
     rest_lon     NUMBER(18, 2)     NOT NULL, 
-    rest_rating     NUMBER(18, 2)     NOT NULL,
      PRIMARY KEY (rest_seq)
 );
 
