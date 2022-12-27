@@ -47,7 +47,7 @@ CREATE TABLE t_restaurant
     rest_seq     NUMBER(18, 0)    NOT NULL, 
     rest_name    VARCHAR2(50)     NOT NULL, 
     rest_addr    VARCHAR2(500)    NOT NULL, 
-    cate_seq     NUMBER(18, 0)    NOT NULL, 
+    cate_name     VARCHAR2(20)    NOT NULL, 
     rest_tel     VARCHAR2(20)     NOT NULL,
     rest_rating     NUMBER(18, 2)     NOT NULL,
     rest_lat     NUMBER(18, 2)     NOT NULL, 
