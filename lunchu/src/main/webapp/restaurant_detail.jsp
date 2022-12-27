@@ -93,6 +93,8 @@ tbody .date, tbody .writer, tbody .review {
 		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
 		window.open(url, name, option);
 	}
+
+	
 	
 </script>
 <body>
@@ -133,10 +135,10 @@ tbody .date, tbody .writer, tbody .review {
 			</div>
 		</header>
 		<%
-			int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
+		int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
 
-			RestaurantDAO dao = new RestaurantDAO();
-			RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
+		RestaurantDAO dao = new RestaurantDAO();
+		RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
 		%>
 		<div class="content">
 			<div class="container_12">
@@ -157,17 +159,24 @@ tbody .date, tbody .writer, tbody .review {
 							</tr>
 
 						</table>
+						<script type="text/javascript">
+						function doPopupopen() {
+							window
+									.open("LastPopup.jsp?rest_seq=" + <%=rest_seq%> , 'popup',
+											'width=500px, height=750px, scrollbars= 0, toolbar=0, menubar=no');
+						}
+						</script>
 						<div style="left: 0px">
 							<%
 							if (info != null) {
 							%>
 							<button id="reservation" onclick="">예약하기</button>
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
-							<button id = "btn_open" onclick="doPopupopen()">리뷰 및 평점</button>
+							<button onclick="doPopupopen()">리뷰 및 평점</button>
 							<%
 							} else {
 							%>
-							<button onclick="">리뷰 및 평점</button>
+							<button onclick="doPopupopen()">리뷰 및 평점</button>
 							<%
 							}
 							%>
@@ -238,8 +247,7 @@ tbody .date, tbody .writer, tbody .review {
 					var geocoder = new kakao.maps.services.Geocoder();
 					
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('<%=restaurant.getRestAddr()%>
-						',
+					geocoder.addressSearch('<%=restaurant.getRestAddr()%>',
 										function(result, status) {
 											// 정상적으로 검색이 완료됐으면 
 											if (status === kakao.maps.services.Status.OK) {
@@ -259,13 +267,6 @@ tbody .date, tbody .writer, tbody .review {
 												map.setCenter(coords);
 											}
 										});
-				
-					</script>
-					<script>
-					function doPopupopen() {
-						window.open("LastPopup.jsp?rest_seq=" +<%=rest_seq%>, 'popup',
-										'width=500px, height=750px, scrollbars= 0, toolbar=0, menubar=no');
-					}
 					</script>
 
 				</div>

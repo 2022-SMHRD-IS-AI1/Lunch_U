@@ -128,8 +128,8 @@ textarea {
 		console.log(rv_rating);
 
 		$.ajax({
-			url : 'replyService',
 			type : 'POST',
+			url : 'replyService',
 			data : {
 				"rest_seq" : rest_seq,
 				"mem_id" : mem_id,
@@ -141,6 +141,7 @@ textarea {
 				self.close();
 			},
 			error : function(e) {
+				console.log(e);
 				alert("리뷰 등록이 실패하였습니다.");
 			}
 
