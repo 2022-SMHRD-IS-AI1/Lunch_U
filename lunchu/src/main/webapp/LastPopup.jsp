@@ -139,6 +139,7 @@ textarea {
 			success : function(result) {
 				alert(result);
 				self.close();
+				opener.window.location.reload("restaurant_detail.jsp");
 			},
 			error : function(e) {
 				console.log(e);
