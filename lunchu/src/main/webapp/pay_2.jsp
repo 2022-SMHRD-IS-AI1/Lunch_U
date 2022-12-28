@@ -2,12 +2,12 @@
 <%@page import="model.ReservationDAO"%>
 <%@page
 	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <script>
@@ -15,7 +15,7 @@
 
 	function do_alert() {
 
-		alert("°áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+		alert("ê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 
 		opener.location.href = "reservation_list.jsp";
 		self.close();
@@ -37,11 +37,11 @@
 	%>
 
 	<fieldset>
-		<legend>ÁÖ¹®/°áÁ¦</legend>
+		<legend>ì£¼ë¬¸/ê²°ì œ</legend>
 		<a></a>
 		<table border="1" align="center">
 			<tr>
-				<td>Ä«µå°áÁ¦</td>
+				<td>ì¹´ë“œê²°ì œ</td>
 				<%--
 					request.setCharacterEncoding("utf-8");
 					response.setContentType("text/html; charset=utf-8");
@@ -51,47 +51,47 @@
 				<td><%=card%></td>
 			</tr>
 			<tr>
-				<td>°áÁ¦Á¤º¸</td>
+				<td>ê²°ì œì •ë³´</td>
 				<td>
 					<table>
 						<tr>
-							<td>Ä«µå¹øÈ£</td>
+							<td>ì¹´ë“œë²ˆí˜¸</td>
 							<td><input size="4px" maxlength="4" type="text"> <input
 								size="4px" maxlength="4" type="text"> <input size="4px"
 								maxlength="4" type="text"> <input size="4px"
 								maxlength="4" type="text"></td>
 						</tr>
 						<tr>
-							<td>À¯È¿±â°£</td>
-							<td><input size="1px" maxlength="2" type="text">¿ù <input
-								size="4px" maxlength="4" type="text">³â</td>
+							<td>ìœ íš¨ê¸°ê°„</td>
+							<td><input size="1px" maxlength="2" type="text">ì›” <input
+								size="4px" maxlength="4" type="text">ë…„</td>
 						</tr>
 						<tr>
-							<td>ºñ¹Ð¹øÈ£</td>
+							<td>ë¹„ë°€ë²ˆí˜¸</td>
 							<td><input size="4px" maxlength="2" type="text">XX
-								(¾Õ 2ÀÚ¸®)</td>
+								(ì•ž 2ìžë¦¬)</td>
 						</tr>
 						<tr>
-							<td>ÁÖ¹Îµî·Ï¹øÈ£</td>
+							<td>ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸</td>
 							<td>XXXXXX - <input size="4px" maxlength="6" type="text"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
-				<td>°áÁ¦ ±Ý¾×</td>
-				<td>10,000¿ø</td>
+				<td>ê²°ì œ ê¸ˆì•¡</td>
+				<td>10,000ì›</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="checkbox">ÀüÀÚ±ÝÀ¶ ÀÌ¿ë¾à°ü <input
-					type="checkbox">°íÀ¯½Äº°Á¤º¸¼öÁý ¹× ÀÌ¿ë¾à°ü</td>
+				<td colspan="2"><input type="checkbox">ì „ìžê¸ˆìœµ ì´ìš©ì•½ê´€ <input
+					type="checkbox">ê³ ìœ ì‹ë³„ì •ë³´ìˆ˜ì§‘ ë° ì´ìš©ì•½ê´€</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="checkbox">°³ÀÎÁ¤º¸¼öÁý ¹× ÀÌ¿ë¾à°ü <input
-					type="checkbox">°³ÀÎÁ¤º¸Á¦°ø ¹× À§Å¹¾È³»</td>
+				<td colspan="2"><input type="checkbox">ê°œì¸ì •ë³´ìˆ˜ì§‘ ë° ì´ìš©ì•½ê´€ <input
+					type="checkbox">ê°œì¸ì •ë³´ì œê³µ ë° ìœ„íƒì•ˆë‚´</td>
 			</tr>
 			<tr align="center">
-				<td colspan="2"><input id="input_btn" type="submit" value="°áÁ¦ÇÏ±â" onclick="do_alert()"></td>
+				<td colspan="2"><input id="input_btn" type="submit" value="ê²°ì œí•˜ê¸°" onclick="do_alert()"></td>
 			</tr>
 			<%
 				ReservationDAO dao = new ReservationDAO();
