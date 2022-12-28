@@ -95,7 +95,8 @@
 			<%
 				ReservationDAO dao = new ReservationDAO();
 				String memId=info.getMemId();
-				dao.add(restSeq, reservTime, reservDate, memId);
+				dao.add(restSeq, reservTime, memId);
+				
 			%>
 		</table>
 	</fieldset>
