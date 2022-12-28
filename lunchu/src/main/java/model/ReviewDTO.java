@@ -95,6 +95,8 @@ public class ReviewDTO {
 		this.rv_dt = rv_dt;
 		this.mem_id = memId;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "replyDTO [rv_seq=" + rv_seq + ", rest_seq=" + rest_seq + ", mem_id=" + mem_id + ", rv_dt=" + rv_dt

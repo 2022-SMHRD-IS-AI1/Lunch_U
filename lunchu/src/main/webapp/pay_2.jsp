@@ -2,12 +2,12 @@
 <%@page import="model.ReservationDAO"%>
 <%@page
 	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <script>
@@ -15,9 +15,9 @@
 
 	function do_alert() {
 
-		alert("ê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+		alert("°áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
 
-		opener.location.href = "reservation_list.jsp";
+		opener.location.href = "reservation.jsp";
 		self.close();
 	}
 </script>
@@ -30,18 +30,17 @@
 
 	String card = request.getParameter("card");
 	int restSeq = Integer.valueOf(request.getParameter("restSeq"));
-	String reservTime = request.getParameter("time");
-	System.out.println("test: "+card);
-	System.out.println("test: "+restSeq);
-	System.out.println("test: "+reservTime);
+	String reservDate = request.getParameter("date");
+	String reservTime = request.getParameter("select_time");
+	System.out.println("Test" + card);
 	%>
 
 	<fieldset>
-		<legend>ì£¼ë¬¸/ê²°ì œ</legend>
+		<legend>ÁÖ¹®/°áÁ¦</legend>
 		<a></a>
 		<table border="1" align="center">
 			<tr>
-				<td>ì¹´ë“œê²°ì œ</td>
+				<td>Ä«µå°áÁ¦</td>
 				<%--
 					request.setCharacterEncoding("utf-8");
 					response.setContentType("text/html; charset=utf-8");
@@ -51,55 +50,52 @@
 				<td><%=card%></td>
 			</tr>
 			<tr>
-				<td>ê²°ì œì •ë³´</td>
+				<td>°áÁ¦Á¤º¸</td>
 				<td>
 					<table>
 						<tr>
-							<td>ì¹´ë“œë²ˆí˜¸</td>
+							<td>Ä«µå¹øÈ£</td>
 							<td><input size="4px" maxlength="4" type="text"> <input
 								size="4px" maxlength="4" type="text"> <input size="4px"
 								maxlength="4" type="text"> <input size="4px"
 								maxlength="4" type="text"></td>
 						</tr>
 						<tr>
-							<td>ìœ íš¨ê¸°ê°„</td>
-							<td><input size="1px" maxlength="2" type="text">ì›” <input
-								size="4px" maxlength="4" type="text">ë…„</td>
+							<td>À¯È¿±â°£</td>
+							<td><input size="1px" maxlength="2" type="text">¿ù <input
+								size="4px" maxlength="4" type="text">³â</td>
 						</tr>
 						<tr>
-							<td>ë¹„ë°€ë²ˆí˜¸</td>
+							<td>ºñ¹Ð¹øÈ£</td>
 							<td><input size="4px" maxlength="2" type="text">XX
-								(ì•ž 2ìžë¦¬)</td>
+								(¾Õ 2ÀÚ¸®)</td>
 						</tr>
 						<tr>
-							<td>ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸</td>
+							<td>ÁÖ¹Îµî·Ï¹øÈ£</td>
 							<td>XXXXXX - <input size="4px" maxlength="6" type="text"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
-				<td>ê²°ì œ ê¸ˆì•¡</td>
-				<td>10,000ì›</td>
+				<td>°áÁ¦ ±Ý¾×</td>
+				<td>10,000¿ø</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="checkbox">ì „ìžê¸ˆìœµ ì´ìš©ì•½ê´€ <input
-					type="checkbox">ê³ ìœ ì‹ë³„ì •ë³´ìˆ˜ì§‘ ë° ì´ìš©ì•½ê´€</td>
+				<td colspan="2"><input type="checkbox">ÀüÀÚ±ÝÀ¶ ÀÌ¿ë¾à°ü <input
+					type="checkbox">°íÀ¯½Äº°Á¤º¸¼öÁý ¹× ÀÌ¿ë¾à°ü</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="checkbox">ê°œì¸ì •ë³´ìˆ˜ì§‘ ë° ì´ìš©ì•½ê´€ <input
-					type="checkbox">ê°œì¸ì •ë³´ì œê³µ ë° ìœ„íƒì•ˆë‚´</td>
+				<td colspan="2"><input type="checkbox">°³ÀÎÁ¤º¸¼öÁý ¹× ÀÌ¿ë¾à°ü <input
+					type="checkbox">°³ÀÎÁ¤º¸Á¦°ø ¹× À§Å¹¾È³»</td>
 			</tr>
 			<tr align="center">
-				<td colspan="2"><input id="input_btn" type="submit" value="ê²°ì œí•˜ê¸°" onclick="do_alert()"></td>
+				<td colspan="2"><input id="input_btn" type="submit" value="°áÁ¦ÇÏ±â" onclick="do_alert()"></td>
 			</tr>
 			<%
 				ReservationDAO dao = new ReservationDAO();
 				String memId=info.getMemId();
-				int cnt = dao.add(restSeq, reservTime, memId);
-				if (cnt>0){
-					
-				}
+				dao.add(restSeq, reservTime, reservDate, memId);
 			%>
 		</table>
 	</fieldset>

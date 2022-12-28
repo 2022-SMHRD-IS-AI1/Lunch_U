@@ -28,24 +28,6 @@
 <script src="js/tms-0.4.1.js"></script>
 <script>
 	$(window).load(function() {
-		$('.slider')._TMS({
-			show : 0,
-			pauseOnHover : false,
-			prevBu : '.prev',
-			nextBu : '.next',
-			playBu : false,
-			duration : 800,
-			preset : 'fade',
-			pagination : true, //'.pagination',true,'<ul></ul>'
-			pagNums : false,
-			slideshow : 8000,
-			numStatus : false,
-			banners : false,
-			waitBannerAnimation : false,
-			progressBar : false
-		})
-	});
-	$(window).load(function() {
 		$('.carousel1').carouFredSel({
 			auto : false,
 			prev : '.prev',
@@ -116,7 +98,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
-										<li><a href="reservation_list.jsp"> 내 예약</a></li>
+										<li><a href="reservation.jsp"> 내 예약</a></li>
 										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
 										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
@@ -132,21 +114,12 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 						</nav>
 						<div class="clear"></div>
 					</div>
-
 					<div class="clear"></div>
 				</div>
 			</div>
 		</header>
-		<div class="slider-relative">
-			<div class="slider-block">
-				<div class="slider">
-					<ul class="items">
-						<li><img src="images/slide.jpg" alt=""></li>
-						<li><img src="images/slide1.jpg" alt=""></li>
-						<li class="mb0"><img src="images/slide2.jpg" alt=""></li>
-					</ul>
-				</div>
-			</div>
+
+		<div style="height: 100px">
 		</div>
 
 		<div class="content page1">
@@ -158,21 +131,17 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 					<div class="grid_12">
 						<div class="car_wrap">
 							<h2><%=hanlist.get(0).getCateName()%></h2>
-							<a href="Lunch_U_Map.jsp?cate=<%=hanlist.get(0).getCateName()%>"><img
-								src="./images/map_marker.png"></a>
-							<%
-							if (hanlist.size() > 4) {
-							%>
+							<a href="Lunch_U_Map.jsp?cate=<%=hanlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+							<%if(hanlist.size()>4){%>
 							<a href="#" class="prev"></a><a href="#" class="next"></a>
-							<%
-							}
-							%>
+							<%} %>
 							<ul class="carousel1">
 
 								<%
 								for (int i = 0; i < hanlist.size(); i++) {
 								%>
-								<a href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
+								<a
+									href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
 									<li>
 										<div>
 											<img src="images/page1_img1.jpg" alt="">
@@ -207,15 +176,10 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=yanglist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=yanglist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (yanglist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=yanglist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(yanglist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
@@ -257,21 +221,17 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=illist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=illist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (illist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=illist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(illist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
 						for (int i = 0; i < illist.size(); i++) {
 						%>
-						<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
+						<a
+							href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
 							<li>
 								<div>
 									<img src="images/page1_img1.jpg" alt="">
@@ -297,7 +257,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		</div>
 
 	</div>
-
+	
 	<%
 	}
 	if (buffetlist.size() != 0) {
@@ -308,19 +268,16 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 				<div class="car_wrap">
 					<h2><%=buffetlist.get(0).getCateName()%></h2>
 					<a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
-					<%
-					if (buffetlist.size() > 4) {
-					%>
+					<%if(buffetlist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
 						for (int i = 0; i < buffetlist.size(); i++) {
 						%>
-						<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
+						<a
+							href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
 							<li>
 								<div>
 									<img src="images/page1_img1.jpg" alt="">
@@ -356,15 +313,10 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=bunsiklist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=bunsiklist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (bunsiklist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=bunsiklist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(bunsiklist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
@@ -406,15 +358,10 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=fusionlist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=fusionlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (fusionlist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=fusionlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(fusionlist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
@@ -456,16 +403,10 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=fastfoodlist.get(0).getCateName()%></h2>
-					<a
-						href="Lunch_U_Map.jsp?cate=<%=fastfoodlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (fastfoodlist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=fastfoodlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(fastfoodlist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
@@ -507,15 +448,10 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=joonglist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=joonglist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (joonglist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=joonglist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(joonglist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%
@@ -557,16 +493,10 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=chickenlist.get(0).getCateName()%></h2>
-					<a
-						href="Lunch_U_Map.jsp?cate=<%=chickenlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
-					<%
-					if (chickenlist.size() > 4) {
-					%>
+					<a href="Lunch_U_Map.jsp?cate=<%=chickenlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<%if(chickenlist.size()>4){%>
 					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
+					<%} %>
 					<ul class="carousel1">
 
 						<%

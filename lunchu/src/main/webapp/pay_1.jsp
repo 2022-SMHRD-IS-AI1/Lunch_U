@@ -1,10 +1,10 @@
 <%@page import="model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
 #submit {
@@ -87,7 +87,7 @@ button {
 				var time = $("#time").text();
 				
 				console.log(restSeq, date, time);
-				location.href = "pay_2.jsp?card=" + card + "&restSeq=" + restSeq + "&time=" + time;
+				location.href = "pay_2.jsp?card=" + card + "&restSeq=" + restSeq + "&date=" + date + "&time=" + time;
 
 			})
 </script>
@@ -95,123 +95,126 @@ button {
 	<%
 	MemberDTO info = (MemberDTO) session.getAttribute("info");
 	response.setContentType("text/html; charset=utf-8");
-	int restSeq = Integer.valueOf(request.getParameter("rest_seq"));
+	int restSeq = Integer.valueOf(request.getParameter("restSeq"));
+	String date = request.getParameter("date");
 	String time = request.getParameter("select_time");
+	System.out.print(date + "," + time);
 	%>
 	<div id="restSeq" name="restSeq" style="display: none"><%=restSeq%></div>
+	<div id="date" name="date" style="display: none"><%=date%></div>
 	<div id="time" name="time" style="display: none"><%=time%></div>
 	<fieldset align="center" id="fieldset">
-		<legend id="legend">ê²°ì œìˆ˜ë‹¨</legend>
+		<legend id="legend">°áÁ¦¼ö´Ü</legend>
 		<table border="1" align="center">
 			<div id="section1" class="label">
-				<span align="center">ì²´í¬/ì‹ ìš©ì¹´ë“œ</span>
+				<span align="center">Ã¼Å©/½Å¿ëÄ«µå</span>
 			</div>
 			<div id="section1b" class="elements">
 				<ul align="center">
 					<li><a class="card" class="card" aria-selected="false"
 						role="tab"> <span><img src="images/bank_logo/shinhan.jfif"
-								alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br> <strong id="shinhan">ì‹ í•œì¹´ë“œ</strong>
+								alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br> <strong id="shinhan">½ÅÇÑÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/BC.jfif" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="BC">ë¹„ì”¨ì¹´ë“œ</strong>
+								src="images/bank_logo/BC.jfif" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="BC">ºñ¾¾Ä«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/139581_159954_1814.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span>
-							<br> <strong id="hyundai">í˜„ëŒ€ì¹´ë“œ</strong>
+								src="images/bank_logo/139581_159954_1814.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span>
+							<br> <strong id="hyundai">Çö´ëÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/images.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="samsung">ì‚¼ì„±ì¹´ë“œ</strong>
+								src="images/bank_logo/images.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="samsung">»ï¼ºÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
 								src="images/bank_logo/art_15939965303701_448557.png"
-								alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br> <strong id="gookmin">êµ­ë¯¼ì¹´ë“œ</strong>
+								alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br> <strong id="gookmin">±¹¹ÎÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/images (1).png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="hana">í•˜ë‚˜ì¹´ë“œ</strong>
+								src="images/bank_logo/images (1).png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="hana">ÇÏ³ªÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/woori.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="woori">ìš°ë¦¬ì¹´ë“œ</strong>
+								src="images/bank_logo/woori.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="woori">¿ì¸®Ä«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/citi.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="citi">ì”¨í‹°ì¹´ë“œ</strong>
+								src="images/bank_logo/citi.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="citi">¾¾Æ¼Ä«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/NH.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="NH">NHì¹´ë“œ</strong>
+								src="images/bank_logo/NH.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="NH">NHÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/why.jfif" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="why">ì™¸í™˜ì¹´ë“œ</strong>
+								src="images/bank_logo/why.jfif" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="why">¿ÜÈ¯Ä«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
-								src="images/bank_logo/kakao.jpg" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="kakao">ì¹´ì¹´ì˜¤ì¹´ë“œ</strong>
+								src="images/bank_logo/kakao.jpg" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="kakao">Ä«Ä«¿ÀÄ«µå</strong>
 					</a></li>
 					<li><a class="card" aria-selected="false" role="tab"> <span><img
 								src="images/bank_logo/shin
-								.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.."></span> <br>
-							<strong id="shin">ì‹ í˜‘ì¹´ë“œ</strong>
+								.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.."></span> <br>
+							<strong id="shin">½ÅÇùÄ«µå</strong>
 					</a></li>
 				</ul>
 		</table>
 		</div>
 		<!-- <div>
             <div id="section1" class="label">
-                <span>ê³„ì¢Œì´ì²´</span>
+                <span>°èÁÂÀÌÃ¼</span>
             </div>
             <div id="section1b" class="elements">
                 <ul>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/toss-symbol.jpg" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>í† ìŠ¤</strong>
+                            <span><img src="images/bank_logo/toss-symbol.jpg" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>Åä½º</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/NH.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>NHì€í–‰</strong>
+                            <span><img src="images/bank_logo/NH.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>NHÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/art_15939965303701_448557.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>êµ­ë¯¼ì€í–‰</strong>
+                            <span><img src="images/bank_logo/art_15939965303701_448557.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>±¹¹ÎÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ìš°ë¦¬.jpg" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ìš°ë¦¬ì€í–‰</strong>
+                            <span><img src="images/bank_logo/¿ì¸®.jpg" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>¿ì¸®ÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ì‹ í•œ.jfif" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ì‹ í•œì€í–‰</strong>
+                            <span><img src="images/bank_logo/½ÅÇÑ.jfif" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>½ÅÇÑÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/í•˜ë‚˜ì€í–‰.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>í•˜ë‚˜ì€í–‰</strong>
+                            <span><img src="images/bank_logo/ÇÏ³ªÀºÇà.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>ÇÏ³ªÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/IBK.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ê¸°ì—…ì€í–‰</strong>
+                            <span><img src="images/bank_logo/IBK.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>±â¾÷ÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ë‹¤ìš´ë¡œë“œ (2).png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ì”¨í‹°ì€í–‰</strong>
+                            <span><img src="images/bank_logo/´Ù¿î·Îµå (2).png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>¾¾Æ¼ÀºÇà</strong>
                         </a>
                     </li>
                 </ul>
@@ -219,56 +222,56 @@ button {
         </div>
         <div>
             <div id="section1" class="label">
-                <span>ë¬´í†µìž¥ìž…ê¸ˆ</span>
+                <span>¹«ÅëÀåÀÔ±Ý</span>
             </div>
             <ul>
                 <div id="section1b" class="elements">
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ìš°ë¦¬.jpg" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ìš°ë¦¬ì€í–‰</strong>
+                            <span><img src="images/bank_logo/¿ì¸®.jpg" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>¿ì¸®ÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ì‹ í•œ.jfif" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ì‹ í•œì€í–‰</strong>
+                            <span><img src="images/bank_logo/½ÅÇÑ.jfif" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>½ÅÇÑÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/í•˜ë‚˜ì€í–‰.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><fh5co-contactstrong>í•˜ë‚˜ì€í–‰</strong>
+                            <span><img src="images/bank_logo/ÇÏ³ªÀºÇà.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><fh5co-contactstrong>ÇÏ³ªÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/art_15939965303701_448557.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>êµ­ë¯¼ì€í–‰</strong>
+                            <span><img src="images/bank_logo/art_15939965303701_448557.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>±¹¹ÎÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ìš°ì²´êµ­.jfif" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ìš°ì²´êµ­ì€í–‰</strong>
+                            <span><img src="images/bank_logo/¿ìÃ¼±¹.jfif" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>¿ìÃ¼±¹ÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/IBK.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ê¸°ì—…ì€í–‰</strong>
+                            <span><img src="images/bank_logo/IBK.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>±â¾÷ÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/NH.png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ë†í˜‘ì€í–‰</strong>
+                            <span><img src="images/bank_logo/NH.png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>³óÇùÀºÇà</strong>
                         </a>
                     </li>
                     <li>
                         <a class="card" aria-selected="false" role="tab">
-                            <span><img src="images/bank_logo/ë‹¤ìš´ë¡œë“œ (2).png" alt="ì´ë¯¸ì§€ ì¤€ë¹„ì¤‘.." ></span>
-                            <br><strong>ì”¨í‹°ì€í–‰</strong>
+                            <span><img src="images/bank_logo/´Ù¿î·Îµå (2).png" alt="ÀÌ¹ÌÁö ÁØºñÁß.." ></span>
+                            <br><strong>¾¾Æ¼ÀºÇà</strong>
                         </a>
                     </li>
                 </div>
@@ -284,7 +287,7 @@ button {
 	<script type="text/javascript">
 		var elements = document.getElementsByTagName("div");
 
-		// ëª¨ë“  ì˜ì—­ ì ‘ê¸°
+		// ¸ðµç ¿µ¿ª Á¢±â
 		for (var i = 0; i < elements.length; i++) {
 			if (elements[i].className == "elements") {
 				elements[i].style.display = "none";
@@ -293,7 +296,7 @@ button {
 			}
 		}
 
-		// ìƒíƒœì— ë”°ë¼ ì ‘ê±°ë‚˜ íŽ¼ì¹˜ê¸°
+		// »óÅÂ¿¡ µû¶ó Á¢°Å³ª ÆîÄ¡±â
 		function switchDisplay() {
 
 			var parent = this.parentNode;

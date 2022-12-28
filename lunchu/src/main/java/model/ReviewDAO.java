@@ -115,7 +115,7 @@ public class ReviewDAO {
 	}
 	
 	public int reply(int rest_seq, String rv_content, double rv_rating, String mem_id) {
-
+		
 		try {
 			getConn();
 
@@ -141,6 +141,42 @@ public class ReviewDAO {
 		}
 		return cnt;
 	}
-	
+	public ArrayList<RestaurantDTO> rest_rating_cnt(int rest_seq) {
+//		double rest_rating = 0;
+//		int rest_rat_cnt = 0;
+		ArrayList<RestaurantDTO> result = new ArrayList<RestaurantDTO>();
+		try {
+			getConn();
 
+			String sql = "select rest_rating, rest_rat_cnt from t_restaurant where rest_seq = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, rest_seq);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				double rest_rating = rs.getDouble("rest_rating");
+				int rest_rat_cnt = rs.getInt("rest_rat_cnt");
+				
+				result.add(new RestaurantDTO(rest_rating, rest_rat_cnt));
+			}
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }
+

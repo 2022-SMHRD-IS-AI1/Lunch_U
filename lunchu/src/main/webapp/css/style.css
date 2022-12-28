@@ -319,7 +319,7 @@ header {
 	padding-top: 16px;
 	position: relative;
 	z-index: 999;
-	background: white;
+	background: #f2f0f0;
 	padding-bottom: 31px;
 	border-bottom: 1px solid #dddbdb;
 	box-shadow: 0 1px 5px #ccc;
@@ -349,7 +349,7 @@ header h1 a img {
 }
 
 .main {
-	background-color: white;
+	background: #f2f0f0;
 }
 
 /*Content*/
@@ -430,7 +430,6 @@ header h1 a img {
 	box-sizing: border-box;
 	margin-bottom: 19px;
 }
-
 .carousel2 {
 	height: 249px;
 }
@@ -487,7 +486,6 @@ header h1 a img {
 .prev:hover {
 	background-position: 0 0;
 }
-
 .prevv {
 	background: url(../images/prevnext.png) 0 bottom no-repeat;
 	display: block;
@@ -517,7 +515,6 @@ header h1 a img {
 .next:hover {
 	background-position: right 0;
 }
-
 .nextt {
 	background: url(../images/prevnext.png) right bottom no-repeat;
 	display: block;
@@ -626,7 +623,6 @@ header h1 a img {
 	margin-bottom: 6px;
 	padding-top: 10px;
 }
-
 .carousel2 .col1 {
 	line-height: 22.9px;
 	margin-bottom: 6px;
@@ -944,8 +940,4 @@ tbody {
 .container_12 .restaurant_detail {
 	padding-left: 10px;
 	width: 38%;
-}
-
-.container_12 {
-	background-color: white;
 }
