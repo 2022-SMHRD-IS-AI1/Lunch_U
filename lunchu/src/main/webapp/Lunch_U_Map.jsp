@@ -28,6 +28,7 @@
 	String cate = request.getParameter("cate");
 	MenuListDAO dao = new MenuListDAO();
 	ArrayList<MenuListDTO> restaurantList = dao.menuList(cate);
+	int j = 0;
 	
 %>
 <body>
@@ -72,15 +73,61 @@
     <div class="container_12">
         <div class="grid_3">
             <h2 class="head2">음식점 목록<span id="category" style="display: none"><%=cate%></span></h2>
-            <ul class="list l1">
-            <% for (int i = 0; i < restaurantList.size(); i++) {%>
-                <li><a href="restaurant_detail.jsp?rest_seq=<%=restaurantList.get(i).getRestSeq()%>"><%=restaurantList.get(i).getRestName()%></a></li>
-            <%} %>
+            <ul id = "getRestList" class="list l1">
             </ul>
         </div>
         <div id="map" style="width:700px;height:500px;"></div>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
+        <script>
+        var cate = $("#category").text();
+        $.ajax({
+        	url : "SelectRestList",
+			data : {
+				"category" : cate
+			},
+            success: function (jsonData) {
+                const data = JSON.parse(jsonData);
+                
+                let getRestList = restList(data);
+                getList(getRestList);
+            }
+        });
+        function restList(data) {
+            let list = [];
+            // for 반복문의 범위 를 ?
+            for (let i = 0; i < data.length; i++) {
+                list.push({
+                    "restSeq": data[i].restSeq,
+                    "restNm": data[i].restName,
+                    "restAddr": data[i].restAddr
+                });
+            }
+            return list;
+        }
+        function getList(getRestList) {
+		        const restul = document.getElementById("getRestList");
+		    	const geocoder = new kakao.maps.services.Geocoder();
+		        geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
+	            if (status === kakao.maps.services.Status.OK) {
+	                addrCoord = new kakao.maps.LatLng(result[0].y, result[0].x);
+	                for (let i = 0; i < getRestList.length; i++) {
+	                	geocoder.addressSearch(getRestList[i].restAddr, function (result, status) {
+	                		restCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	                		if (restCoords.La <= addrCoord.La+0.01 && restCoords.La >= addrCoord.La-0.01) {
+	                            if (restCoords.Ma <= addrCoord.Ma+0.015 && restCoords.Ma >= addrCoord.Ma-0.015) {
+				                	restul.innerHTML +='<li><a href=restaurant_detail.jsp?rest_seq='+
+				                	getRestList[i].restSeq+'>'+getRestList[i].restNm+'</a></li>'
+	                            }
+                            }
+	                		
+	                	});
+	                }
+	            }
+	        });
+			
+		}
+        </script>
 
         <script>
             
@@ -121,7 +168,7 @@
                     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                         mapOption = {
                             center: new kakao.maps.LatLng(35.1904480847838, 126.812984611101), // 지도의 중심좌표
-                            level: 5 // 지도의 확대 레벨
+                            level: 4 // 지도의 확대 레벨
                         };
                     let map = new kakao.maps.Map(mapContainer, mapOption);
                     let geocoder = new kakao.maps.services.Geocoder();
@@ -135,11 +182,11 @@
                         // 정상적으로 검색이 완료됐으면 
                         if (status === kakao.maps.services.Status.OK) {
 
-                            coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                            map.setCenter(coords);
+                            companyCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                            map.setCenter(companyCoords);
                             var marker = new kakao.maps.Marker({
                                 map: map,
-                                position: coords,
+                                position: companyCoords,
                                 image : markerImage
                             });
                         }
@@ -149,32 +196,39 @@
                         return function (result, status) {
                             if (status === kakao.maps.services.Status.OK) {
                                 let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                                // 결과값으로 받은 위치를 마커로 표시합니다
-                                let marker = new kakao.maps.Marker({
-                                    map: map,
-                                    position: coords
+                                geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
+                               	companyCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                               	
+	                               	if (coords.La <= companyCoords.La+0.01 && coords.La >= companyCoords.La-0.01) {
+										if (coords.Ma <= companyCoords.Ma+0.015 && coords.Ma >= companyCoords.Ma-0.015) {
+											
+			                                // 결과값으로 받은 위치를 마커로 표시합니다
+			                                let marker = new kakao.maps.Marker({
+			                                    map: map,
+			                                    position: coords
+			                                });
+			
+			                                // 마커 위에 커스텀오버레이를 표시합니다
+			                                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			                                let overlay = new kakao.maps.CustomOverlay({
+			                                    // content: content,
+			                                    // map: map,
+			                                    position: marker.getPosition()
+			                                });
+			
+			                                //overlay객체에 content 추가하는 함수
+			                                overlay.setContent(createOverlayContent(overlay, restNm, restAdd, restCate));
+			
+			                                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			                                kakao.maps.event.addListener(marker, 'click', mouseClickEventHandler(map, overlay));
+			
+			                                overlayList.push(overlay);
+			
+			                                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			                                // map.setCenter(coords);
+										}
+									}
                                 });
-
-                                // 마커 위에 커스텀오버레이를 표시합니다
-                                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-                                let overlay = new kakao.maps.CustomOverlay({
-                                    // content: content,
-                                    // map: map,
-                                    position: marker.getPosition()
-                                });
-
-                                //overlay객체에 content 추가하는 함수
-                                overlay.setContent(createOverlayContent(overlay, restNm, restAdd, restCate));
-
-                                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-                                kakao.maps.event.addListener(marker, 'click', mouseClickEventHandler(map, overlay));
-
-                                overlayList.push(overlay);
-
-                                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                // map.setCenter(coords);
-
                             }
                         }
                     }

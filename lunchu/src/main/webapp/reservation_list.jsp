@@ -79,7 +79,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
-										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="reservation_list.jsp"> 내 예약</a></li>
 										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
 										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
@@ -116,13 +116,13 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 										<td class="reservation_col"></td>
 										<td class="reservation_col">번호</td>
 										<td class="reservation_col">음식점명</td>
-										<td class="reservation_col">평점</td>
 										
 									</tr>
 								</thead>
 
 								<tbody>
 									<%
+									ReservationDAO reservdao = new ReservationDAO();
 									RestaurantDAO Restdao = new RestaurantDAO();
 									
 									for (int i = 0; i < re_dto.size(); i++) {
@@ -131,9 +131,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 										<td><input type="checkbox"></td>
 										<td class="reservation_detail"><%=i + 1%></td>
 										<td><a href=""><%= Restdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
-										<tdReservationDTO.get(i).restName(i)(i)%>
-										</td>
-										<tdReservationDTO.get(i).reservDate(i)(i)%>
+										<td> <%= re_dto.get(i).getReservDate() %>
 										</td>
 									</tr>
 									<%

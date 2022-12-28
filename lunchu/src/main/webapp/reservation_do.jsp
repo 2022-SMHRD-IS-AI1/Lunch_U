@@ -1,3 +1,4 @@
+<%@page import="model.ReservationDAO"%>
 <%@page import="model.ReservationDTO"%>
 <%@page import="model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -28,24 +29,25 @@
 <script src="js/sForm.js"></script>
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="js/tms-0.4.1.js"></script>
-<script>
+<script type="text/javascript">
 	const btn_btn_primary = document.getElementsByClassName("btn btn-primary");
 
-	function doPopupopen() {
+	function doPopupopen(rest_seq) {
 
-		window.open("", 'popup', 'width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no');
+		var rest_seq = rest_seq;
+		window.open("", "popup",
+						"width=#fieldset, height=#fieldset, scrollbars= 0, toolbar=0, menubar=no");
 
 		var frmData = document.frmData;
 		frmData.target = "popup";
-		frmData.action = "pay_1.jsp";
+		frmData.action = "pay_1.jsp?rest_seq="+rest_seq;
 		frmData.submit();
 	}
-
-	btn_btn_primary.addEventListener("click", doPopupopen);
 </script>
 </head>
 
 <body>
+
 	<div class="main">
 		<header>
 			<div class="container_12">
@@ -64,7 +66,7 @@
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
-										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="reservation_list.jsp"> 내 예약</a></li>
 										<li><a href="review_list.jsp"> 내 리뷰 </a></li>
 										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
@@ -83,16 +85,22 @@
 			</div>
 		</header>
 		<div class="content page1">
+			<%
+			int rest_seq = Integer.valueOf(request.getParameter("rest_seq"));
+			%>
+
 			<div class="container_12">
 				<div class="grid_12">
 					<div id="fh5co-contact" data-section="reservation">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-6 to-animate-2">
-									<img src="images/foodfood/soba.jfif" alt="이미지 준비중..">
-									<img src="images/foodfood/bulgogi.jfif" alt="이미지 준비중..">
-									<img width="300px" height="300px" src="images/foodfood/beakban.jfif" alt="이미지 준비중.."> 
-									<img width="200px" height="300px" src="images/foodfood/sheepgobchang.jpg" alt="이미지 준비중..">
+									<img src="images/foodfood/soba.jfif" alt="이미지 준비중.."> <img
+										src="images/foodfood/bulgogi.jfif" alt="이미지 준비중.."> <img
+										width="300px" height="300px"
+										src="images/foodfood/beakban.jfif" alt="이미지 준비중.."> <img
+										width="200px" height="300px"
+										src="images/foodfood/sheepgobchang.jpg" alt="이미지 준비중..">
 								</div>
 								<div class="col-md-6 to-animate-2">
 									<h3>Reservation Form</h3>
@@ -100,34 +108,35 @@
 									<div class="form-group">
 										<label for="id" class="sr-only">id</label>
 										<p id="id">
-											<%-- <%=info.getMemId()%> --%>
+											예약자 ID :
+											<%=info.getMemId()%>
 										</p>
 									</div>
 									<form name="frmData" id="frmData" method="post">
-										<div class="form-group">
-											<label for="restName" class="sr-only">가게이름</label>
-											<p id="restName">
-												<%-- <%=info.getrestSeq()%> --%>
-											</p>
-											<p style="display: none" id="restSeq"><%-- <%=info.getrestSeq()%> --%></p>
-										</div>
 										<div class="form-group">
 											<label for="tel" class="sr-only">연락처 ( - 를 빼고 입력해주세요.
 												)</label> <input name="tel" id="tel" class="form-control"
 												placeholder="연락처 ( - 를 빼고 입력해주세요. )" type="text">
 										</div>
+
+
+
 										<div class="form-group">
-											<label for="date" class="sr-only">Date</label> <input
-												name="date" id="date" class="form-control"
-												placeholder="date" type="date">
-										</div>
-										<div class="form-group">
+											<div>※ 예약은 당일 예약만 가능합니다. ※</div>
 											<label for="occation" class="sr-only">Occation</label> <select
 												class="form-control" id="select_time" name="select_time">
-												<option>11:30</option>
-												<option>12:00</option>
-												<option>12:30</option>
-												<option>13:00</option>
+												<%
+												System.out.println(rest_seq);
+												ReservationDAO Rdao = new ReservationDAO();
+												String[] timelist = { "11:30", "12:00", "12:30", "13:00" };
+												for (String i : timelist) {
+												%>
+												<option>
+													<%=i%>
+												</option>
+												<%
+												}
+												%>
 											</select>
 										</div>
 										<div class="form-group">
@@ -137,7 +146,7 @@
 										</div>
 										<div class="form-group">
 											<input class="btn btn-primary" value="예약하기" type="submit"
-												onclick="doPopupopen()">
+												onclick="doPopupopen(<%=rest_seq%>)">
 										</div>
 									</form>
 
