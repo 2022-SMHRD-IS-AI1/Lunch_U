@@ -50,8 +50,6 @@ CREATE TABLE t_restaurant
     cate_name     VARCHAR2(20)    NOT NULL, 
     rest_tel     VARCHAR2(20)     NOT NULL,
     rest_rating     NUMBER(18, 2)     NOT NULL,
-    rest_lat     NUMBER(18, 2)     NOT NULL, 
-    rest_lon     NUMBER(18, 2)     NOT NULL, 
      PRIMARY KEY (rest_seq)
 );
 

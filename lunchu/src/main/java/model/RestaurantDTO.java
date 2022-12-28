@@ -16,6 +16,7 @@ public class RestaurantDTO {
 
 	// 음식점 연락처
 	private String restTel;
+	private double rest_rating; 
 
 	public RestaurantDTO(int restSeq, String restName, String restAddr, String cateName, String restTel) {
 			super();
@@ -26,8 +27,25 @@ public class RestaurantDTO {
 			this.restTel = restTel;
 		}
 
+	public RestaurantDTO(int restSeq, String restName, String restAddr, String cateName, String restTel,
+			double rest_rating) {
+		super();
+		this.restSeq = restSeq;
+		this.restName = restName;
+		this.restAddr = restAddr;
+		this.cateName = cateName;
+		this.restTel = restTel;
+		this.rest_rating = rest_rating;
+	}
+
+
 	public int getRestSeq() {
 		return restSeq;
+	}
+	
+
+	public double getRest_rating() {
+		return rest_rating;
 	}
 
 	public RestaurantDTO() {
@@ -70,5 +88,11 @@ public class RestaurantDTO {
 	public void setRestTel(String restTel) {
 		this.restTel = restTel;
 	}
+
+	public void setRest_rating(double rest_rating) {
+		this.rest_rating = rest_rating;
+	}
+	
+	
 
 }

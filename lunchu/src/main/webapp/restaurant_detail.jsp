@@ -1,3 +1,4 @@
+<%@page import="model.ReservationDAO"%>
 <%@page import="model.RestaurantDTO"%>
 <%@page import="model.RestaurantDAO"%>
 <%@page import="model.ReviewDTO"%>
@@ -94,8 +95,6 @@ tbody .date, tbody .writer, tbody .review {
 		window.open(url, name, option);
 	}
 
-	
-	
 </script>
 <body>
 	<div class="main">
@@ -136,9 +135,17 @@ tbody .date, tbody .writer, tbody .review {
 		</header>
 		<%
 		int rest_seq = Integer.parseInt(request.getParameter("rest_seq"));
-
+		System.out.println(rest_seq);
 		RestaurantDAO dao = new RestaurantDAO();
 		RestaurantDTO restaurant = dao.getRestaurant(rest_seq);
+		
+		ReviewDAO Rdao = new ReviewDAO();
+		ArrayList<ReviewDTO> review = Rdao.restReview(restaurant.getRestSeq());
+		
+		double rating = restaurant.getRest_rating()/review.size();
+		
+		String restRating = String.format("%.1f", rating);
+		
 		%>
 		<div class="content">
 			<div class="container_12">
@@ -155,7 +162,9 @@ tbody .date, tbody .writer, tbody .review {
 							</tr>
 							<tr>
 								<td style="height: 20px"><%=restaurant.getCateName()%></td>
-								<td style="text-align: right;">8명의 평가 4.8</td>
+								<%if(review.size()!=0){ %>
+								<td style="text-align: right;"><%=review.size() %>명의 평가 <%=restRating %></td>
+								<%} %>
 							</tr>
 
 						</table>
@@ -170,7 +179,7 @@ tbody .date, tbody .writer, tbody .review {
 							<%
 							if (info != null) {
 							%>
-							<a href="reservation_do.jsp?rest_seq"+<%=rest_seq%>><button
+							<a href="reservation_do.jsp?rest_seq=<%=rest_seq%>"><button
 									id="reservation">예약하기</button></a>
 
 							<button id="add2group" onclick="add2group()">그룹에 추가</button>
@@ -210,10 +219,6 @@ tbody .date, tbody .writer, tbody .review {
 							</thead>
 							<tbody>
 								<%
-								ReviewDAO Rdao = new ReviewDAO();
-
-								ArrayList<ReviewDTO> review = Rdao.restReview(restaurant.getRestSeq());
-
 								for (int i = 0; i < review.size(); i++) {
 								%>
 								<tr>
@@ -249,8 +254,7 @@ tbody .date, tbody .writer, tbody .review {
 					var geocoder = new kakao.maps.services.Geocoder();
 					
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('<%=restaurant.getRestAddr()%>
-						',
+					geocoder.addressSearch('<%=restaurant.getRestAddr()%>',
 										function(result, status) {
 											// 정상적으로 검색이 완료됐으면 
 											if (status === kakao.maps.services.Status.OK) {

@@ -135,11 +135,11 @@
                         // 정상적으로 검색이 완료됐으면 
                         if (status === kakao.maps.services.Status.OK) {
 
-                            coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                            map.setCenter(coords);
+                            companyCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                            map.setCenter(companyCoords);
                             var marker = new kakao.maps.Marker({
                                 map: map,
-                                position: coords,
+                                position: companyCoords,
                                 image : markerImage
                             });
                         }
@@ -149,32 +149,39 @@
                         return function (result, status) {
                             if (status === kakao.maps.services.Status.OK) {
                                 let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                                // 결과값으로 받은 위치를 마커로 표시합니다
-                                let marker = new kakao.maps.Marker({
-                                    map: map,
-                                    position: coords
+                                geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
+                               	companyCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                               	
+	                               	if (coords.La <= companyCoords.La+0.01 && coords.La >= companyCoords.La-0.01) {
+										if (coords.Ma <= companyCoords.Ma+0.015 && coords.Ma >= companyCoords.Ma-0.015) {
+											
+			                                // 결과값으로 받은 위치를 마커로 표시합니다
+			                                let marker = new kakao.maps.Marker({
+			                                    map: map,
+			                                    position: coords
+			                                });
+			
+			                                // 마커 위에 커스텀오버레이를 표시합니다
+			                                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			                                let overlay = new kakao.maps.CustomOverlay({
+			                                    // content: content,
+			                                    // map: map,
+			                                    position: marker.getPosition()
+			                                });
+			
+			                                //overlay객체에 content 추가하는 함수
+			                                overlay.setContent(createOverlayContent(overlay, restNm, restAdd, restCate));
+			
+			                                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			                                kakao.maps.event.addListener(marker, 'click', mouseClickEventHandler(map, overlay));
+			
+			                                overlayList.push(overlay);
+			
+			                                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			                                // map.setCenter(coords);
+										}
+									}
                                 });
-
-                                // 마커 위에 커스텀오버레이를 표시합니다
-                                // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-                                let overlay = new kakao.maps.CustomOverlay({
-                                    // content: content,
-                                    // map: map,
-                                    position: marker.getPosition()
-                                });
-
-                                //overlay객체에 content 추가하는 함수
-                                overlay.setContent(createOverlayContent(overlay, restNm, restAdd, restCate));
-
-                                // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-                                kakao.maps.event.addListener(marker, 'click', mouseClickEventHandler(map, overlay));
-
-                                overlayList.push(overlay);
-
-                                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                // map.setCenter(coords);
-
                             }
                         }
                     }
