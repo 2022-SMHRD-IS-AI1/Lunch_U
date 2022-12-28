@@ -11,15 +11,22 @@
 
 .visual{
     position: relative;
+    text-align:center;
     width: 940px;
+    margin-left: 10px;
 }
 .novisual{
     width: 940px;
 }
+.categorydiv{
+	text-align: center;
+	margin: 10px;
+	width: 200px;
+}
 .visual button{
     position: absolute;
     z-index: 10;
-    top: 50%;
+    top: 45%;
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
@@ -34,25 +41,29 @@
 
 }
 .visual button.slick-prev{
-    left:-5px;
+    left:-10px;
     font-size: 0;
     color: transparent;
 }
 .visual button.slick-prev:before{
     content:"\e93d" ;
-    font-size: 15px;
+    font-size: 10px;
+    font-weight : bold;
     font-family: 'xeicon';
+    cursor : pointer
 }
 
 .visual button.slick-next{
-    right:0;
+    right:-10px;
     font-size: 0;
     color: transparent;
 }
 .visual button.slick-next:before{
 	content:"\e940" ;
+	font-size: 10px;
+    font-weight : bold;
 	font-family: 'xeicon';
-	font-size: 15px;
+	cursor : pointer
 }
 
 .wrap {
