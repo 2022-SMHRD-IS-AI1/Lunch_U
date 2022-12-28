@@ -25,6 +25,7 @@
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/sForm.js"></script>
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script src="js/youtube.js"></script>
 <script src="js/tms-0.4.1.js"></script>
 <script>
 	$(window).load(function() {
@@ -99,6 +100,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 %>
 
 <body>
+	
 	<div class="main">
 		<header>
 			<div class="container_12">
@@ -137,17 +139,16 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 				</div>
 			</div>
 		</header>
-		<div class="slider-relative">
-			<div class="slider-block">
-				<div class="slider">
-					<ul class="items">
-						<li><img src="images/slide.jpg" alt=""></li>
-						<li><img src="images/slide1.jpg" alt=""></li>
-						<li class="mb0"><img src="images/slide2.jpg" alt=""></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<!-- YOUTUBE VIDEO -->
+		  <section class="youtube">
+		    <div class="youtube__area">
+		      <div id="player"></div>
+		    </div>
+		    <div class="youtube__cover"></div>
+		    <div class="inner">
+		    </div>
+		  </section>
+		
 
 		<div class="content page1">
 			<%
