@@ -158,9 +158,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 				<div class="grid_5">
 					<div class="grid_12">
 						<div class="car_wrap">
-							<h2><%=hanlist.get(0).getCateName()%></h2>
-							<a href="Lunch_U_Map.jsp?cate=<%=hanlist.get(0).getCateName()%>"><img
-								src="./images/map_marker.png"></a>
+							<h2><%=hanlist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=hanlist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
+
 							<%
 							if (hanlist.size() > 4) {
 							%>
@@ -207,9 +207,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=yanglist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=yanglist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=yanglist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=yanglist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+
 					<%
 					if (yanglist.size() > 4) {
 					%>
@@ -257,9 +257,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=illist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=illist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=illist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=illist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (illist.size() > 4) {
 					%>
@@ -307,8 +307,8 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=buffetlist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
+					<h2><%=buffetlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (buffetlist.size() > 4) {
 					%>
@@ -356,9 +356,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=bunsiklist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=bunsiklist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=bunsiklist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=bunsiklist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (bunsiklist.size() > 4) {
 					%>
@@ -406,9 +406,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=fusionlist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=fusionlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=fusionlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=fusionlist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (fusionlist.size() > 4) {
 					%>
@@ -456,10 +456,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=fastfoodlist.get(0).getCateName()%></h2>
-					<a
-						href="Lunch_U_Map.jsp?cate=<%=fastfoodlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=fastfoodlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=fastfoodlist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (fastfoodlist.size() > 4) {
 					%>
@@ -507,9 +506,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=joonglist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=joonglist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=joonglist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=joonglist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (joonglist.size() > 4) {
 					%>
@@ -557,10 +556,9 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		<div class="grid_5">
 			<div class="grid_12">
 				<div class="car_wrap">
-					<h2><%=chickenlist.get(0).getCateName()%></h2>
-					<a
-						href="Lunch_U_Map.jsp?cate=<%=chickenlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<h2><%=chickenlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=chickenlist.get(0).getCateName()%>"><img
+						src="./images/map_location.png"></a></h2>
+					
 					<%
 					if (chickenlist.size() > 4) {
 					%>
