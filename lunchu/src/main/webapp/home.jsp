@@ -19,6 +19,8 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/slider.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -27,6 +29,7 @@
 <script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script src="js/youtube.js"></script>
 <script src="js/tms-0.4.1.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
 <script>
 	$(window).load(function() {
 		$('.slider')._TMS({
@@ -149,11 +152,8 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		    </div>
 		  </section>
 		
-
+		<%if (hanlist.size() != 0) {%>
 		<div class="content page1">
-			<%
-			if (hanlist.size() != 0) {
-			%>
 			<div class="container_12">
 				<div class="grid_5">
 					<div class="grid_12">
@@ -161,446 +161,319 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<h2><%=hanlist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=hanlist.get(0).getCateName()%>"><img
 								src="./images/map_location.png"></a></h2>
 
-							<%
-							if (hanlist.size() > 4) {
-							%>
-							<a href="#" class="prev"></a><a href="#" class="next"></a>
-							<%
-							}
-							%>
-							<ul class="carousel1">
-
-								<%
-								for (int i = 0; i < hanlist.size(); i++) {
-								%>
-								<a href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
-									<li>
-										<div>
-											<img src="images/page1_img1.jpg" alt="">
-											<div class="col1 upp">
-												<strong> <%=hanlist.get(i).getRestName()%></strong>
-								</a>
+							<%if (hanlist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < hanlist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
+											<strong> <%=hanlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < hanlist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
+											<strong> <%=hanlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							<%}%>
 						</div>
-
 					</div>
-					</li> </a>
-
-
-					<%
-					}
-					%>
-
-					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
+		<%}if (yanglist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=yanglist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=yanglist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
 
-	</div>
-	<%
-	}
-	if (yanglist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=yanglist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=yanglist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-
-					<%
-					if (yanglist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < yanglist.size(); i++) {
-						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=yanglist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=yanglist.get(i).getRestName()%></strong></a>
+							<%if (yanglist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < yanglist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=yanglist.get(i).getRestSeq()%>">
+											<strong> <%=yanglist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
-
-	</div>
-	<%
-	}
-	if (illist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=illist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=illist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (illist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < illist.size(); i++) {
-						%>
-						<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=illist.get(i).getRestName()%></strong></a>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < yanglist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=yanglist.get(i).getRestSeq()%>">
+											<strong> <%=yanglist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
+		<%}if (illist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=illist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=illist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
 
-	</div>
-
-	<%
-	}
-	if (buffetlist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=buffetlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (buffetlist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < buffetlist.size(); i++) {
-						%>
-						<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=buffetlist.get(i).getRestName()%></strong></a>
+							<%if (illist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < illist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
+											<strong> <%=illist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
-
-
-	</div>
-	<%
-	}
-	if (bunsiklist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=bunsiklist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=bunsiklist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (bunsiklist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < bunsiklist.size(); i++) {
-						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=bunsiklist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=bunsiklist.get(i).getRestName()%></strong></a>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < illist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
+											<strong> <%=illist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
-	</div>
+		<%}if (buffetlist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=buffetlist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
 
-	<%
-	}
-	if (fusionlist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=fusionlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=fusionlist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (fusionlist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < fusionlist.size(); i++) {
-						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=fusionlist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=fusionlist.get(i).getRestName()%></strong></a>
+							<%if (buffetlist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < buffetlist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
+											<strong> <%=buffetlist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
-
-	</div>
-	<%
-	}
-	if (fastfoodlist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=fastfoodlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=fastfoodlist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (fastfoodlist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < fastfoodlist.size(); i++) {
-						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=fastfoodlist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=fastfoodlist.get(i).getRestName()%></strong></a>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < buffetlist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
+											<strong> <%=buffetlist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
+		<%}if (bunsiklist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=bunsiklist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=bunsiklist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
 
-	</div>
-	<%
-	}
-	if (joonglist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=joonglist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=joonglist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (joonglist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < joonglist.size(); i++) {
-						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=joonglist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=joonglist.get(i).getRestName()%></strong></a>
+							<%if (bunsiklist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < bunsiklist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=bunsiklist.get(i).getRestSeq()%>">
+											<strong> <%=bunsiklist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-
-
-						<%
-						}
-						%>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
-		</div>
-
-	</div>
-	<%
-	}
-	if (chickenlist.size() != 0) {
-	%>
-	<div class="container_12">
-		<div class="grid_5">
-			<div class="grid_12">
-				<div class="car_wrap">
-					<h2><%=chickenlist.get(0).getCateName()%> <a href="Lunch_U_Map.jsp?cate=<%=chickenlist.get(0).getCateName()%>"><img
-						src="./images/map_location.png"></a></h2>
-					
-					<%
-					if (chickenlist.size() > 4) {
-					%>
-					<a href="#" class="prev"></a><a href="#" class="next"></a>
-					<%
-					}
-					%>
-					<ul class="carousel1">
-
-						<%
-						for (int i = 0; i < chickenlist.size(); i++) {
-						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=chickenlist.get(i).getRestSeq()%>">
-							<li>
-								<div>
-									<img src="images/page1_img1.jpg" alt="">
-									<div class="col1 upp">
-										<a href="restaurant_detail.jsp"><strong> <%=chickenlist.get(i).getRestName()%></strong></a>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < bunsiklist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=bunsiklist.get(i).getRestSeq()%>">
+											<strong> <%=bunsiklist.get(i).getRestName()%></strong>
+										</a>
 									</div>
-
-								</div>
-						</li>
-						</a>
-						<%
-						}
-						%>
-
-
-					</ul>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="grid_12">
-			<div class="hor_separator"></div>
+		<%}if (fusionlist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=fusionlist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=fusionlist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
+
+							<%if (fusionlist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < fusionlist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=fusionlist.get(i).getRestSeq()%>">
+											<strong> <%=fusionlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < fusionlist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=fusionlist.get(i).getRestSeq()%>">
+											<strong> <%=fusionlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		<%}if (fastfoodlist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=fastfoodlist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=fastfoodlist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
+
+							<%if (fastfoodlist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < fastfoodlist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=fastfoodlist.get(i).getRestSeq()%>">
+											<strong> <%=fastfoodlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < fastfoodlist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=fastfoodlist.get(i).getRestSeq()%>">
+											<strong> <%=fastfoodlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%}if (joonglist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=joonglist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=joonglist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
+
+							<%if (joonglist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < joonglist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=joonglist.get(i).getRestSeq()%>">
+											<strong> <%=joonglist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < joonglist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=joonglist.get(i).getRestSeq()%>">
+											<strong> <%=joonglist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%}if (chickenlist.size() != 0) {%>
+		<div class="content page1">
+			<div class="container_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="car_wrap">
+							<h2><%=chickenlist.get(0).getCateName()%> 	<a href="Lunch_U_Map.jsp?cate=<%=chickenlist.get(0).getCateName()%>"><img
+								src="./images/map_location.png"></a></h2>
+
+							<%if (chickenlist.size() > 4) {%>
+							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
+								<%for (int i = 0; i < chickenlist.size(); i++) {%>
+									<div style="text-align: center">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=chickenlist.get(i).getRestSeq()%>">
+											<strong> <%=chickenlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							</section>
+							<%}else{%>
+								<%for (int i = 0; i < chickenlist.size(); i++) {%>
+									<div style="text-align: center; width:240px;float:left">
+										<img style="margin-left: 15px;" src="images/page1_img1.jpg" alt="">
+										<a href="restaurant_detail.jsp?rest_seq=<%=chickenlist.get(i).getRestSeq()%>">
+											<strong> <%=chickenlist.get(i).getRestName()%></strong>
+										</a>
+									</div>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%} %>
+		
 	</div>
-	<%
-	}
-	%>
-	</div>
-	</div>
+
+	<script type="text/javascript">
+        $('.visual').slick();
+    </script>
 </body>
 
 </html>
