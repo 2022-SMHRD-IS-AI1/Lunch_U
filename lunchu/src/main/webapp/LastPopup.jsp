@@ -137,8 +137,30 @@ textarea {
 				"rv_content" : rv_content
 			},
 			success : function(result) {
+				var input = result;
 				alert(result);
 				self.close();
+				
+				function (input) {
+					var input = input
+					$.ajax({
+						type : 'POST',
+						url : 'UpdateRating',
+						data : {
+							"rest_seq" : rest_seq,
+							"rest_rating" : rv_rating,		
+							"rest_rat_cnt" : rest_rat_cnt+1
+							
+						},
+						success : function(result) {
+							alert(result);
+						},
+						error : fucction(e){
+							alert("error");
+						}
+				}
+			}
+				opener.window.location.reload("restaurant_detail.jsp");
 			},
 			error : function(e) {
 				console.log(e);
@@ -194,7 +216,8 @@ textarea {
 			</div>
 		</div>
 		<div class="btn_wrap">
-			<a class="cancel_btn">취소</a> <a class="enroll_btn">등록</a>
+			<a class="cancel_btn">취소</a> 
+			<a class="enroll_btn">등록</a>
 		</div>
 	</div>
 
