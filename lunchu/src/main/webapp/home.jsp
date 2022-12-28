@@ -114,7 +114,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%
 								if (info != null) {
 								%>
-								<li><a href="LogoutService">로그아웃</a></li>
+								<li><a href="LogoutService">로그아웃aaaaaa</a></li>
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
