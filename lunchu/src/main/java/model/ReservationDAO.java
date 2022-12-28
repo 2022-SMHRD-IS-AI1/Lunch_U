@@ -81,7 +81,7 @@ public class ReservationDAO {
 		try {
 			getconn();
 
-			String sql = "insert into t_reservation values(t_reservation_seq.nextval, ?, ?, current_date, ?)";
+			String sql = "insert into t_reservation values(t_reservation_seq.nextval, ?, ?, to_date(current_date, 'YYYY-MM-DD'), ?)";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, restSeq);
@@ -97,27 +97,32 @@ public class ReservationDAO {
 		}
 		return cnt;
 	}
-
-	public ResultSet check(int rest_seq, String reserv_time) {
-		boolean Booked = false;
+	ArrayList list = new ArrayList<>();
+	
+	public ArrayList<String> showReserveTime(int rest_seq) {
 		try {
 			getconn();
 			
-			String sql = "select * from t_reservation where rest_seq= ? and reserv_time = ? and reserv_date = current_date";
+			String sql = "select reserv_time from t_reservation where rest_seq= ? and to_date(reserv_date, 'YYYY-MM-DD') >= (select to_date(current_date, 'YYYY-MM-DD') from dual)";
 			
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setInt(1, rest_seq);
-			psmt.setString(2, reserv_time);
 			
 			rs = psmt.executeQuery();
 			
+			while(rs.next()) {
+				String time = rs.getString(1);
+				
+				list.add(time);
+			}
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			close();
 		}
-		return rs;
+		return list;
 	}
 }
 
