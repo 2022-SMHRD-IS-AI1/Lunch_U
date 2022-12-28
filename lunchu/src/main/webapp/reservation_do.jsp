@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.ReservationDAO"%>
 <%@page import="model.ReservationDTO"%>
 <%@page import="model.MemberDTO"%>
@@ -95,12 +96,10 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-md-6 to-animate-2">
-									<img src="images/foodfood/soba.jfif" alt="이미지 준비중.."> <img
-										src="images/foodfood/bulgogi.jfif" alt="이미지 준비중.."> <img
-										width="300px" height="300px"
-										src="images/foodfood/beakban.jfif" alt="이미지 준비중.."> <img
-										width="200px" height="300px"
-										src="images/foodfood/sheepgobchang.jpg" alt="이미지 준비중..">
+									<img src="images/foodfood/soba.jfif" alt="이미지 준비중.."> 
+									<img src="images/foodfood/bulgogi.jfif" alt="이미지 준비중.."> 
+									<img width="300px" height="300px" src="images/foodfood/beakban.jfif" alt="이미지 준비중.."> 
+									<img width="200px" height="300px" src="images/foodfood/sheepgobchang.jpg" alt="이미지 준비중..">
 								</div>
 								<div class="col-md-6 to-animate-2">
 									<h3>Reservation Form</h3>
@@ -126,17 +125,30 @@
 											<label for="occation" class="sr-only">Occation</label> <select
 												class="form-control" id="select_time" name="select_time">
 												<%
+												ArrayList<String> result = new ArrayList <>();
 												System.out.println(rest_seq);
-												ReservationDAO Rdao = new ReservationDAO();
+												ReservationDAO dao = new ReservationDAO();
 												String[] timelist = { "11:30", "12:00", "12:30", "13:00" };
-												for (String i : timelist) {
-												%>
-												<option>
-													<%=i%>
-												</option>
-												<%
-												}
-												%>
+													ArrayList<String> list = new ArrayList<>();
+													if(info != null){
+														list = dao.showReserveTime(rest_seq);
+													}
+													for(int i = 0; i<list.size();i++){
+														for(int j = 0; j<timelist.length; j++){
+															if(! list.get(i).equals(timelist[j])){
+																if(! result.contains(timelist[j])){
+																	System.out.println(timelist[j]);
+																	result.add(timelist[j]);
+																}
+															}
+																
+														}
+													}
+													for(String s:result ){%>
+														<option>
+															<%=s%>
+														</option>
+													<%} %>
 											</select>
 										</div>
 										<div class="form-group">

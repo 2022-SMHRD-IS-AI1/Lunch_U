@@ -276,8 +276,11 @@ INCREMENT BY 1;
 
 select * from t_reservation
 
-insert into t_reservation values(t_reservation_SEQ.nextval, 1, "11:30", current_date, "a");
+select reserv_date
+from t_reservation;
+select to_date(current_date, 'YYYY-MM-DD') from dual;
+select reserv_time from t_reservation where rest_seq=1 and to_date(reserv_date, 'YYYY-MM-DD') >= (select to_date(current_date, 'YYYY-MM-DD') from dual);
 
-select reserv_time
-from t_reservation
-where rest_seq = 1 and reserv_date = current_date;
+select current_date from dual;
+
+select to_date(current_date, 'YYYY-MM-DD') from dual;
