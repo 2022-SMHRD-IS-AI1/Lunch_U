@@ -274,4 +274,10 @@ INCREMENT BY 1;
 
 -- DROP SEQUENCE t_review_deleted_SEQ; 
 
+select * from t_reservation
 
+insert into t_reservation values(t_reservation_SEQ.nextval, 1, "11:30", current_date, "a");
+
+select reserv_time
+from t_reservation
+where rest_seq = 1 and reserv_date = current_date;
