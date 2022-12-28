@@ -172,8 +172,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%
 								for (int i = 0; i < hanlist.size(); i++) {
 								%>
-								<a
-									href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
+								<a href="restaurant_detail.jsp?rest_seq=<%=hanlist.get(i).getRestSeq()%>">
 									<li>
 										<div>
 											<img src="images/page1_img1.jpg" alt="">
@@ -272,8 +271,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 						<%
 						for (int i = 0; i < illist.size(); i++) {
 						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
+						<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
 							<li>
 								<div>
 									<img src="images/page1_img1.jpg" alt="">
@@ -309,8 +307,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 			<div class="grid_12">
 				<div class="car_wrap">
 					<h2><%=buffetlist.get(0).getCateName()%></h2>
-					<a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img
-						src="./images/map_marker.png"></a>
+					<a href="Lunch_U_Map.jsp?cate=<%=buffetlist.get(0).getCateName()%>"><img src="./images/map_marker.png"></a>
 					<%
 					if (buffetlist.size() > 4) {
 					%>
@@ -323,8 +320,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 						<%
 						for (int i = 0; i < buffetlist.size(); i++) {
 						%>
-						<a
-							href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
+						<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
 							<li>
 								<div>
 									<img src="images/page1_img1.jpg" alt="">
