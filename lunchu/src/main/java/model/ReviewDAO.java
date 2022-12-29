@@ -115,7 +115,7 @@ public class ReviewDAO {
 	}
 	
 	public int reply(int rest_seq, String rv_content, double rv_rating, String mem_id) {
-
+		
 		try {
 			getConn();
 
@@ -142,5 +142,5 @@ public class ReviewDAO {
 		return cnt;
 	}
 	
-
 }
+

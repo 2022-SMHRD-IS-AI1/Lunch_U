@@ -9,6 +9,63 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 
+.visual{
+    position: relative;
+    text-align:center;
+    width: 940px;
+    margin-left: 10px;
+}
+.novisual{
+    width: 940px;
+}
+.categorydiv{
+	text-align: center;
+	margin: 10px;
+	width: 200px;
+}
+.visual button{
+    position: absolute;
+    z-index: 10;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: grey;
+    border: none;
+}
+.visual button:before{
+    font-family: 'xeicon';
+    color: #fff;
+    font-size: 20px;
+
+}
+.visual button.slick-prev{
+    left:-10px;
+    font-size: 0;
+    color: transparent;
+}
+.visual button.slick-prev:before{
+    content:"\e93d" ;
+    font-size: 10px;
+    font-weight : bold;
+    font-family: 'xeicon';
+    cursor : pointer
+}
+
+.visual button.slick-next{
+    right:-10px;
+    font-size: 0;
+    color: transparent;
+}
+.visual button.slick-next:before{
+	content:"\e940" ;
+	font-size: 10px;
+    font-weight : bold;
+	font-family: 'xeicon';
+	cursor : pointer
+}
+
 .wrap {
 	position: absolute;
 	left: 0;
