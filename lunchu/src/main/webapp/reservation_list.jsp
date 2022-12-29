@@ -139,7 +139,6 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 									%>
 								</tbody>
 								</div>
-								<button class="reservation_delete">ªË¡¶</button>
 							</form>
 						</table>
 					</div>
