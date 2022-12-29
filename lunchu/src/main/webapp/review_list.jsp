@@ -113,7 +113,6 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
                             <form action="" method = "post">
                                 <thead>
                                     <tr>
-                                        <td class="review_col"></td>
                                         <td class="review_col">번호</td>
                                         <td class="review_col">음식점명</td>
                                         <td class="review_col">평점</td>
@@ -124,7 +123,6 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
                                     <tbody>
                                     	<%for(int i =0; i < re_dto.size(); i++) { %>
                                         <tr class="review_detail">
-                                            <td><input type="checkbox"></td>
                                             <td class="review_detail"><%= i+1 %></td>
                                             <td><a href="#"><%= re_dto.get(i).getRest_seq() %></a></td>
                                             <td><%= re_dto.get(i).getRv_rating() %></td>
@@ -133,7 +131,6 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
                                        <% }%>                                                                                                               
                                     </tbody>
                                 </div>
-                                <button class="review_delete">삭제</button>
                             </form>
                         </table>
                     </div>
@@ -154,16 +151,6 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
                         </nav>
                     </div> -->
                     <div class="grid_6">
-                        <h3>Email Updates</h3>
-                        <p class="col1">Join our digital mailing list and get news<br>
-                            deals and be first to know about events</p>
-                        <form id="newsletter" action="#">
-                            <div class="success">Your subscribe request has been sent!</div>
-                            <label class="email">
-                                <input type="email" value="Enter e-mail address">
-                                <a href="#" class="btn" data-type="submit">subscribe</a> <span class="error">*This is
-                                    not a valid email address.</span> </label>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,11 @@
 <link rel="stylesheet" media="screen" href="css/ie.css">
 <![endif]-->
 </head>
-
+<style>
+	td{
+		text-align: center;
+	}
+</style>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -112,9 +116,9 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 						<table class="reservation_list">
 							<thead>
 								<tr>
-									<td class="reservation_col"></td>
-									<td class="reservation_col">번호</td>
+									<td class="reservation_col" colspan="2">번호</td>
 									<td class="reservation_col">음식점명</td>
+									<td class="reservation_col">방문일자</td>
 								</tr>
 							</thead>
 
@@ -126,8 +130,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 								for (int i = 0; i < re_dto.size(); i++) {
 								%>
 								<tr class="reservation_detail">
-									<td></td>
-									<td class="reservation_detail"><%=i + 1%></td>
+									<td colspan="2" class="reservation_detail"><%=i + 1%></td>
 									<td><a href=""><%=Restdao.getName(re_dto.get(i).getRestSeq())%></a></td>
 									<td><%=re_dto.get(i).getReservDate()%></td>
 								</tr>
