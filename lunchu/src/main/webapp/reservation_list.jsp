@@ -110,54 +110,36 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 					<div class="reservation">
 						<h2>Evaluation</h2>
 						<table class="reservation_list">
-							<form action="" method="post">
-								<thead>
-									<tr>
-										<td class="reservation_col"></td>
-										<td class="reservation_col">번호</td>
-										<td class="reservation_col">음식점명</td>
-										
-									</tr>
-								</thead>
+							<thead>
+								<tr>
+									<td class="reservation_col"></td>
+									<td class="reservation_col">번호</td>
+									<td class="reservation_col">음식점명</td>
+								</tr>
+							</thead>
 
-								<tbody>
-									<%
-									ReservationDAO reservdao = new ReservationDAO();
-									RestaurantDAO Restdao = new RestaurantDAO();
-									
-									for (int i = 0; i < re_dto.size(); i++) {
-									%>
-									<tr class="reservation_detail">
-										<td><input type="checkbox"></td>
-										<td class="reservation_detail"><%=i + 1%></td>
-										<td><a href=""><%= Restdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
-										<td> <%= re_dto.get(i).getReservDate() %>
-										</td>
-									</tr>
-									<%
-									}
-									%>
-								</tbody>
-								</div>
+							<tbody>
+								<%
+								ReservationDAO reservdao = new ReservationDAO();
+								RestaurantDAO Restdao = new RestaurantDAO();
+
+								for (int i = 0; i < re_dto.size(); i++) {
+								%>
+								<tr class="reservation_detail">
+									<td></td>
+									<td class="reservation_detail"><%=i + 1%></td>
+									<td><a href=""><%=Restdao.getName(re_dto.get(i).getRestSeq())%></a></td>
+									<td><%=re_dto.get(i).getReservDate()%></td>
+								</tr>
+								<%
+								}
+								%>
+							</tbody>
+							</div>
 							</form>
 						</table>
 					</div>
 
-					<!--  <div class="bottom_block">
-                    <div class="grid_6">
-                        <h3>Follow Us</h3>
-                        <div class="socials"> <a href="#"></a> <a href="#"></a> <a href="#"></a> </div>
-                        <nav>
-                            <ul>
-                                <li class="current"><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="menu.html">Menu</a></li>
-                                <li><a href="portfolio.html">Portfolio</a></li>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                            </ul>
-                        </nav>
-                    </div> -->
 					<div class="grid_6">
 						<h3>Email Updates</h3>
 						<p class="col1">
@@ -171,7 +153,6 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 								data-type="submit">subscribe</a> <span class="error">*This
 									is not a valid email address.</span>
 							</label>
-						</form>
 					</div>
 				</div>
 			</div>
