@@ -1,3 +1,4 @@
+<%@page import="model.SelectRestListTestDAO"%>
 <%@page import="model.MenuListDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.MenuListDAO"%>
@@ -117,6 +118,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%
 								if (info != null) {
 								%>
+								<span id="MemPrefCategory" style="display: none"><%=info.getMemPrefCategory() %></span>
 								<li><a href="LogoutService">로그아웃</a></li>
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
@@ -151,7 +153,30 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 		    <div class="inner">
 		    </div>
 		  </section>
+		<script>
 		
+		$(function(){
+			const MemPrefCategory = $("#MemPrefCategory").text();
+			console.log("MemPrefCategory = "+MemPrefCategory)
+			if(MemPrefCategory != null){
+			console.log("MemPrefCategory null ?? = "+MemPrefCategory)
+			const category = MemPrefCategory.split(',');
+			  $.ajax({
+		          type: 'post',
+		          url: 'http://localhost:8081/',
+		          data : {
+		        	  "category" : category
+					}, success: function(jsonData) {
+						const data = JSON.parse(jsonData);
+						console.log("요청성공");
+						console.log(jsonData);
+					}, error : function(e) {
+						console.log("요청실패");
+					}
+			  });	
+			}
+		})
+		</script>
 		<%if (hanlist.size() != 0) {%>
 		<div class="content page1">
 			<div class="container_12">
