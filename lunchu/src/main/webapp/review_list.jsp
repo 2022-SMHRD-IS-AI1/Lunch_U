@@ -108,7 +108,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
             <div class="container_12">
                 <div class="grid_12">
                     <div class="review">
-                        <h2>Evaluation</h2>
+                        <h2>¸®ºä³»¿ª</h2>
                         <table class="review_list">
                             <form action="" method = "post">
                                 <thead>

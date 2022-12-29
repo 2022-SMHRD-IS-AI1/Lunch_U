@@ -112,7 +112,7 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="reservation">
-						<h2>Evaluation</h2>
+						<h2>예약내역</h2>
 						<table class="reservation_list">
 							<thead>
 								<tr>
