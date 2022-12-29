@@ -19,6 +19,74 @@
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/sForm.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
+<style type="text/css">
+	.size {
+    width: 300px;
+    height: 30px;
+    padding-left: 10px;
+    background-color: #f4f4f4;
+    /* margin-left: 10px; */
+    border: none;
+    border-radius: 5px;
+}
+	.btn {
+    width: 310px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #DF3278;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+	input {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+	input [type="submit" i] {
+	width: 310px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #DF3278;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    color: buttontext;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+</style>
 <script>
 	$(document).ready(function() {
 		$("a[data-gal^='prettyPhoto']").prettyPhoto({
@@ -51,7 +119,7 @@
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
 										<li><a href="profile.jsp"> 내 정보</a></li>
-										<li><a href="reservation.jsp"> 내 예약</a></li>
+										<li><a href="reservation_list.jsp"> 내 예약</a></li>
 										<li><a href="reviews.jsp"> 내 리뷰 </a></li>
 										<li><a href="groups.jsp"> 내 그룹</a></li>
 									</ul></li>
@@ -64,7 +132,7 @@
 			</div>
 		</header>
 		<div class="content">
-			<div class="container_12">
+			<div class="container_12" margin-left="50px">
 				<div class="grid_12">
 					<h2>내 정보</h2>
 				</div>
@@ -77,17 +145,21 @@
 							</tr>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="pw"
-									value=<%=info.getMemPw()%>></td>
+								<td> <label>
+									<input type="password" placeholder="비밀번호 입력" value=<%=info.getMemPw()%> class="size">
+								</label> </td>
 							</tr>
 							<tr>
 								<td>비밀번호 확인</td>
-								<td><input type="password" name="pwCheck"
-									value=<%=info.getMemPw()%>></td>
+								<td> <label>
+									<input type="password" placeholder="비밀번호 확인" value=<%=info.getMemPw()%> name="pwCheck" class="size">
+								</label> </td>
 							</tr>
 							<tr>
 								<td>직장 주소</td>
-								<td><input name="address" value="<%=info.getMemAddr()%>"></td>
+								<td> <label>
+									<input type="text" value="<%=info.getMemAddr()%>" name="address" placeholder="주소를 입력해주세요" class="size">
+								</label> </td>
 							</tr>
 							<tr>
 								<td>선호 카테고리</td>
@@ -131,44 +203,13 @@
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" value="수정"
-									style="text-align: center"></td>
+									style="text-align: center" class="btn"></td>
 							</tr>
 						</table>
 					</form>
 				</div>
 				<div class="clear"></div>
 				<div class="bottom_block">
-					<div class="grid_6">
-						<h3>Follow Us</h3>
-						<div class="socials">
-							<a href="#"></a> <a href="#"></a> <a href="#"></a>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about-us.html">About Us</a></li>
-								<li><a href="menu.html">Menu</a></li>
-								<li class="current"><a href="portfolio.html">Portfolio</a></li>
-								<li><a href="news.html">News</a></li>
-								<li><a href="contacts.html">Contacts</a></li>
-							</ul>
-						</nav>
-					</div>
-					<div class="grid_6">
-						<h3>Email Updates</h3>
-						<p class="col1">
-							Join our digital mailing list and get news<br> deals and be
-							first to know about events
-						</p>
-						<form id="newsletter" action="#">
-							<div class="success">Your subscribe request has been sent!</div>
-							<label class="email"> <input type="email"
-								value="Enter e-mail address"> <a href="#" class="btn"
-								data-type="submit">subscribe</a> <span class="error">*This
-									is not a valid email address.</span>
-							</label>
-						</form>
-					</div>
 				</div>
 				<div class="clear"></div>
 			</div>

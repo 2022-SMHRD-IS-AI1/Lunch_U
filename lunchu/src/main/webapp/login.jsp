@@ -204,7 +204,7 @@ hr {
 					</label> 
 					<label>
 						<p style="text-align: left; font-size: 15px; color: #666">비밀번호
-						</p> <input type="text" placeholder="비밀번호를 입력" class="size" name="pw">
+						</p> <input type="password" placeholder="비밀번호를 입력" class="size" name="pw">
 					</label>
 
 					<p></p>

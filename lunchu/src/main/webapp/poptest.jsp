@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -243,26 +243,26 @@
 <script>
     $(function () {
         $("#confirm").click(function () {
-            modalClose(); //��� �ݱ� �Լ� ȣ��
+            modalClose(); //占쏙옙占� 占쌥깍옙 占쌉쇽옙 호占쏙옙
 
-            //���� �̺�Ʈ ó��
+            //占쏙옙占쏙옙 占싱븝옙트 처占쏙옙
         });
         $("#modal-open").click(function () {
             $("#popup").css('display', 'flex').hide().fadeIn();
-            //�˾��� flex�Ӽ����� �ٲ��� �� hide()�� ����� �ٽ� fadeIn()���� ȿ��
+            //占싯억옙占쏙옙 flex占쌈쇽옙占쏙옙占쏙옙 占쌕뀐옙占쏙옙 占쏙옙 hide()占쏙옙 占쏙옙占쏙옙占� 占쌕쏙옙 fadeIn()占쏙옙占쏙옙 효占쏙옙
         });
         $("#close").click(function () {
-            modalClose(); //��� �ݱ� �Լ� ȣ��
+            modalClose(); //占쏙옙占� 占쌥깍옙 占쌉쇽옙 호占쏙옙
         });
         function modalClose() {
-            $("#popup").fadeOut(); //���̵�ƿ� ȿ��
+            $("#popup").fadeOut(); //占쏙옙占싱듸옙틸占� 효占쏙옙
         }
     });
 </script>
 
 <body>
    <button>
-   <a href="#pop_info_1" class="btn_open">��������</a>
+   <a href="#pop_info_1" class="btn_open">占쏙옙占쏙옙占쏙옙占쏙옙</a>
    </button>
         
 
@@ -273,7 +273,7 @@
             <div class="popup-wrap" id="popup">
                 <div class="popup">
                     <div class="popup-head">
-                        <span class="head-title">���� �� ����</span>
+                        <span class="head-title">占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙</span>
                     </div>
                     <div class="popup-body">
                         <div class="body-content">
@@ -283,24 +283,24 @@
                                 <div class="score_box">
                                     <div>
                                         <input id="hid_score" name="score" type="hidden" value="">
-                                        <div class="fl">����</div>
+                                        <div class="fl">占쏙옙占쏙옙</div>
                                         <div class="starpoint_wrap">
                                             <div class="starpoint_box">
                                                 <label for="starpoint_1" class="label_star" title="0.5"><span
-                                                        class="blind">0.5��</span></label> <label for="starpoint_2"
-                                                    class="label_star" title="1"><span class="blind">1��</span></label>
+                                                        class="blind">0.5占쏙옙</span></label> <label for="starpoint_2"
+                                                    class="label_star" title="1"><span class="blind">1占쏙옙</span></label>
                                                 <label for="starpoint_3" class="label_star" title="1.5"><span
-                                                        class="blind">1.5��</span></label> <label for="starpoint_4"
-                                                    class="label_star" title="2"><span class="blind">2��</span></label>
+                                                        class="blind">1.5占쏙옙</span></label> <label for="starpoint_4"
+                                                    class="label_star" title="2"><span class="blind">2占쏙옙</span></label>
                                                 <label for="starpoint_5" class="label_star" title="2.5"><span
-                                                        class="blind">2.5��</span></label> <label for="starpoint_6"
-                                                    class="label_star" title="3"><span class="blind">3��</span></label>
+                                                        class="blind">2.5占쏙옙</span></label> <label for="starpoint_6"
+                                                    class="label_star" title="3"><span class="blind">3占쏙옙</span></label>
                                                 <label for="starpoint_7" class="label_star" title="3.5"><span
-                                                        class="blind">3.5��</span></label> <label for="starpoint_8"
-                                                    class="label_star" title="4"><span class="blind">4��</span></label>
+                                                        class="blind">3.5占쏙옙</span></label> <label for="starpoint_8"
+                                                    class="label_star" title="4"><span class="blind">4占쏙옙</span></label>
                                                 <label for="starpoint_9" class="label_star" title="4.5"><span
-                                                        class="blind">4.5��</span></label> <label for="starpoint_10"
-                                                    class="label_star" title="5"><span class="blind">5��</span></label>
+                                                        class="blind">4.5占쏙옙</span></label> <label for="starpoint_10"
+                                                    class="label_star" title="5"><span class="blind">5占쏙옙</span></label>
                                                 <input type="radio" name="starpoint" id="starpoint_1"
                                                     class="star_radio"> <input type="radio" name="starpoint"
                                                     id="starpoint_2" class="star_radio">
@@ -323,7 +323,7 @@
                                     </div>
                                 </div><br>
                                 <div class="section">
-                                    <!-- �湮�ı� -->
+                                    <!-- 占썸문占식깍옙 -->
                                     <input id="hid_contents_deny" type="hidden" value="">
                                     <div style="position: relative">
                                         <div class="title">
@@ -333,7 +333,7 @@
                                         <div class="clear"></div>
                                     </div>
 
-                                    <textarea id="txt_contents" name="content" class="fs-13" placeholder="���並 �����ּ���."
+                                    <textarea id="txt_contents" name="content" class="fs-13" placeholder="占쏙옙占썰를 占쏙옙占쏙옙占쌍쇽옙占쏙옙."
                                         style="border: 1px solid rgb(213, 213, 213); width: 369px; height: 306px;"
                                         resize: none; maxlength="1000";></textarea>
                                     <div style="padding-top: 5px;">
@@ -354,13 +354,13 @@
                     </div>
 
                     <div class="popup-foot">
-                        <span class="pop-btn confirm" id="confirm">Ȯ��</span>
-                        <span class="pop-btn close" id="close">�ݱ�</span>
+                        <span class="pop-btn confirm" id="confirm">확占쏙옙</span>
+                        <span class="pop-btn close" id="close">占쌥깍옙</span>
                     </div>
                 </div>
             </div>
 
-            <!--<button type="button" class="btn_close">�ݱ�</button>-->
+            <!--<button type="button" class="btn_close">占쌥깍옙</button>-->
 
         </div>
 

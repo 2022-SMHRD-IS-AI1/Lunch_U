@@ -106,7 +106,6 @@ public class ReservationDAO {
 			String sql = "select reserv_time from t_reservation where rest_seq= ? and to_date(reserv_date, 'YYYY-MM-DD') >= (select to_date(current_date, 'YYYY-MM-DD') from dual)";
 			
 			psmt = conn.prepareStatement(sql);
-			
 			psmt.setInt(1, rest_seq);
 			
 			rs = psmt.executeQuery();

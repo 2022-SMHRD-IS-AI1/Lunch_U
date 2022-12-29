@@ -30,7 +30,11 @@
 <link rel="stylesheet" media="screen" href="css/ie.css">
 <![endif]-->
 </head>
-
+<style>
+td {
+	text-align: center;
+}
+</style>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/superfish.js"></script>
@@ -108,71 +112,36 @@ MemberDTO info = (MemberDTO) session.getAttribute("info");
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="reservation">
-						<h2>Evaluation</h2>
+						<h2>예약내역</h2>
 						<table class="reservation_list">
-							<form action="" method="post">
-								<thead>
-									<tr>
-										<td class="reservation_col"></td>
-										<td class="reservation_col">번호</td>
-										<td class="reservation_col">음식점명</td>
-										
-									</tr>
-								</thead>
+							<thead>
+								<tr>
+									<td class="reservation_col" colspan="2">번호</td>
+									<td class="reservation_col">음식점명</td>
+									<td class="reservation_col">방문일자</td>
+								</tr>
+							</thead>
 
-								<tbody>
-									<%
-									ReservationDAO reservdao = new ReservationDAO();
-									RestaurantDAO Restdao = new RestaurantDAO();
-									
-									for (int i = 0; i < re_dto.size(); i++) {
-									%>
-									<tr class="reservation_detail">
-										<td><input type="checkbox"></td>
-										<td class="reservation_detail"><%=i + 1%></td>
-										<td><a href=""><%= Restdao.getName(re_dto.get(i).getRestSeq()) %></a></td>
-										<td> <%= re_dto.get(i).getReservDate() %>
-										</td>
-									</tr>
-									<%
-									}
-									%>
-								</tbody>
-								</div>
-							</form>
+							<tbody>
+								<%
+								ReservationDAO reservdao = new ReservationDAO();
+								RestaurantDAO Restdao = new RestaurantDAO();
+
+								for (int i = 0; i < re_dto.size(); i++) {
+								%>
+								<tr class="reservation_detail">
+									<td colspan="2" class="reservation_detail"><%=i + 1%></td>
+									<td><a href=""><%=Restdao.getName(re_dto.get(i).getRestSeq())%></a></td>
+									<td><%=re_dto.get(i).getReservDate()%></td>
+								</tr>
+								<%
+								}
+								%>
+							</tbody>
 						</table>
 					</div>
 
-					<!--  <div class="bottom_block">
-                    <div class="grid_6">
-                        <h3>Follow Us</h3>
-                        <div class="socials"> <a href="#"></a> <a href="#"></a> <a href="#"></a> </div>
-                        <nav>
-                            <ul>
-                                <li class="current"><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="menu.html">Menu</a></li>
-                                <li><a href="portfolio.html">Portfolio</a></li>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                            </ul>
-                        </nav>
-                    </div> -->
-					<div class="grid_6">
-						<h3>Email Updates</h3>
-						<p class="col1">
-							Join our digital mailing list and get news<br> deals and be
-							first to know about events
-						</p>
-						<form id="newsletter" action="#">
-							<div class="success">Your subscribe request has been sent!</div>
-							<label class="email"> <input type="email"
-								value="Enter e-mail address"> <a href="#" class="btn"
-								data-type="submit">subscribe</a> <span class="error">*This
-									is not a valid email address.</span>
-							</label>
-						</form>
-					</div>
+					<div class="grid_6"></div>
 				</div>
 			</div>
 		</div>
