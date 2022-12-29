@@ -53,6 +53,7 @@ CREATE TABLE t_restaurant
     cate_name     VARCHAR2(20)    NOT NULL, 
     rest_tel     VARCHAR2(20)     NOT NULL,
     rest_rating     NUMBER(18, 2)     NOT NULL,
+   	rest_rating_cnt	NUMBER(18, 0)    NOT NULL,
      PRIMARY KEY (rest_seq)
 );
 
