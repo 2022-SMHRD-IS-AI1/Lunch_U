@@ -228,7 +228,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < yanglist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/yang.jpg" alt="">
+										<img src="images/steak.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=yanglist.get(i).getRestSeq()%>">
 											<strong> <%=yanglist.get(i).getRestName()%></strong>
 										</a>
@@ -239,7 +239,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < yanglist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/yang.jpg" alt="">
+										<img src="images/steak.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=yanglist.get(i).getRestSeq()%>">
 											<strong> <%=yanglist.get(i).getRestName()%></strong>
 										</a>
@@ -265,7 +265,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < illist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/ilsik.jpg" alt="">
+										<img src="images/ilsik2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
 											<strong> <%=illist.get(i).getRestName()%></strong>
 										</a>
@@ -276,7 +276,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < illist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/ilsik.jpg" alt="">
+										<img src="images/ilsik2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=illist.get(i).getRestSeq()%>">
 											<strong> <%=illist.get(i).getRestName()%></strong>
 										</a>
@@ -302,7 +302,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < buffetlist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/page1_img1.jpg" alt="">
+										<img src="images/bupe2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
 											<strong> <%=buffetlist.get(i).getRestName()%></strong>
 										</a>
@@ -313,7 +313,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < buffetlist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/page1_img1.jpg" alt="">
+										<img src="images/bupe2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=buffetlist.get(i).getRestSeq()%>">
 											<strong> <%=buffetlist.get(i).getRestName()%></strong>
 										</a>
@@ -339,7 +339,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < bunsiklist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/page1_img2.jpg" alt="">
+										<img src="images/bunsick2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=bunsiklist.get(i).getRestSeq()%>">
 											<strong> <%=bunsiklist.get(i).getRestName()%></strong>
 										</a>
@@ -350,7 +350,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < bunsiklist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/page1_img2.jpg" alt="">
+										<img src="images/bunsick2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=bunsiklist.get(i).getRestSeq()%>">
 											<strong> <%=bunsiklist.get(i).getRestName()%></strong>
 										</a>
@@ -376,7 +376,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < fusionlist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/page1_img3.jpg" alt="">
+										<img src="images/fusion2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=fusionlist.get(i).getRestSeq()%>">
 											<strong> <%=fusionlist.get(i).getRestName()%></strong>
 										</a>
@@ -387,7 +387,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < fusionlist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/page1_img3.jpg" alt="">
+										<img src="images/fusion2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=fusionlist.get(i).getRestSeq()%>">
 											<strong> <%=fusionlist.get(i).getRestName()%></strong>
 										</a>
@@ -413,7 +413,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < fastfoodlist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/page1_img1.jpg" alt="">
+										<img src="images/hamburger.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=fastfoodlist.get(i).getRestSeq()%>">
 											<strong> <%=fastfoodlist.get(i).getRestName()%></strong>
 										</a>
@@ -424,7 +424,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < fastfoodlist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/page1_img1.jpg" alt="">
+										<img src="images/hamburger.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=fastfoodlist.get(i).getRestSeq()%>">
 											<strong> <%=fastfoodlist.get(i).getRestName()%></strong>
 										</a>
@@ -450,7 +450,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < joonglist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/page1_img4.jpg" alt="">
+										<img src="images/joongsick2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=joonglist.get(i).getRestSeq()%>">
 											<strong> <%=joonglist.get(i).getRestName()%></strong>
 										</a>
@@ -461,7 +461,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < joonglist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/page1_img4.jpg" alt="">
+										<img src="images/joongsick2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=joonglist.get(i).getRestSeq()%>">
 											<strong> <%=joonglist.get(i).getRestName()%></strong>
 										</a>
@@ -487,7 +487,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 							<section class="visual" data-slick='{"slidesToShow": 4, "slidesToScroll": 1}'>
 								<%for (int i = 0; i < chickenlist.size(); i++) {%>
 									<div style="text-align: center;margin: 10px;width: 200px;">
-										<img src="images/page1_img1.jpg" alt="">
+										<img src="images/chicken2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=chickenlist.get(i).getRestSeq()%>">
 											<strong> <%=chickenlist.get(i).getRestName()%></strong>
 										</a>
@@ -498,7 +498,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								<%for (int i = 0; i < chickenlist.size(); i++) {%>
 								<div style="margin-left: 10px">
 									<div style="text-align: center;margin: 10px;width: 200px;float: left">
-										<img src="images/page1_img1.jpg" alt="">
+										<img src="images/chicken2.png" alt="">
 										<a href="restaurant_detail.jsp?rest_seq=<%=chickenlist.get(i).getRestSeq()%>">
 											<strong> <%=chickenlist.get(i).getRestName()%></strong>
 										</a>

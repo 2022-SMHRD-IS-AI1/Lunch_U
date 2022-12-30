@@ -102,7 +102,7 @@
 									<img width="200px" height="300px" src="images/foodfood/sheepgobchang.jpg" alt="이미지 준비중..">
 								</div>
 								<div class="col-md-6 to-animate-2">
-									<h3>Reservation Form</h3>
+									<h3>Reservation</h3>
 
 									<div class="form-group">
 										<label for="id" class="sr-only">id</label>
@@ -122,17 +122,18 @@
 
 										<div class="form-group">
 											<div>※ 예약은 당일 예약만 가능합니다. ※</div>
-											<label for="occation" class="sr-only">Occation</label> <select
-												class="form-control" id="select_time" name="select_time">
+											<label for="occation" class="sr-only">Occation</label> 
+											<select class="form-control" id="select_time" name="select_time">
 												<%
 												ArrayList<String> result = new ArrayList <>();
-												System.out.println(rest_seq);
 												ReservationDAO dao = new ReservationDAO();
 												String[] timelist = { "11:30", "12:00", "12:30", "13:00" };
-													ArrayList<String> list = new ArrayList<>();
-													if(info != null){
-														list = dao.showReserveTime(rest_seq);
-													}
+												ArrayList<String> list = new ArrayList<>();
+												if(info != null){
+													list = dao.showReserveTime(rest_seq);
+												}
+													System.out.println(list);
+												if(list.size() != 0){
 													for(int i = 0; i<list.size();i++){
 														for(int j = 0; j<timelist.length; j++){
 															if(! list.get(i).equals(timelist[j])){
@@ -141,14 +142,23 @@
 																	result.add(timelist[j]);
 																}
 															}
-																
 														}
 													}
 													for(String s:result ){%>
 														<option>
 															<%=s%>
 														</option>
-													<%} %>
+												<%}
+												}
+												else{
+													for(String s: timelist){%>
+														<option>
+															<%=s%>
+														</option>
+												<%
+													}
+												}
+												%>
 											</select>
 										</div>
 										<div class="form-group">
