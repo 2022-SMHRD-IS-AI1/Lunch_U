@@ -41,6 +41,7 @@
 	right: 0;
 	top: 402px;
 	width: 100%;
+	font-family: 'MICEGothic Bold';
 }
 
 .banner h2 {
@@ -53,6 +54,7 @@
 	padding-bottom: 26px;
 	text-align: center;
 	padding: 11px 60px 10px ;
+	font-family: 'MICEGothic Bold';
 }
 
 .banner h2 span {

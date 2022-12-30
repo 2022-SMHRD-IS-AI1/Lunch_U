@@ -9,6 +9,12 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 /*
  Use the following CSS code if you want to have a class per icon.
  Instead of a list of all class selectors, you can use the generic [class*="icon-"] selector, but it's slower:
@@ -196,7 +202,7 @@
 .icon-social-stumbleupon,
 .icon-social-youtube,
 .icon-social-dropbox {
-  font-family: 'simple-line-icons';
+  font-family: 'MICEGothic Bold';
   speak: none;
   font-style: normal;
   font-weight: normal;

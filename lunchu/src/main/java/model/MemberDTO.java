@@ -139,8 +139,7 @@ public class MemberDTO {
 			this.memJoindate = memJoindate;
 			this.memType = memType;
 		}
-
-
+		
 
 		
 		

@@ -1,3 +1,4 @@
+<%@page import="model.MemberDAO"%>
 <%@page import="javax.swing.text.Document"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.MemberDTO"%>
@@ -188,6 +189,7 @@
 								<td>
 									<%
 									String visitRest = "";
+									String id = info.getMemId();
 									if (info.getMemVisitRestaurant() != null) {
 										visitRest = info.getMemVisitRestaurant();
 									} else {

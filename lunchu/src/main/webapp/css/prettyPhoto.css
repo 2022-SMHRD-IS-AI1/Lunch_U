@@ -1,7 +1,12 @@
 /* ------------------------------------------------------------------------
 	This you can edit.
 ------------------------------------------------------------------------- */
-
+@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 	/* ----------------------------------
 		Default Theme
 	----------------------------------- */
@@ -47,11 +52,11 @@
 	div.pp_default a.pp_arrow_next { left: 52px; background-position: -82px -3px; } /* The next arrow in the bottom nav */
 	div.pp_default .pp_content_container .pp_details { margin-top: 5px; }
 	div.pp_default .pp_nav { clear: none; height: 30px; width: 110px; position: relative; }
-	div.pp_default .pp_nav .currentTextHolder{ font-family: Georgia; font-style: italic; color:#999; font-size: 11px; left: 75px; line-height: 25px; margin: 0; padding: 0 0 0 10px; position: absolute; top: 2px; }
+	div.pp_default .pp_nav .currentTextHolder{ font-family: 'MICEGothic Bold'; color:#999; font-size: 11px; left: 75px; line-height: 25px; margin: 0; padding: 0 0 0 10px; position: absolute; top: 2px; }
 	
 	div.pp_default .pp_close:hover, div.pp_default .pp_nav .pp_play:hover, div.pp_default .pp_nav .pp_pause:hover, div.pp_default .pp_arrow_next:hover, div.pp_default .pp_arrow_previous:hover { opacity:0.7; }
 
-	div.pp_default .pp_description{ font-size: 11px; font-weight: bold; line-height: 14px; margin: 5px 50px 5px 0; }
+	div.pp_default .pp_description{font-family: 'MICEGothic Bold'; font-size: 11px; font-weight: bold; line-height: 14px; margin: 5px 50px 5px 0; }
 
 	div.pp_default .pp_bottom .pp_left { background: url(../images/prettyPhoto/default/sprite.png) -78px -127px no-repeat; } /* Bottom left corner */
 	div.pp_default .pp_bottom .pp_middle { background: url(../images/prettyPhoto/default/sprite_x.png) bottom left repeat-x; } /* Bottom pattern/color */
@@ -236,7 +241,7 @@
 	div.facebook .pp_arrow_next { background: url(../images/prettyPhoto/facebook/sprite.png) -32px -71px no-repeat; height: 22px; margin-top: 0; width: 22px; } /* The next arrow in the bottom nav */
 		div.facebook .pp_arrow_next.disabled { background-position: -32px -96px; cursor: default; }
 	div.facebook .pp_nav { margin-top: 0; display: block !important; }
-	div.facebook .pp_nav p { font-size: 15px; padding: 0 3px 0 4px; }
+	div.facebook .pp_nav p {font-family: 'MICEGothic Bold'; font-size: 15px; padding: 0 3px 0 4px; }
 	div.facebook .pp_nav .pp_play { background: url(../images/prettyPhoto/facebook/sprite.png) -1px -123px no-repeat; height: 22px; width: 22px; }
 	div.facebook .pp_nav .pp_pause { background: url(../images/prettyPhoto/facebook/sprite.png) -32px -123px no-repeat; height: 22px; width: 22px; }
 	
@@ -522,6 +527,7 @@
 			font-size: 17px;
 			margin: 0 0 5px 15px;
 			z-index: 9999;
+			font-family: 'MICEGothic Bold';
 		}
 
 

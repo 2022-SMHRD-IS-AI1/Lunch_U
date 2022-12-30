@@ -1,3 +1,4 @@
+<%@page import="model.RestaurantDAO"%>
 <%@page import="model.MemberDTO"%>
 <%@page import="model.ReservationDAO"%>
 <%@page
@@ -97,9 +98,11 @@
 				ReservationDAO dao = new ReservationDAO();
 				String memId=info.getMemId();
 				int cnt = dao.add(restSeq, reservTime, memId);
-				if (cnt>0){
-					
-				}
+				String id = info.getMemId();
+				RestaurantDAO Rdao = new RestaurantDAO();
+				String VisitRestaurant = Rdao.getName(restSeq);
+				int visit =dao.updateVisitedRest(id, VisitRestaurant);
+				System.out.println(visit);
 			%>
 		</table>
 	</fieldset>

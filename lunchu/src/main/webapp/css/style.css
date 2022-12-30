@@ -9,6 +9,13 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 
+@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 .visual{
     position: relative;
     text-align:center;
@@ -23,6 +30,7 @@
 	margin: 10px;
 	width: 200px;
 }
+
 .visual button{
     position: absolute;
     z-index: 10;
@@ -59,11 +67,11 @@
     color: transparent;
 }
 .visual button.slick-next:before{
-	content:"\e940" ;
-	font-size: 10px;
+   content:"\e940" ;
+   font-size: 10px;
     font-weight : bold;
-	font-family: 'xeicon';
-	cursor : pointer
+   font-family: 'xeicon';
+   cursor : pointer
 }
 
 .wrap {
@@ -76,7 +84,7 @@
 	text-align: left;
 	overflow: hidden;
 	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-family: 'MICEGothic Bold';
 	line-height: 1.5;
 }
 
@@ -107,6 +115,7 @@
 	border-bottom: 1px solid #ddd;
 	font-size: 18px;
 	font-weight: bold;
+	font-family: 'MICEGothic Bold';
 }
 
 .info .close {
@@ -145,6 +154,7 @@
 	font-size: 11px;
 	color: #888;
 	margin-top: -2px;
+	font-family: 'MICEGothic Bold';
 }
 
 .info .img {
@@ -188,11 +198,12 @@ a[href^="tel:"] {
 }
 
 body {
-	font: 14px/18px Arial, Helvetica, sans-serif;
+	font: 14px/18px;
 	color: #826660;
 	position: relative;
 	min-width: 960px;
 	background: #f2f0f0;
+	font-family: 'MICEGothic Bold';
 }
 
 .ic {
@@ -205,23 +216,26 @@ body {
 	font-size: 10px;
 	margin: -220% 0 0 0;
 	overflow: hidden;
-	padding: 0
+	padding: 0;
+	font-family: 'MICEGothic Bold';
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 	color: #5d0400;
-	font-family: Times New Roman;
+	font-family: 'MICEGothic Bold';
 }
 
 h2 {
 	font-size: 25px;
 	line-height: 30px;
+	font-family: 'MICEGothic Bold';
 }
 
 h3 {
 	font-size: 20px;
 	line-height: 24px;
+	font-family: 'MICEGothic Bold';
 }
 
 p {
@@ -239,6 +253,7 @@ img {
 
 address {
 	font-style: normal;
+	font-family: 'MICEGothic Bold';
 }
 
 ul {
@@ -281,6 +296,7 @@ a.btn {
 	margin-top: 17px;
 	color: #fff;
 	text-transform: uppercase;
+	font-family: 'MICEGothic Bold';
 }
 
 a.btn:hover {
@@ -392,9 +408,9 @@ header h1 a {
 	display: block;
 	overflow: hidden;
 	margin: 0 auto;
-	width: 113px;
+	width: 275px;
 	float: left;
-	height: 75px;
+	height: 125px;
 	text-indent: -999px;
 	transition: 0s ease;
 	-o-transition: 0s ease;
@@ -415,6 +431,7 @@ header h1 a img {
 	font-size: 24px;
 	color: #79302b;
 	margin-bottom: 17px;
+	font-family: 'MICEGothic Bold';
 }
 
 /* .content.page1 {
@@ -426,6 +443,7 @@ header h1 a img {
 	padding-top: 43px;
 	margin-bottom: 19px;
 	color: #5D0400;
+	font-family: 'MICEGothic Bold';
 }
 
 .page1_block img {
@@ -454,6 +472,7 @@ header h1 a img {
 	float: left;
 	width: 240px !important;
 	font-size: 12px;
+	font-family: 'MICEGothic Bold';
 }
 
 .carousel1 li>div {
@@ -467,9 +486,10 @@ header h1 a img {
 	min-width: 41px;
 	height: 38px;
 	border-radius: 4px;
-	font: 20px/36px 'Lobster', cursive;
+	font: 20px/36px;
 	text-align: center;
 	margin-top: 15px;
+	font-family: 'MICEGothic Bold';
 }
 
 .carousel1 li span {
@@ -496,6 +516,7 @@ header h1 a img {
 	float: left;
 	width: 240px !important;
 	font-size: 12px;
+	font-family: 'MICEGothic Bold';
 }
 
 .carousel2 li>div {
@@ -509,9 +530,10 @@ header h1 a img {
 	min-width: 41px;
 	height: 38px;
 	border-radius: 4px;
-	font: 20px/36px 'Lobster', cursive;
+	font: 20px/36px;
 	text-align: center;
 	margin-top: 15px;
+	font-family: 'MICEGothic Bold';
 }
 
 .carousel2 li span {
@@ -596,6 +618,7 @@ header h1 a img {
 	font-size: 12px;
 	padding-bottom: 34px;
 	overflow: hidden;
+	font-family: 'MICEGothic Bold';
 }
 
 .bottom_block h3 {
@@ -623,6 +646,7 @@ header h1 a img {
 	font-size: 12px;
 	text-transform: uppercase;
 	color: #504f4f;
+	font-family: 'MICEGothic Bold';
 }
 
 .bottom_block p {
@@ -672,7 +696,7 @@ header h1 a img {
 .carousel2 li .title {
 	font-size: 24px;
 	line-height: 22.9px;
-	font-family: "Times New Roman", Times, serif;
+	font-family: 'MICEGothic Bold';
 	color: #e2827e;
 	text-align: center;
 	padding-top: 36px;
@@ -725,12 +749,14 @@ header h1 a img {
 .content h2.head1 {
 	padding-top: 28px;
 	font-size: 25px;
+	font-family: 'MICEGothic Bold';
 }
 
 .content h2.head2 {
 	font-size: 25px;
 	padding-top: 35px;
 	margin-bottom: 20px;
+	font-family: 'MICEGothic Bold';
 }
 
 .chefs {
@@ -745,6 +771,7 @@ header h1 a img {
 	font-size: 12px;
 	padding-top: 8px;
 	margin-bottom: 16px;
+	font-family: 'MICEGothic Bold';
 }
 
 .menu {
@@ -769,6 +796,7 @@ header h1 a img {
 .news {
 	font-size: 12px;
 	margin-bottom: 52px;
+	font-family: 'MICEGothic Bold';
 }
 
 .news .extra_wrapper {
@@ -799,13 +827,14 @@ header h1 a img {
 	color: #a8a8a8;
 	width: 220px;
 	height: 30px;
-	font: 12px/18px Arial, Helvetica, sans-serif;
+	font: 12px/18px;
 	padding: 6px 10px;
 	box-shadow: none !important;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
+	font-family: 'MICEGothic Bold';
 }
 
 #newsletter a.btn {
@@ -815,6 +844,7 @@ header h1 a img {
 	margin-top: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
+	font-family: 'MICEGothic Bold';
 }
 
 #newsletter .error, #form1 .empty {
@@ -832,6 +862,7 @@ header h1 a img {
 	-o-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
 	position: absolute;
+	font-family: 'MICEGothic Bold';
 }
 
 #newsletter label.invalid .error {
@@ -859,6 +890,7 @@ header h1 a img {
 	-o-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
 	position: absolute;
+	font-family: 'MICEGothic Bold';
 }
 
 /****Map***/
@@ -890,6 +922,7 @@ footer {
 	font-size: 12px;
 	color: #fff;
 	text-align: center;
+	font-family: 'MICEGothic Bold';
 }
 
 footer a:hover {
@@ -903,11 +936,12 @@ table {
 	border-collapse: collapse;
 	width: 90%;
 	font-size: 14px;
+	font-family: 'MICEGothic Bold';
 }
 
 thead {
 	vertical-align: middle;
-	font-family: 'Gowun Dodum', sans-serif;
+	font-family: 'MICEGothic Bold';
 	margin-top: 10px;
 	font-size: 25px;
 	text-align: center;
@@ -919,6 +953,7 @@ td {
 	height: 50px;
 	padding: 15px 0px;
 	border-bottom: 1px solid lightgrey;
+	font-family: 'MICEGothic Bold';
 }
 
 .review_detail {
@@ -926,7 +961,7 @@ td {
 	margin-top: 6px;
 	font-weight: bold;
 	text-align: center;
-	font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'MICEGothic Bold';
 }
 
 .review_delete {
@@ -938,6 +973,7 @@ td {
 	padding: 4px 8px;
 	font-size: 12px;
 	margin-top: 5px;
+	font-family: 'MICEGothic Bold';
 }
 
 .review_col {
@@ -974,6 +1010,7 @@ td {
 .inn1>a:hover {
 	color: #dd3513;
 	font-style: bold;
+	font-family: 'MICEGothic Bold';
 }
 
 .add_new_group:hover {
@@ -988,6 +1025,7 @@ td {
 
 tbody {
 	font-size: 12px;
+	font-family: 'MICEGothic Bold';
 }
 
 .exit {
