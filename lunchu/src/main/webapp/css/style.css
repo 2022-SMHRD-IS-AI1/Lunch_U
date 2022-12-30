@@ -409,9 +409,9 @@ header h1 a {
 	display: block;
 	overflow: hidden;
 	margin: 0 auto;
-	width: 113px;
+	width: 275px;
 	float: left;
-	height: 75px;
+	height: 125px;
 	text-indent: -999px;
 	transition: 0s ease;
 	-o-transition: 0s ease;
