@@ -1,3 +1,10 @@
+
+@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
  
 .menu_block  {
 	position: relative;
@@ -38,6 +45,7 @@ nav{ position:relative;padding: 0px 0 0 0;}
 	position: relative;
 	display: block;
 	padding: 5px 14px 8px;
+	font-family: 'MICEGothic Bold';
 }
 
 
@@ -71,7 +79,6 @@ nav{ position:relative;padding: 0px 0 0 0;}
 }
 .sf-menu li ul li a{
 	font-size: 18px;
-	font-family: 'Noto Sans', sans-serif;
 	background: #e9afac;
 	color: #916564;
 	text-transform: uppercase;
@@ -81,6 +88,7 @@ nav{ position:relative;padding: 0px 0 0 0;}
 	position: relative;
 	display: block;
 	padding: 6px 0px 7px;
+	font-family: 'MICEGothic Bold';
 }
 
 .sf-menu li li a:hover, 
