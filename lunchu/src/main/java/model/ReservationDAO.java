@@ -123,5 +123,23 @@ public class ReservationDAO {
 		}
 		return list;
 	}
+	
+	public int updateVisitedRest(String id, String VisitRestaurant) {
+		try {
+			getconn();
+
+			String sql = "update t_member set MEM_VISIT_RESTAURANT=? where mem_id = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, VisitRestaurant);
+			psmt.setString(2, id);
+
+			cnt = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 }
 
