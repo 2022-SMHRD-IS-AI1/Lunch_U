@@ -20,7 +20,13 @@
 <script src="js/superfish.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/sForm.js"></script>
-
+<style>
+.height_scroll{
+	 height:397px;
+	 overflow-x:hidden; 
+	 overflow-y:auto; 
+}
+</style>
 
 </head>
 <%
@@ -73,7 +79,7 @@
     <div class="container_12">
         <div class="grid_3">
             <h2 class="head2">음식점 목록<span id="category" style="display: none"><%=cate%></span></h2>
-            <ul id = "getRestList" class="list l1">
+            <ul id = "getRestList" class="height_scroll">
             </ul>
         </div>
         <div id="map" style="width:700px;height:500px;"></div>
@@ -106,16 +112,17 @@
             return list;
         }
         function getList(getRestList) {
-              const restul = document.getElementById("getRestList");
-             const geocoder = new kakao.maps.services.Geocoder();
-              geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
+			const restul = document.getElementById("getRestList");
+			const geocoder = new kakao.maps.services.Geocoder();
+			geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
                if (status === kakao.maps.services.Status.OK) {
                    addrCoord = new kakao.maps.LatLng(result[0].y, result[0].x);
                    for (let i = 0; i < getRestList.length; i++) {
                       geocoder.addressSearch(getRestList[i].restAddr, function (result, status) {
                          restCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                         if (restCoords.La <= addrCoord.La+0.01 && restCoords.La >= addrCoord.La-0.01) {
-                               if (restCoords.Ma <= addrCoord.Ma+0.015 && restCoords.Ma >= addrCoord.Ma-0.015) {
+                         var licnt = $("#getRestList").children('li').length;
+                         if (restCoords.La <= addrCoord.La+0.009 && restCoords.La >= addrCoord.La-0.009) {
+                               if (restCoords.Ma <= addrCoord.Ma+0.01 && restCoords.Ma >= addrCoord.Ma-0.01) {
                                restul.innerHTML +='<li><a href=restaurant_detail.jsp?rest_seq='+
                                getRestList[i].restSeq+'>'+getRestList[i].restNm+'</a></li>'
                                }
@@ -195,12 +202,14 @@
                     function info(result, status, restNm, restCate, restAdd) {
                         return function (result, status) {
                             if (status === kakao.maps.services.Status.OK) {
-                                let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                                geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
-                                  companyCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+								let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+								geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
+								companyCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
                                   
-                                     if (coords.La <= companyCoords.La+0.01 && coords.La >= companyCoords.La-0.01) {
-                              if (coords.Ma <= companyCoords.Ma+0.015 && coords.Ma >= companyCoords.Ma-0.015) {
+                                  
+                                  
+                                     if (coords.La <= companyCoords.La+0.009 && coords.La >= companyCoords.La-0.009) {
+                              			if (coords.Ma <= companyCoords.Ma+0.01 && coords.Ma >= companyCoords.Ma-0.01) {
                                  
                                          // 결과값으로 받은 위치를 마커로 표시합니다
                                          let marker = new kakao.maps.Marker({
@@ -226,8 +235,8 @@
          
                                          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                                          // map.setCenter(coords);
-                              }
-                           }
+			                              }
+			                           }
                                 });
                             }
                         }

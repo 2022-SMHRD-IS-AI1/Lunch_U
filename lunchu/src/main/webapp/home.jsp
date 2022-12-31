@@ -119,6 +119,7 @@ ArrayList<MenuListDTO> chickenlist = dao.menuList(chicken);
 								if (info != null) {
 								%>
 								<span id="MemPrefCategory" style="display: none"><%=info.getMemPrefCategory() %></span>
+								<li><a href="http://localhost:8083/">점메추</a></li>
 								<li><a href="LogoutService">로그아웃</a></li>
 								<li class="with_ul"><a href="#">마이페이지</a>
 									<ul>
