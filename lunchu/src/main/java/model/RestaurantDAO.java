@@ -186,4 +186,31 @@ public class RestaurantDAO {
 		return restRating;
 	}
 
+	public int getseq(String i) {
+		// TODO Auto-generated method stub
+		int rest_seq = 0;
+		try {
+			getConn();
+			
+			String sql = "select * from t_restaurant where rest_name = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, i);
+			
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				rest_seq = rs.getInt("rest_seq");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return rest_seq;
+	}
+
 }

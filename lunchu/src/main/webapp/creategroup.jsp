@@ -218,8 +218,9 @@ hr {
 		for (var i = 0; i < arr.length; i++) {
 			memberIds.push(arr[i].innerText);
 		}
-		
-		$.ajax({
+
+		$
+				.ajax({
 					url : "SearchService", //어디로 요청할 것인가?
 					type : "post", //요청방식(Get or Post)
 					async : false,
@@ -230,12 +231,14 @@ hr {
 					success : function(res) {
 						if (res == "") {
 							alert("존재하지 않는 아이디입니다. 검색한 아이디를 확인해주세요.")
-						} else if(res == "이미 추가한 아이디입니다."){
+						} else if (res == "이미 추가한 아이디입니다.") {
 							alert(res);
 						} else {
-							$("#members").append('<tr><td class = "memberId" style="padding-left: 10px; width: 140px; text-align: left">'
-							+ res
-							+ '</td><td class = "delete" style="width: 50%; text-align: right;"><button class = "delete_btn" type="button" style="background-color: #df3278; border: none; color: #fff; border-radius: 5px;">삭제</button></td></tr>');
+							$("#members")
+									.append(
+											'<tr><td class = "memberId" style="padding-left: 10px; width: 140px; text-align: left">'
+													+ res
+													+ '</td><td class = "delete" style="width: 50%; text-align: right;"><button class = "delete_btn" type="button" style="background-color: #df3278; border: none; color: #fff; border-radius: 5px;">삭제</button></td></tr>');
 						}
 
 					},
@@ -255,7 +258,6 @@ hr {
 			memberIds.push(arr[i].innerText);
 		}
 
-
 		$.ajax({
 			url : "CreateGroup", //어디로 요청할 것인가?
 			type : "post", //요청방식(Get or Post)
@@ -265,8 +267,11 @@ hr {
 				"memberIds" : memberIds
 			}, //보내는 데이터
 			success : function(res) {
+				var result = $.trim(res);
 				alert(res);
-				location.replace("groups.jsp");
+				if (result==="그룹이 생성되었습니다.") {
+					location.replace("groups.jsp");
+				}
 			},
 			error : function(e) {
 				alert("요청이 실패하였습니다. 관리자에게 문의하세요.");
@@ -309,7 +314,7 @@ String id = info.getMemId();
 								style="padding-left: 10px; width: 140px; text-align: left"><%=id%>
 							</td>
 						</tr>
-						
+
 					</table>
 				</div>
 

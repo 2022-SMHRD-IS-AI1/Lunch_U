@@ -29,7 +29,7 @@ public class Add2GroupService extends HttpServlet {
 
 		String[] groupseq = request.getParameterValues("arr[]");
 
-		int restseq = Integer.valueOf("1");
+		int restseq = Integer.valueOf(request.getParameter("rest_seq"));
 		//requst.getParameter("restseq");
 		// restaurant_detail에 음식점 번호 추가가 안된 상태여서 테스트로 1번 식당으로 체크함.
 

@@ -166,6 +166,7 @@ tbody .date, tbody .writer, tbody .review {
 									.open("LastPopup.jsp?rest_seq=" + <%=rest_seq%> , 'popup',
 											'width=500px, height=750px, scrollbars= 0, toolbar=0, menubar=no');
 						}
+						
 						function add2group() {
 							var url = "add2group.jsp?rest_seq="+<%=rest_seq%>;
 							var name = "add 2 group";
@@ -177,18 +178,14 @@ tbody .date, tbody .writer, tbody .review {
 							<%
 							if (info != null) {
 							%>
+							<button id="add2group" onclick="add2group()">그룹에 추가</button>
 							<a href="reservation_do.jsp?rest_seq=<%=rest_seq%>"><button
 									id="reservation">예약하기</button></a>
-
-							<button id="add2group" onclick="add2group()">그룹에 추가</button>
-							<button onclick="doPopupopen()">리뷰 및 평점</button>
-							<%
-							} else {
-							%>
 							<button onclick="doPopupopen()">리뷰 및 평점</button>
 							<%
 							}
 							%>
+							
 							<br>
 						</div>
 						<hr>

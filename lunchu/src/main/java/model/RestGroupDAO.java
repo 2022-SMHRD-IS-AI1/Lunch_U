@@ -95,4 +95,25 @@ public class RestGroupDAO {
 		}
 		return cnt;
 	}
+
+	public int delete(int j, int group_seq) {
+		// TODO Auto-generated method stub
+		try {
+			getconn();
+			
+			String sql = "delete from t_rest_group where rest_seq = ? and group_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(j, group_seq);
+			
+			cnt = psmt.executeUpdate();
+			
+				
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 }

@@ -224,41 +224,15 @@ hr {
 		window.close();
 		window.opener.location.href = "groups.jsp";
 	}
-
-	function add2group() {
-		var arr = [];
-		$("input:checkbox[name='groupcheck']:checked").each(function() {
-			var checked = $(this).val();
-			arr.push(checked);
-		})
-
-		$.ajax({
-			type : "POST",
-			url : "Add2GroupService",
-			data : {
-				"arr" : arr,
-			},
-			success : function(res) {
-				alert("그룹에 음식점 추가를 성공했습니다.");
-				opener.parent.location = "restaurant_detail.jsp";
-				window.close();
-
-			},
-			error : function(e) {
-				console.log("요청실패");
-			}
-		})
-
-	}
 </script>
-<%
-MemberDTO info = (MemberDTO) session.getAttribute("info");
-String id = info.getMemId();
-
-JoinGroupDAO JGdao = new JoinGroupDAO();
-ArrayList<Integer> Glist = JGdao.select(id);
-%>
 <body>
+	<%
+	MemberDTO info = (MemberDTO) session.getAttribute("info");
+	String id = info.getMemId();
+
+	JoinGroupDAO JGdao = new JoinGroupDAO();
+	ArrayList<Integer> Glist = JGdao.select(id);
+	%>
 	<div id="con">
 		<div id="login">
 			<div id="login_form">
@@ -267,7 +241,7 @@ ArrayList<Integer> Glist = JGdao.select(id);
 				response.setContentType("text/html; charset=UTF-8");
 
 				int restseq = Integer.valueOf(request.getParameter("rest_seq"));
-				
+
 				RestaurantDAO Rdao = new RestaurantDAO();
 
 				String restname = Rdao.getName(restseq);
@@ -301,6 +275,35 @@ ArrayList<Integer> Glist = JGdao.select(id);
 				</div>
 
 				<p></p>
+				<script type="text/javascript">
+				function add2group() {
+					var arr = [];
+					var rest_seq = <%=restseq%>
+					$("input:checkbox[name='groupcheck']:checked").each(function() {
+						var checked = $(this).val();
+						arr.push(checked);
+					})
+
+					$.ajax({
+						type : "POST",
+						url : "Add2GroupService",
+						data : {
+							"arr" : arr,
+							"rest_seq" : rest_seq
+						},
+						success : function(res) {
+							alert("그룹에 음식점 추가를 성공했습니다.");
+							opener.parent.location = "restaurant_detail.jsp?rest_seq=" + <%=restseq%>;
+							window.close();
+
+						},
+						error : function(e) {
+							console.log("요청실패");
+						}
+					})
+
+				}
+				</script>
 				<p>
 					<button class="btn" onclick="add2group()">추가하기</button>
 				</p>

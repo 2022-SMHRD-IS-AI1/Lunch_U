@@ -85,6 +85,7 @@
 						$(".inn1").html(str.slice(0, -1));
 
 						var groupseq = $(this).find(".groupseq_1").text();
+						$("#hidden_group_seq").text(groupseq);
 
 						$
 								.ajax({
@@ -101,11 +102,14 @@
 												.split(",");
 										var str = ""
 										for (var i = 0; i < arr.length; i++) {
-											var temp = '<tr><td style = "width : 30px"><input name="restseq" value = "" type="checkbox"></td><td style = "width : 23px" class="review_detail">'
+											var temp = '<tr><td style = "width : 30px"><input name="restseq" value = "'+arr[i]+'" type="checkbox"></td><td style = "width : 23px" class="review_detail">'
 													+ (i + 1)
 													+ '</td><td style = "width : 330px; text-align : center">'
-													+ '<a href="restaurant_detail.jsp">'
-													+ arr[i] + '</a></td></tr>';
+													+ '<a href="restaurant_detail.jsp?rest_seq="'
+													+ groupseq
+													+ '+>'
+													+ arr[i]
+													+ '</a></td></tr>';
 											str += temp;
 										}
 										$(".prefix_1 tbody").html(str);
@@ -121,54 +125,36 @@
 
 					})
 
-	$(document)
-			.on(
-					"click",
-					".manage_favorites",
-					function() {
-						var name = $(this).find(".groupname").text();
-						$(".prefix_1").find("h2").text(name);
+	$(document).on("click", ".manage_favorites", function() {
+		var groupseq = $("#hidden_group_seq").text();
 
-						var arr = [];
-						$("input:checkbox[name='groupcheck']:checked").each(
-								function() {
-									var checked = $(this).val();
-									arr.push(checked);
-								})
+		var arr = [];
+		console.log("test: " + groupseq);
+		$("input:checkbox[name='restseq']:checked").each(function() {
 
-						$
-								.ajax({
-									type : "POST",
-									url : "RestGroupService",
-									data : {
-										"groupseq" : groupseq
-									},
-									success : function(res) {
-										console.log("요청성공");
-
-										var arr = res.slice(1, res.length - 1)
-												.split(",");
-										var str = ""
-										for (var i = 0; i < arr.length; i++) {
-											var temp = '<tr><td style = "width : 30px"><input type="checkbox"></td><td style = "width : 23px" class="review_detail">'
-													+ (i + 1)
-													+ '</td><td style = "width : 330px; text-align : center">'
-													+ '<a href="restaurant_detail.jsp">'
-													+ arr[i] + '</a></td></tr>';
-											str += temp;
-										}
-										$(".prefix_1 tbody").html(str);
-										$(".manage_favorites").attr("style",
-												"display:block")
-										$(".prefix_1 hr").attr("style",
-												"display:block")
-									},
-									error : function(e) {
-										console.log("요청실패");
-									}
-								})
-
-					})
+			var checked = $(this).val();
+			arr.push(checked);
+		})
+		console.log("test: " + arr);
+		
+		$.ajax({
+			type : "POST",
+			url : "DeleteRestFromGroup",
+			data : {
+				"groupseq" : groupseq,
+				"arr" : arr
+			},
+			success : function(res) {
+				console.log("요청성공");
+				alert(res);
+				location.reload();
+			},
+			error : function(e) {
+				console.log("요청실패");
+			}
+		})
+		
+	})
 </script>
 <body>
 	<div class="main">
@@ -238,7 +224,6 @@
 							for (int i = 0; i < groupseq.size(); i++) {
 								GroupDTO Gdto = Gdao.select(groupseq.get(i));
 								ArrayList<String> members = JGdao.findmembers(groupseq.get(i));
-								
 							%>
 							<tbody class="element">
 								<tr>
@@ -284,10 +269,10 @@
 
 
 					<div>
-
+						<span id="hidden_group_seq" style="display: none"></span>
 						<button class="manage_favorites" style="display: none">삭제</button>
 						<hr style="display: none;">
-						<table>
+						<table id="restaurant_list_">
 							<tbody>
 								<%-- 클릭하면 그룹 상세정보 뜰 곳 --%>
 							</tbody>
@@ -301,8 +286,7 @@
 		</div>
 		<div class="clear"></div>
 
-		<div class="bottom_block">
-		</div>
+		<div class="bottom_block"></div>
 		<div class="clear"></div>
 	</div>
 	</div>

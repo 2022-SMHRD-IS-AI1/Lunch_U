@@ -70,6 +70,12 @@
 		<description></description>
 		<servlet-class>controller.Add2GroupService</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>DeleteRestFromGroup</servlet-name>
+		<display-name>DeleteRestFromGroup</display-name>
+		<description></description>
+		<servlet-class>controller.DeleteRestFromGroup</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginService</servlet-name>
 		<url-pattern>/LoginService</url-pattern>
@@ -109,5 +115,9 @@
 	<servlet-mapping>
 		<servlet-name>Add2GroupService</servlet-name>
 		<url-pattern>/Add2GroupService</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteRestFromGroup</servlet-name>
+		<url-pattern>/DeleteRestFromGroup</url-pattern>
 	</servlet-mapping>
 </web-app>
