@@ -87,15 +87,7 @@ tbody .date, tbody .writer, tbody .review {
 }
 </style>
 </head>
-<script type="text/javascript">
-	function add2group() {
-		var url = "add2group.jsp";
-		var name = "add 2 group"
-		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-		window.open(url, name, option);
-	}
 
-</script>
 <body>
 	<div class="main">
 		<header>
@@ -173,6 +165,12 @@ tbody .date, tbody .writer, tbody .review {
 							window
 									.open("LastPopup.jsp?rest_seq=" + <%=rest_seq%> , 'popup',
 											'width=500px, height=750px, scrollbars= 0, toolbar=0, menubar=no');
+						}
+						function add2group() {
+							var url = "add2group.jsp?rest_seq="+<%=rest_seq%>;
+							var name = "add 2 group";
+							var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+							window.open(url, name, option);
 						}
 						</script>
 						<div style="left: 0px">

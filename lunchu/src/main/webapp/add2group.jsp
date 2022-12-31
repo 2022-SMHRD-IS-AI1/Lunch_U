@@ -266,11 +266,11 @@ ArrayList<Integer> Glist = JGdao.select(id);
 				request.setCharacterEncoding("utf-8");
 				response.setContentType("text/html; charset=UTF-8");
 
-				//int restseq = Integer.valueOf(request.getParameter("restseq"));
-				int restseq_test = 1;
+				int restseq = Integer.valueOf(request.getParameter("rest_seq"));
+				
 				RestaurantDAO Rdao = new RestaurantDAO();
 
-				String restname = Rdao.getName(restseq_test);
+				String restname = Rdao.getName(restseq);
 				%>
 				<h3 class="login" style="letter-spacing: -1px;">그룹에 추가</h3>
 				<hr>
