@@ -17,7 +17,6 @@ import model.RestaurantDAO;
 /**
  * Servlet implementation class DeleteRestFromGroup
  */
-@WebServlet("DelRestFromGroup")
 public class DelRestFromGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
