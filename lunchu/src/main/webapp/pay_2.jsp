@@ -1,8 +1,7 @@
 <%@page import="model.RestaurantDAO"%>
 <%@page import="model.MemberDTO"%>
 <%@page import="model.ReservationDAO"%>
-<%@page
-	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
+<%@page import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>

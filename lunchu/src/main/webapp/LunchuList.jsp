@@ -165,6 +165,7 @@
 				var restseq = $(".restseq").text();
 				var restseqList = restseq.split(',');
 				var category = $("#category").text();
+				console.log("----------입장완료");
                 function getMap() {
                     $.ajax({
                        url : "LunchuListService",
@@ -241,7 +242,6 @@
                     });
 
                     function info(result, status, restNm, restCate, restAdd) {
-                    	console.log("aaaaaaaaa==="+restAdd)
                         return function (result, status) {
                             if (status === kakao.maps.services.Status.OK) {
                                 let coords = new kakao.maps.LatLng(result[0].y, result[0].x);

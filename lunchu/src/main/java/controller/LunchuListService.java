@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import jakarta.servlet.annotation.WebServlet;
 import model.SelectRestListTestDAO;
 import model.SelectRestListTestDTO;
 
+@WebServlet("/LunchuListService")
 public class LunchuListService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +39,7 @@ public class LunchuListService extends HttpServlet {
 		String o = request.getParameter("o");
 		String p = request.getParameter("p");
 		String q = request.getParameter("q");
-		
+		System.out.println("입장완료 ");
 		String [] cv = {a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q};
 		
 		SelectRestListTestDAO dao = new SelectRestListTestDAO();
