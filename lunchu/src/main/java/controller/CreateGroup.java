@@ -56,7 +56,7 @@ public class CreateGroup extends HttpServlet {
 					out.println("그룹이 생성되었습니다.");
 					out.close();
 				} else {
-					out.println("그룹 생성 실패");
+					out.println("그룹 이름을 입력해주세요.");
 					out.close();
 					break;
 				}
