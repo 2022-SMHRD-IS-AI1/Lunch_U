@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,8 @@ import model.RestaurantDAO;
 /**
  * Servlet implementation class DeleteRestFromGroup
  */
-public class DeleteRestFromGroup extends HttpServlet {
+@WebServlet("DelRestFromGroup")
+public class DelRestFromGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

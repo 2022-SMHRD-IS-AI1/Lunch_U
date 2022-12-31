@@ -136,10 +136,11 @@
 			arr.push(checked);
 		})
 		console.log("test: " + arr);
+		//여기까지 잘 실행됨.
 		
 		$.ajax({
 			type : "POST",
-			url : "DeleteRestFromGroup",
+			url : "DelRestFromGroup",
 			data : {
 				"groupseq" : groupseq,
 				"arr" : arr
