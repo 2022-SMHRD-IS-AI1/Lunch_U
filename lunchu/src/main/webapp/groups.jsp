@@ -1,3 +1,4 @@
+<%@page import="model.JoinGroupDTO"%>
 <%@page import="javax.swing.text.Document"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="model.JoinGroupDAO"%>
@@ -237,6 +238,7 @@
 							for (int i = 0; i < groupseq.size(); i++) {
 								GroupDTO Gdto = Gdao.select(groupseq.get(i));
 								ArrayList<String> members = JGdao.findmembers(groupseq.get(i));
+								
 							%>
 							<tbody class="element">
 								<tr>

@@ -73,7 +73,7 @@ public class GroupDAO {
 		try {
 			getconn();
 
-			String sql = "select group_seq from (select * from t_group order by rownum desc) where rownum = 1";
+			String sql = "select group_seq from (select * from t_group order by rownum) where rownum = 1";
 			psmt = conn.prepareStatement(sql);
 
 			rs = psmt.executeQuery();
