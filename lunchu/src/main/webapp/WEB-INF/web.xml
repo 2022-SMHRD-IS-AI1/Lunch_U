@@ -11,6 +11,12 @@
 		<servlet-class>controller.LoginService</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>LunchuListService</servlet-name>
+		<display-name>LunchuListService</display-name>
+		<description></description>
+		<servlet-class>controller.LunchuListService</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>LogoutService</servlet-name>
 		<display-name>LogoutService</display-name>
 		<description></description>
@@ -119,5 +125,9 @@
 	<servlet-mapping>
 		<servlet-name>DelRestFromGroup</servlet-name>
 		<url-pattern>/DelRestFromGroup</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LunchuListService</servlet-name>
+		<url-pattern>/LunchuListService</url-pattern>
 	</servlet-mapping>
 </web-app>

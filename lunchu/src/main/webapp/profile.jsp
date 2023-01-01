@@ -147,7 +147,7 @@
 							<tr>
 								<td>비밀번호</td>
 								<td> <label>
-									<input type="password" placeholder="비밀번호 입력" value=<%=info.getMemPw()%> class="size">
+									<input type="password" placeholder="비밀번호 입력" value=<%=info.getMemPw()%> name="pw" class="size">
 								</label> </td>
 							</tr>
 							<tr>

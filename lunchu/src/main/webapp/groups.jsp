@@ -96,21 +96,22 @@
 									},
 									success : function(res) {
 										console.log("요청성공");
-										console.log(res);
 
+										if(res.length>2){
 										var arr = res.slice(1, res.length - 1)
 												.split(",");
 										var str = ""
-										for (var i = 0; i < arr.length; i++) {
-											var temp = '<tr><td style = "width : 30px"><input name="restseq" value = "'+arr[i]+'" type="checkbox"></td><td style = "width : 23px" class="review_detail">'
-													+ (i + 1)
-													+ '</td><td style = "width : 330px; text-align : center">'
-													+ '<a href="restaurant_detail.jsp?rest_seq="'
-													+ groupseq
-													+ '+>'
-													+ arr[i]
-													+ '</a></td></tr>';
-											str += temp;
+											for (var i = 0; i < arr.length; i++) {
+												var temp = '<tr><td style = "width : 30px"><input name="restseq" value = "'+arr[i]+'" type="checkbox"></td><td style = "width : 23px" class="review_detail">'
+														+ (i + 1)
+														+ '</td><td style = "width : 330px; text-align : center">'
+														+ '<a href="restaurant_detail.jsp?rest_seq="'
+														+ groupseq
+														+ '+>'
+														+ arr[i]
+														+ '</a></td></tr>';
+												str += temp;
+											}
 										}
 										$(".prefix_1 tbody").html(str);
 										$(".manage_favorites").attr("style",

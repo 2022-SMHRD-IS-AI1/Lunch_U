@@ -98,7 +98,7 @@
     <!-- 지도 영역 -->
     <div class="container_12">
         <div class="grid_3">
-            <h2 class="head2">음식점 목록<span id="category" style="display: none"><%=cate%></span></h2>
+            <h2 class="head2">점심 메뉴 추천<span id="category" style="display: none"><%=cate%></span></h2>
             <ul id = "getRestList" class="list l1">
             	<%for (int i = 0; i < resultList.size(); i++) {%>
             		<li><a href="restaurant_detail.jsp?rest_seq=<%=resultList.get(i).getRestSeq()%>"><%=resultList.get(i).getRestName() %></a></li>
@@ -109,55 +109,6 @@
         <div id="map" style="width:700px;height:500px;"></div>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b1e1365d26517c250086a71d91902fcd&libraries=services"></script>
-            
-        <%-- <script>
-        var cate = $("#category").text();
-        $.ajax({
-           url : "SelectRestList",
-         data : {
-            "category" : cate
-         },
-            success: function (jsonData) {
-                const data = JSON.parse(jsonData);
-                
-                let getRestList = restList(data);
-                getList(getRestList);
-            }
-        });
-        function restList(data) {
-            let list = [];
-            // for 반복문의 범위 를 ?
-            for (let i = 0; i < data.length; i++) {
-                list.push({
-                    "restSeq": data[i].restSeq,
-                    "restNm": data[i].restName,
-                    "restAddr": data[i].restAddr
-                });
-            }
-            return list;
-        }
-        function getList(getRestList) {
-              const restul = document.getElementById("getRestList");
-             const geocoder = new kakao.maps.services.Geocoder();
-              geocoder.addressSearch('<%=info.getMemAddr()%>', function (result, status) {
-               if (status === kakao.maps.services.Status.OK) {
-                   addrCoord = new kakao.maps.LatLng(result[0].y, result[0].x);
-                   for (let i = 0; i < getRestList.length; i++) {
-                      geocoder.addressSearch(getRestList[i].restAddr, function (result, status) {
-                         restCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                         if (restCoords.La <= addrCoord.La+0.01 && restCoords.La >= addrCoord.La-0.01) {
-                               if (restCoords.Ma <= addrCoord.Ma+0.015 && restCoords.Ma >= addrCoord.Ma-0.015) {
-                               restul.innerHTML +='<li><a href=restaurant_detail.jsp?rest_seq='+
-                               getRestList[i].restSeq+'>'+getRestList[i].restNm+'</a></li>'
-                               }
-							}
-                         
-                      });
-                   }
-               }
-           });
-      }
-        </script> --%>
 
         <script>
             
